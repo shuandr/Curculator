@@ -14,16 +14,16 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     $scope.passTypes = [{
         type: 'папір',
-        price: 120
+        price: 240
     }, {
-        type: 'тканина',
-        price: 160
+        type: 'тканина/оксамит',
+        price: 568
     }, {
-        type: 'оксамит',
-        price: 200
+        type: 'з чорним зрізом',
+        price: 320
     }, {
         type: 'металік',
-        price: 180
+        price: 435
     }];
 
     $scope.glassTypes = [{
@@ -34,7 +34,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         price: 270
     }, {
         type: 'пластик',
-        price: 75
+        price: 433
     }];
 
     $scope.backTypes = [{
@@ -42,7 +42,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         price: 78
     }, {
         type: 'ДВП',
-        price: 96
+        price: 135
+    }, {
+        type: 'піно-картон',
+        price: 440
     }];
 
     /*$scope.mouldPerim = 0;
