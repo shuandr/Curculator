@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клейнод | рамарня</title>
+    
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/prettyPhoto.css">
+    
+  </head>
+  <body>
+    <div class="bgrd-strip">
+      <div class="grad-overlay">
+      </div>
+    </div>
+    <link rel="stylesheet" href="assets/css/jquery.datepick.css">
+    <script src="assets/js_plugins/angular.min.js"></script>
+    <script src="assets/js_plugins/orderCalcAngular.js"></script>
+    <header>
+    			<div id="top" class="row clnd-header">
+    				<div class="small-6 medium-6 large-7  column logo">
+    					<a href="index.html">
+    						<img src="assets/img/main-logo.svg" alt="на головну"></a>
+    				</div>
+    				<div class="medium-6 large-5 show-for-medium column ">
+    					<div class="adress">
+    					<p>Рамарня «Клейнод»<br>
+    					Львів, вул. Коперника, 20 <br>(в подвір'ї) 
+    					<br>моб.: 050 53 29 482
+    					<br>тел/факс: 032 240-35-64</p> 
+    					<div class="work-hours">ПН—ПТ: 10:00—18:00<br>  СБ: 10:00—15:00</div>
+    	 				</div>
+    				</div>
+    
+    
+    			</div>
+    			<div class="coat-of-arm">
+    			<img src="assets/img/coat_of_arm.png" alt=""></div>
+    
+    </header>
+    <div class="row clnd-title">
+    	<h2>замовлення</h2>
+    </div>
+    <div ng-app="orderCalc" ng-controller="orderCalcCtrl" >
+    	<div class="row">
+    		<div class="large-5 column">
+    			<div class="row">
+    				<h4>замовник</h4>
+    				<div class="small-6 column">
+    					<input type="text" id="name" name="ім’я" placeholder="ім’я" required >
+    				</div>
+    				<div class="small-6 column">
+    					<input type="tel" id="phone" name="телефон" placeholder="телефон">
+    				</div>
+    			</div> <hr>
+    			<div class="row">
+    				<h4>об’єкт</h4>
+    				<div class="small-6 column">
+    					<input type="text" value="20" name="" size="5" ng-model="objWidth" placeholder="ширина">
+    				</div>
+    				<div class="small-6 column">
+    					<input type="text" value="30" name="" size="5" ng-model="objHeight" placeholder="висота">
+    				</div>
+    			</div> <hr>
+    			<div class="row">
+    				<h4>час</h4>
+    				<div class="small-6 column">
+    					дата: <input type="date" name="дата" ng-model="dateNow" disabled>
+    				</div>
+    				<div class="small-6 column">
+    					дедлайн: <input type="date" id="deadLine" name="дедлайн" ng-model="dateDeadLine">
+    				</div>
+    			</div>
+    			<hr>
+    		</div>
+    		<div class="large-7 column left-border">
+    			<!-- (.row>h4+(.small-6.column>.row>(.small-6.column)*2)*2+hr)*5 -->
+    			<div class="row">
+    				<h4>багет</h4>
+    				<div class="small-6 column">
+    					<div class="row">
+    						<div class="small-5 column">
+    							<select name="" ng-model="selectedMould"
+    							ng-options="mould.code for mould in allMoulds" placeholder="код багету"></select>
+    						</div>
+    						<div class="small-7 column carton-hole">
+    							
+    							<img src="assets/img/catalog/baget/thumbs/{[{selectedMould.code}]}.jpg"/>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="small-6 column">
+    					<div class="row">
+    						<div class="small-6 column">
+    							<p class="text-right">периметр: {[{mouldPerim() | number}]} см</p>
+    						</div>
+    						<div class="small-6 column">
+    							<p class="text-right">ціна за метр: {[{selectedMould.price| currency: "€" : 2}]} </p>
+    						</div>
+    						<div class=" column">
+    							<h5 class="text-right">ціна багету: {[{mouldCost() | currency: " " : 0}]} <small>грн</small> </h5>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<hr>
+    			<div class="row">
+    				<h4>паспарту</h4>
+    				<div class="small-6 column">
+    					<div class="row">
+    						<div class="small-6 column">
+    							ширина: <input type="number" min="0" value="0" size="5" ng-model="passWidth">
+    						</div>
+    						<div class="small-6 column">
+    						матеріал: <select name="" ng-model="selectedPass" ng-options="pass.type for pass in passTypes" ></select>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="small-6 column">
+    				<div class="row">
+    					<div class="small-6 column">
+    						<p class="text-right">площа: {[{passSqr() | number}]} м<sup>2</sup> </p>
+    					</div>
+    					<div class="small-6 column">
+    						<p class="text-right">ціна за м<sup>2</sup>: {[{selectedPass.price| currency: " " : 0}]} грн</p>
+    					</div>
+    					<div class=" column">
+    						<h5 class="text-right">ціна: {[{passCost() | currency: " " : 0}]} <small>грн</small></h5>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<hr>
+    		<div class="row">
+    			<h4>скло</h4>
+    			<div class="small-6 column">
+    				<div class="row">
+    					<div class="small-6 column">
+    					<select name="" ng-model="selectedGlass" ng-options="glass.type for glass in glassTypes" ></select>
+    				</div>
+    				<div class="small-6 column">
+    					
+    				</div>
+    			</div>
+    		</div>
+    		<div class="small-6 column">
+    			<div class="row">
+    				<div class="small-6 column">
+    					<p class="text-right">площа: {[{glassSqr() | number}]} м<sup>2</sup></p>
+    				</div>
+    				<div class="small-6 column">
+    					<p class="text-right">ціна за м<sup>2</sup>: {[{selectedGlass.price| currency: " " : 0}]} грн</p>
+    				</div>
+    				<div class="column">
+    					<h5 class="text-right">ціна: {[{glassCost() | currency: " " : 0}]} <small>грн</small></h5>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	<hr>
+    	<div class="row">
+    		<h4>задня стінка</h4>
+    		<div class="small-6 column">
+    			<div class="row">
+    				<div class="small-6 column">
+    				<select name="" ng-model="selectedBack" ng-options="back.type for back in backTypes" ></select>
+    			</div>
+    			<div class="small-6 column">
+    				подвійна: <input type="checkbox" ng-model="doubleBack">
+    			</div>
+    		</div>
+    	</div>
+    	<div class="small-6 column">
+    		<div class="row">
+    			<div class="small-6 column ">
+    				<p class="text-right">площа: {[{backSqr() | number}]} м<sup>2</sup></p>
+    			</div>
+    			<div class="small-6 column">
+    				<p class="text-right">ціна за м<sup>2</sup>: {[{selectedBack.price| currency: " " : 0}]} грн</p>
+    			</div>
+    			<div class="column">
+    				<h5 class="text-right">ціна: {[{backCost() | currency: " " : 0}]} <small>грн</small></h5>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <hr>
+    <div class="row">
+    	<h4>загальна сума</h4>
+    	<div class="small-6 column">
+    		<div class="row">
+    			<div class="small-6 column">
+    				<h2>{[{totalCost() | currency: " " : 0}]} <small>грн</small></h2>
+    			</div>
+    			<div class="small-6 column">
+    				<input type="number" min="0" value="0"  ng-model="advancePay" placeholder="аванс">
+    			</div>
+    		</div>
+    	</div>
+    	<div class="small-6 column ">
+    		<div class="row">
+    			<div class=" column">
+    				<h1 class="text-right">{[{customerMustPay() | currency: " " : 0}]} <small>грн</small></h1>
+    			</div>
+    			
+    		</div>
+    	</div>
+    </div>
+    <hr>
+    </div>
+    </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js_plugins/jquery.prettyPhoto.js"></script>
+    <script src="assets/js_plugins/owl.carousel.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.plugin.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick-uk.js"></script>
+    <script data-cfasync="false" src="assets/js_plugins/form-submission-handler.js"></script>
+    <script> $('#deadLine').datepick({showAnim: 'show'});</script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-82329311-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+    
+    
+  </body>
+</html>
