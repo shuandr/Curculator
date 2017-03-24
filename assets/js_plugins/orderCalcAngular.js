@@ -12,6 +12,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.euroExchange = 29;
     $scope.allMoulds = [];
 
+
     $scope.passTypes = [{
         type: 'папір',
         price: 240
@@ -53,7 +54,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.passCost = 0;
     $scope.glassCost =0;*/
     $scope.passWidth = 0;
-    $scope.selectedMould = 0;
+    $scope.selectedMould = {};
+    $scope.selectedMould.code = "001";
+
     $scope.selectedPass = 0;
     $scope.selectedGlass = 0;
     $scope.selectedBack = 0;
