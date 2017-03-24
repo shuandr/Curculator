@@ -18819,53 +18819,7 @@ $(document).foundation();
 
 $(document).ready(function () {
 
-    $("#slider").owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 3000,
-        autoplayHoverPause: true,
-        nav: false,
-        items: 1
-
-    });
-
-    $("a[rel^='prettyPhoto']").prettyPhoto({
-        show_title: false,
-        social_tools: false,
-        overlay_gallery: false
-    });
-
-    $(".clnd-slider").owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 2000,
-        autoplayHoverPause: true,
-        nav: false,
-        responsive: {
-            0: {
-                items: 1
-            },
-            640: {
-                items: 2
-            },
-            1000: {
-                items: 3
-            }
-        }
-
-        /*autoPlay: 2400, 
-        stopOnHover : true,
-            navigation : false, // Show next and prev buttons
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            // singleItem:true
-                   // "singleItem:true" is a shortcut for:
-            items : 3, 
-            itemsDesktop : [1199,3],
-            itemsDesktopSmall:[979,2],
-            // itemsTablet: 2,
-            itemsMobile: [600,1]     */
-    });
+   
 
     $(window).scroll(function () {
         var stickyOffset = 400;
