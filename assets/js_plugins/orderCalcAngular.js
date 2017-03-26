@@ -1,4 +1,4 @@
-var app = angular.module('orderCalc', []);
+var app = angular.module('orderCalc', ['ngAnimate']);
 
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
@@ -8,10 +8,21 @@ app.config(function($interpolateProvider) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // statis data
-    $scope.dateNow = new Date();
-    $scope.euroExchange = 29;
+    var euroExchange = 29;
     $scope.allMoulds = [];
 
+    // materials
+
+    // XHR
+    $http.get("assets/json/injac_katalog.json").then(function(response) {
+        $scope.serbMoulds = response.data;
+        $scope.allMoulds = $scope.serbMoulds;
+    });
+
+    $http.get("assets/json/garcia_katalog.json").then(function(response) {
+        $scope.espanaMoulds = response.data;
+        $scope.allMoulds = $scope.allMoulds.concat($scope.espanaMoulds);
+    });
 
     $scope.passTypes = [{
         type: 'папір',
@@ -25,6 +36,14 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     }, {
         type: 'металік',
         price: 435
+    }];
+
+    $scope.shtapikPrice = [{
+        name: "shtapik - PL",
+        price: 78
+    }, {
+        name: "shtapik - ES",
+        price: 4.83
     }];
 
     $scope.glassTypes = [{
@@ -48,90 +67,213 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         type: 'піно-картон',
         price: 440
     }];
+    // $scope.discounts = ["0","5%","10%","12%",]
 
-    /*$scope.mouldPerim = 0;
-    $scope.mouldCost = 0;
-    $scope.passCost = 0;
-    $scope.glassCost =0;*/
+
+    // WORK PRICES
+
+    var mouldWork = [{
+        range: 20, //см
+        price: 10 //грн
+    }, {
+        range: 40,
+        price: 18
+    }, {
+        range: 60,
+        price: 32
+    }, {
+        range: 90,
+        price: 50
+    }];
+
+    var mouldSawWork = [{
+        range: 60, //см
+        price: 30 //грн
+    }, {
+        range: 90,
+        price: 50
+    }, {
+        range: 120,
+        price: 100
+    }];
+
+    var mouldOrnAccuracy = 1.6; //підбір орнаменту
+    var antiGlassClip = 6; // зажими на антираму з роботою
+
+
+    $scope.objWidth = 20;
+    $scope.objHeight = 30;
+    $scope.objQuantity = 1;
+
     $scope.passWidth = 0;
     $scope.selectedMould = {};
     $scope.selectedMould.code = "001";
 
     $scope.selectedPass = 0;
+    $scope.doublePass = 0;
+
     $scope.selectedGlass = 0;
     $scope.selectedBack = 0;
+    $scope.discount = 0;
 
-    // XHR
-    $http.get("assets/json/injac_katalog.json").then(function(response) {
-        $scope.serbMoulds = response.data;
-        $scope.allMoulds = $scope.serbMoulds;
-    });
 
-    $http.get("assets/json/garcia_katalog.json").then(function(response) {
-        $scope.espanaMoulds = response.data;
-        $scope.allMoulds = $scope.allMoulds.concat($scope.espanaMoulds);
 
-    });
 
-// CALCULATION
-  // mouldings
-    $scope.mouldPerim = function() {
+    // CALCULATION
+
+
+    $scope.objPerim = function() {
         var objWidth = Number($scope.objWidth);
         var objHeight = Number($scope.objHeight);
+        return (objWidth + objHeight) * 2 / 100;
+    };
+
+    $scope.objSqr = function() { //площа в м. кв.
+        var objWidth = Number($scope.objWidth);
+        var objHeight = Number($scope.objHeight);
+        return objWidth * objHeight / 10000;
+    };
+
+    // mouldings
+
+    $scope.mouldPerim = function() {
+
+        var objPerim = $scope.objPerim();
+        var mouldWidth = Number($scope.selectedMould.width) / 1000;
+        var passWidth = Number($scope.passWidth) / 100;
+        // console.log(objPerim);
+
+        return objPerim + mouldWidth * 8 + (passWidth * 8 + 0.06);
+    };
+
+    $scope.cutMould = function() {
         var mouldWidth = Number($scope.selectedMould.width);
-        var passWidth = Number($scope.passWidth);
-        return (objWidth + objHeight) * 2 +
-            mouldWidth * 8 / 10 +
-            (passWidth * 8 + 6);
+        var cutMould;
+        var cutPrices = [];
+        if ($scope.sawCut) {
+            cutPrices = mouldSawWork;
+        } else {
+            cutPrices = mouldWork;
+        }
+
+        for (var i = 0; i < cutPrices.length; i++) {
+            if (mouldWidth < cutPrices[i].range) {
+                cutMould = cutPrices[i].price;
+                break;
+            }
+        };
+        if ($scope.ornAccuracy) {
+            cutMould *= mouldOrnAccuracy;
+        }
+        return cutMould;
     };
 
     $scope.mouldCost = function() {
         var mouldPerim = $scope.mouldPerim();
-        var currency = Number($scope.euroExchange);
         var mouldPrice = Number($scope.selectedMould.price);
-        return mouldPerim * mouldPrice * currency / 100;
+        var cutMould = $scope.cutMould();
+        return mouldPerim * mouldPrice * euroExchange + cutMould;
     };
 
-  // passepartou
+    // passepartou
     $scope.passSqr = function() {
         var objWidth = Number($scope.objWidth);
         var objHeight = Number($scope.objHeight);
         var passWidth = Number($scope.passWidth);
-        var passSqr;
+        var passOffset = Number($scope.passOffset);
+        var passSqr = 0;
+        var innerPassSqr = 0;
+        if ($scope.doublePass) {
+            innerPassSqr = (objWidth + passOffset * 2 + 4) *
+                (objHeight + passOffset * 2 + 4) / 10000;
+        };
+
         if ($scope.passWidth) {
-            var passSqr = (objWidth + passWidth * 2 + 1) *
-                (objHeight + passWidth * 2 + 1.5) / 10000;
-        } else {
-            var passSqr = 0;
-        }
+            passSqr = (objWidth + passWidth * 2 + 1) *
+                (objHeight + passWidth * 2 + 1.5) / 10000 + innerPassSqr;
+
+        };
         return passSqr;
+    };
+
+    $scope.cutPass = function() {
+        var cutPass = 8;
+
+        if ($scope.passForm == "oval-pass") {
+            cutPass = 18;
+        };
+        if ($scope.passForm == "arch-pass") {
+            cutPass = 25;
+        };
+        if ($scope.doublePass) {
+            cutPass *= 2;
+        };
+        return cutPass;
     };
 
     $scope.passCost = function() {
         var passSqr = $scope.passSqr();
         var passPrice = Number($scope.selectedPass.price);
-        return passSqr * passPrice;
+        var cutPass = $scope.cutPass();
+        return passSqr * passPrice + cutPass;
     };
 
-  // glass
+    $scope.shtapikCost = function() {
+        var cutShtapik = 8;
+        var shtapikCost = 0;
+        var shtapikPerim = function() {
+            var objWidth = Number($scope.objWidth);
+            var objHeight = Number($scope.objHeight);
+            var passOffset = Number($scope.passOffset) || 0;
+            return ((objWidth + objHeight) * 2 +
+                passOffset * 8) / 100;
+        }
+        if ($scope.shtapik == "shtapik-PL") {
+            shtapikCost = cutShtapik + shtapikPerim() * $scope.shtapikPrice[0].price;
+        };
+        if ($scope.shtapik == "shtapik-ES") {
+            shtapikCost = cutShtapik + shtapikPerim() * $scope.shtapikPrice[1].price * euroExchange;
+        };
+        return shtapikCost;
+    }
+
+    // glass
     $scope.glassSqr = function() {
-        var glassSqr;
         if ($scope.selectedPass) {
             var glassSqr = $scope.passSqr();
         } else {
-            var objWidth = Number($scope.objWidth);
-            var objHeight = Number($scope.objHeight);
-            var glassSqr = objWidth * objHeight / 10000;
+            glassSqr = $scope.objSqr();
         }
         return glassSqr;
     };
+
+    $scope.cutGlass = function() {
+        var cutGlass = 8;
+        if ($scope.antiGlass) {
+            cutGlass = 10;
+        }
+        return cutGlass;
+    };
+
+    $scope.antiGlassClipWork = function() {
+        var antiGlassClipWork = 0;
+        if ($scope.antiGlass) {
+            antiGlassClipWork = antiGlassClip * $scope.clipQuantity;
+        }
+        return antiGlassClipWork;
+    };
+
     $scope.glassCost = function() {
         var glassSqr = $scope.glassSqr();
         var glassPrice = Number($scope.selectedGlass.price);
-        return glassSqr * glassPrice;
+        var cutGlass = $scope.cutGlass();
+        var antiGlassClipWork = $scope.antiGlassClipWork();
+        return glassSqr * glassPrice + cutGlass + antiGlassClipWork;
     };
 
- // back
+
+
+    // back
     $scope.backSqr = function() {
         var backSqr;
         if ($scope.selectedPass) {
@@ -144,31 +286,74 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         return backSqr;
     };
 
+    $scope.cutBack = function() {
+        var cutBack = 2;
+        if ($scope.selectedBack == 'ДВП') {
+            cutBack = 5;
+        }
+        return cutBack;
+    };
+
     $scope.backCost = function() {
-    	if ($scope.doubleBack) {
-        var backSqr = $scope.backSqr()*2;
-    	} else {
-        var backSqr = $scope.backSqr();
-    	}
+        if ($scope.doubleBack) {
+            var backSqr = $scope.backSqr() * 2;
+        } else {
+            var backSqr = $scope.backSqr();
+        }
         var backPrice = Number($scope.selectedBack.price);
         return backSqr * backPrice;
     };
 
-  // TOTAL
+
+    // stretch
+    $scope.stretchWork = function() {
+        var objPerim = $scope.objPerim();
+
+        var stretch = 0;
+        if ($scope.stretch == "DVP") {
+            stretch += objPerim * 25;
+            // console.log(objPerim);
+        }
+        if ($scope.stretch == "subframe") {
+            stretch += objPerim * 16;
+        }
+        if ($scope.stretch == "subframeGallery") {
+            stretch += objPerim * 18;
+        }
+        return stretch;
+    };
+
+    $scope.furniture = function() {
+        var objPerim = $scope.objPerim();
+
+        if (objPerim < 2) {
+            var furniture = 9;
+        } else {
+            furniture = 15;
+        }
+        return furniture;
+    };
+
+    // TOTAL
     $scope.totalCost = function() {
         var mouldCost = $scope.mouldCost() || 0;
         var passCost = $scope.passCost() || 0;
         var glassCost = $scope.glassCost() || 0;
         var backCost = $scope.backCost() || 0;
+        var shtapikCost = $scope.shtapikCost() || 0;
+        var stretch = $scope.stretchWork() || 0;
+        var furniture = $scope.furniture() || 0;
+        var objQuantity = $scope.objQuantity;
 
-        return mouldCost + passCost + glassCost + backCost;
+        return (mouldCost + passCost + shtapikCost + glassCost + backCost + stretch + furniture) * objQuantity;
     };
-$scope.customerMustPay = function() {
+    $scope.customerMustPay = function() {
         var totalCost = $scope.totalCost() || 0;
         var advancePay = $scope.advancePay || 0;
-        
+        var discount = (100 - Number($scope.discount)) / 100;
 
-        return totalCost - advancePay;
+
+        return totalCost * discount - advancePay;
     };
 
 
