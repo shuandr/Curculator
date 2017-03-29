@@ -321,10 +321,11 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     // stretch
     $scope.stretchWork = function() {
         var objPerim = $scope.objPerim();
-
         var stretch = 0;
+
         if ($scope.stretch == "DVP") {
-            stretch += objPerim * 25 + $scope.objSqr() * $scope.backTypes[1].price;
+            // var furniture = 10;
+            stretch += objPerim * 25 + $scope.objSqr() * $scope.backTypes[1].price + $scope.furniture() ;
             // console.log(objPerim);
         }
         if ($scope.stretch == "subframe") {
@@ -339,7 +340,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.furniture = function() {
         var objPerim = $scope.objPerim();
 
-        if (!$scope.selectedMould.width && !$scope.antiGlass) {
+        if (!$scope.selectedMould.width && !$scope.antiGlass && !$scope.stretch  ) {
             furniture = 0;
         } else if (objPerim < 1.4) {
             furniture = 10;
