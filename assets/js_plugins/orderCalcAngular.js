@@ -145,8 +145,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.mouldPerim = function() {
 
         var objPerim = $scope.objPerim();
-        var mouldWidth = Number($scope.selectedMould.width) / 1000;
-        var passWidth = Number($scope.passWidth) / 100;
+        var mouldWidth = $scope.selectedMould.width / 1000;
+        var passWidth = $scope.passWidth / 100;
         // console.log(objPerim);
 
         return objPerim + mouldWidth * 8 + (passWidth * 8 + 0.06);
@@ -337,7 +337,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.furniture = function() {
         var objPerim = $scope.objPerim();
 
-        if (objPerim == 0 ) {
+        if (!$scope.selectedMould.width ) {
             furniture = 0;
         } else if (objPerim < 1.4) {
             furniture = 10;
