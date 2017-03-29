@@ -7,9 +7,6 @@
     <title>Клейнод | рамарня</title>
     
     <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/prettyPhoto.css">
     
   </head>
   <body>
@@ -25,22 +22,22 @@
     <div style="height: 100vh;" class="expanded row flex-vert-center">
     	<div class="small-centered small-10 large-5 column text-center">
     		<img style="width: 100%; margin-bottom: 10vh" src="assets/img/main-logo.svg">
-    		<button data-open="order-form" class="success button uppercase"><i class="fa fa-photo "></i>&nbsp; нове замовлення</button>
+    		<button data-open="orderFormReveal" class="success button uppercase"><i class="fa fa-photo "></i>&nbsp; нове замовлення</button>
     		
     	</div>
     </div>
-    <div class="reveal full" id="order-form" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-down">
+    <div class="reveal full" id="orderFormReveal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-down">
     	<div class="bgrd-strip">
     	    <div class="grad-overlay"></div>
     	</div>
     	<div class="flex-vert-center" style="height: 100vh;">
     	    <div ng-app="orderCalc" ng-controller="orderCalcCtrl" class="row">
-    	        <form id="gform" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" novalidate="">
+    	        <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" novalidate>
     	            <div class="row clnd-title">
     	                <h2>замовлення</h2>
     	            </div>
-    	            <div class="row">
-    	                <div class="large-3 column">
+    	            <div class="row column">
+    	                <div class="medium-6 large-3 column">
     	                    <h4>замовник</h4>
     	                    <input type="text" id="name" name="клієнт" placeholder="ім’я" required>
     	                    <input type="text" id="phone" name="телефон" placeholder="телефон" required>
@@ -49,13 +46,13 @@
     	                    <input type="text" name="назва" placeholder="назва">
     	                    <div class="row ">
     	                        <div class="small-4 column">
-    	                            <input type="text" name="ширина" ng-model="objWidth" placeholder="ширина">
+    	                            <label>ширина<input type="number" min="0" name="ширина" ng-model="objWidth" placeholder="ширина"></label>
     	                        </div>
     	                        <div class="small-4 column">
-    	                            <input type="text" name="висота" ng-model="objHeight" placeholder="висота">
+    	                            <label>висота<input type="number" min="0" name="висота" ng-model="objHeight" placeholder="висота"></label>
     	                        </div>
     	                        <div class="small-4 column">
-    	                            <input type="number" min="1" name="кількість" ng-model="objQuantity" placeholder="к-сть">
+    	                            <label>к-сть<input type="number" min="1" name="кількість" ng-model="objQuantity" placeholder="к-сть"></label>
     	                        </div>
     	                    </div>
     	                    <hr> дедлайн:
@@ -69,8 +66,8 @@
     	                        <option value="Зося">Софія</option>
     	                    </select>
     	                </div>
-    	                <div class="large-9 column left-border">
-    	                    <div class="row small-up-1 medium-up-2 large-up-3">
+    	                <div class="medium-6 large-9 column left-border">
+    	                    <div class="row small-up-1 large-up-3">
     	                        <div class="column">
     	                            <h4>багет</h4>
     	                            <select ng-model="selectedMould" ng-options="mould.code for mould in allMoulds" placeholder="код багету"></select>
@@ -79,8 +76,8 @@
     	                                <img src="assets/img/catalog/baget/thumbs/{[{selectedMould.code}]}.jpg" />
     	                            </div>
     	                            <br>
-    	                            <input type="checkbox" ng-model="ornAccuracy"> підбір орнаменту &nbsp; &nbsp;
-    	                            <input type="checkbox" ng-model="sawCut"> на пилі
+    	                            <label><input type="checkbox" ng-model="ornAccuracy"> підбір орнаменту</label>
+    	                            <label><input type="checkbox" ng-model="sawCut"> на пилі</label>
     	                            <hr>
     	                            <div class="row calc-details">
     	                                <div class="small-6 column ">
@@ -124,10 +121,19 @@
     	                                            </div>
     	                                        </div>
     	                                        <hr>
-    	                                        <div class="column">штапік:&nbsp; &nbsp;
-    	                                            <input type="radio" ng-model="shtapik" value="shtapik-PL"> пластик &nbsp; &nbsp;
-    	                                            <input type="radio" ng-model="shtapik" value="shtapik-ES"> Іспанія
-    	                                            <p class="calc-details"> ціна штапіка з роботою: {[{shtapikCost() | currency: " " : 0}]} грн</p>
+    	                                        <div class="column">
+    	                                            <label>
+    	                                                <input type="checkbox" ng-model="shtapik" value="shtapik-PL"> штапік</label>
+    	                                            <div ng-show="shtapik" class="ng-hide">
+    	                                                <label>
+    	                                                    <input type="radio" ng-model="shtapikType" value="shtapik-PL"> пластик</label>
+    	                                                <label>
+    	                                                    <input type="radio" ng-model="shtapikType" value="shtapik-ES"> Іспанія</label>
+    	                                                <label>
+    	                                                    <input type="radio" ng-model="shtapikType" value="shtapik-USA"> Framerica</label>
+    	                                                <input type="text" min="0" class="float-right" name="код штапіка" placeholder="код">
+    	                                                <p class="calc-details"> ціна штапіка з роботою: {[{shtapikCost() | currency: " " : 0}]} грн</p>
+    	                                            </div>
     	                                        </div>
     	                                    </div>
     	                                </div>
@@ -212,13 +218,21 @@
     	                                <h2 class="text-right">{[{totalCost() | currency: " " : 0}]} <small></small></h2>
     	                                <p class="text-right">грн</p>
     	                            </div>
-    	                            <div class="column">
-    	                                знижка:
-    	                                <input type="number" min="0" max="15" name="знижка" ng-model="discount" placeholder="знижка">
+    	                            <div class="column left-border">
+    	                                <div class="row">
+    	                                    <div class="small-2 column">
+    	                                        <h3 id="discountToggleButton" onclick="discountToggle()" style="cursor: pointer;">—</h3>
+    	                                    </div>
+    	                                    <div class="small-10 column">
+    	                                        <div id="discount">
+    	                                            <label>знижка:
+    	                                                <input type="number" min="0" max="15" name="знижка" ng-model="discount" placeholder="знижка">
+    	                                            </label>&nbsp;</div>
+    	                                    </div>
+    	                                </div>
     	                            </div>
     	                            <div class="column ">
-    	                                &nbsp; &nbsp;
-    	                                <input type="number" min="0" name="аванс" ng-model="advancePay" placeholder="аванс">
+    	                                <label>&nbsp; &nbsp;<input type="number" min="0" name="аванс" ng-model="advancePay" placeholder="аванс"></label>
     	                            </div>
     	                            <div class=" column">
     	                                <input type="text" class="hide" name="залишок" value="{[{customerMustPay() | currency: '' : 0}]}">
@@ -231,9 +245,8 @@
     	                    <br>
     	                    <div class="text-right">
     	                        <button type="button" id="detailsToggleButton" onclick="detailsToggle()" class="secondary button uppercase">сховати деталі</button>&nbsp;&nbsp;
-    	                        <input type="button" onclick="resetForm($('#gform'))" class="alert button uppercase" value="очистити" > &nbsp;&nbsp;
+    	                        <input type="button" onclick="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
     	                        <input type="submit" class="success button uppercase" value="в роботу !">
-    	
     	                        <!-- <button class="success button uppercase"><i class="fa fa-paper-plane "></i>&nbsp; в роботу !</button> -->
     	                    </div>
     	                </div>
@@ -255,20 +268,11 @@
     
     </div>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js_plugins/jquery.prettyPhoto.js"></script>
-    <script src="assets/js_plugins/owl.carousel.min.js"></script>
     <script src="assets/js_plugins/datepick/jquery.plugin.min.js"></script>
     <script src="assets/js_plugins/datepick/jquery.datepick.min.js"></script>
     <script src="assets/js_plugins/datepick/jquery.datepick-uk.js"></script>
     <script data-cfasync="false" src="assets/js_plugins/form-submission-handler.js"></script>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-82329311-1', 'auto');
-    ga('send', 'pageview');
-    </script>
+    
     
     
   </body>
