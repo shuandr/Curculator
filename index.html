@@ -224,8 +224,8 @@
     	                        <div class="row small-up-1 medium-up-2 large-up-4">
     	                            <div class="column">
     	                                <input type="text" class="hide" name="сума" value="{[{totalCost() | currency: '' : 0}]}">
-    	                                <h2 class="text-right">{[{totalCost() | currency: " " : 0}]} <small></small></h2>
-    	                                <p class="text-right">грн</p>
+    	                                <h3 class="text-right">{[{totalCost() | currency: " " : 0}]} <small>грн</small></h3>
+    	                                <p class="text-right calc-details">в тім числі робота: {[{totalWork() | currency: " " : 0}]} грн</p>
     	                            </div>
     	                            <div class="column left-border">
     	                                <div class="row">
