@@ -46,13 +46,19 @@
     	                    <input type="text" name="назва" placeholder="назва">
     	                    <div class="row ">
     	                        <div class="small-4 column">
-    	                            <label>ширина<input type="number" min="0" name="ширина" ng-model="objWidth" placeholder="ширина"></label>
+    	                            <label>ширина
+    	                                <input type="number" min="0" name="ширина" ng-model="objWidth" placeholder="ширина">
+    	                            </label>
     	                        </div>
     	                        <div class="small-4 column">
-    	                            <label>висота<input type="number" min="0" name="висота" ng-model="objHeight" placeholder="висота"></label>
+    	                            <label>висота
+    	                                <input type="number" min="0" name="висота" ng-model="objHeight" placeholder="висота">
+    	                            </label>
     	                        </div>
     	                        <div class="small-4 column">
-    	                            <label>к-сть<input type="number" min="1" name="кількість" ng-model="objQuantity" placeholder="к-сть"></label>
+    	                            <label>к-сть
+    	                                <input type="number" min="1" name="кількість" ng-model="objQuantity" placeholder="к-сть">
+    	                            </label>
     	                        </div>
     	                    </div>
     	                    <hr> дедлайн:
@@ -76,8 +82,10 @@
     	                                <img src="assets/img/catalog/baget/thumbs/{[{selectedMould.code}]}.jpg" />
     	                            </div>
     	                            <br>
-    	                            <label><input type="checkbox" ng-model="ornAccuracy"> підбір орнаменту</label>
-    	                            <label><input type="checkbox" ng-model="sawCut"> на пилі</label>
+    	                            <label>
+    	                                <input type="checkbox" ng-model="ornAccuracy"> підбір орнаменту</label>
+    	                            <label>
+    	                                <input type="checkbox" ng-model="sawCut"> на пилі</label>
     	                            <hr>
     	                            <div class="row calc-details">
     	                                <div class="small-6 column ">
@@ -193,6 +201,7 @@
     	                                <div class="small-6 column ">
     	                                    <p class="text-right">площа: {[{backSqr() | number}]} м<sup>2</sup></p>
     	                                    <p class="text-right">ціна за м<sup>2</sup>: {[{selectedBack.price| currency: " " : 0}]} грн</p>
+    	                                    <p class="text-right">робота: {[{cutBack() | number}]} грн</p>
     	                                </div>
     	                                <div class="small-6 column">
     	                                    <h5 class="text-right">ціна: {[{backCost() | currency: " " : 0}]} <small>грн</small></h5>
@@ -232,7 +241,9 @@
     	                                </div>
     	                            </div>
     	                            <div class="column ">
-    	                                <label>&nbsp; &nbsp;<input type="number" min="0" name="аванс" ng-model="advancePay" placeholder="аванс"></label>
+    	                                <label>&nbsp; &nbsp;
+    	                                    <input type="number" min="0" name="аванс" ng-model="advancePay" placeholder="аванс">
+    	                                </label>
     	                            </div>
     	                            <div class=" column">
     	                                <input type="text" class="hide" name="залишок" value="{[{customerMustPay() | currency: '' : 0}]}">

@@ -298,9 +298,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     $scope.cutBack = function() {
         var cutBack = 2;
-        if ($scope.selectedBack == backTypes[1].type) {
+        if ($scope.selectedBack.type == $scope.backTypes[1].type) {
             cutBack = 5;
         }
+            console.log($scope.selectedBack.type);
         return cutBack;
     };
 
@@ -310,7 +311,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         } else {
             var backSqr = $scope.backSqr();
         }
-        var backPrice = Number($scope.selectedBack.price);
+        var backPrice = $scope.selectedBack.price;
         return backSqr * backPrice;
     };
 
