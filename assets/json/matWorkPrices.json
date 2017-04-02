@@ -1,0 +1,95 @@
+{
+    "passTypes": [{
+        "type": "без паспарту",
+        "price": 0
+    }, {
+        "type": "папір",
+        "price": 240
+    }, {
+        "type": "тканина/оксамит",
+        "price": 568
+    }, {
+        "type": "з чорним зрізом",
+        "price": 320
+    }, {
+        "type": "металік",
+        "price": 435
+    }],
+
+    "slipPrice": [{
+        "name": "slip-PL",
+        "price": 78
+    }, {
+        "name": "slip-ES",
+        "price": 4.83
+    }, {
+        "name": "slip-USA",
+        "price": 70
+    }],
+
+    "glassTypes": [{
+        "type": "без скла",
+        "price": 0
+    }, {
+        "type": "звичайне",
+        "price": 240
+    }, {
+        "type": "антиблік",
+        "price": 270
+    }, {
+        "type": "пластик",
+        "price": 433
+    }],
+
+    "backTypes": [{
+        "type": "без стінки",
+        "price": 0
+    }, {
+        "type": "картон",
+        "price": 78
+    }, {
+        "type": "ДВП",
+        "price": 135
+    }, {
+        "type": "піно-картон",
+        "price": 440
+    }],
+
+
+    "mouldWork": [{
+        "range": 20,
+        "price": 10
+    }, {
+        "range": 40,
+        "price": 18
+    }, {
+        "range": 60,
+        "price": 32
+    }, {
+        "range": 90,
+        "price": 50
+    }],
+
+    "mouldSawWork": [{
+        "range": 60,
+        "price": 30
+    }, {
+        "range": 90,
+        "price": 50
+    }, {
+        "range": 120,
+        "price": 100
+    }],
+
+
+    "subframe": [{
+        "range": 1,
+        "price": 35
+    }, {
+        "range": 2,
+        "price": 45
+    }, {
+        "range": 120,
+        "price": 55
+    }]
+}
