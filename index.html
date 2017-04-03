@@ -81,7 +81,6 @@
     	                            <div class="carton-hole">
     	                                <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
     	                            </div>
-    	                            <br>
     	                                <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould"> 
     	                            <label for="doubleMould"> подвійний</label>
     	                            <div class="row column">
@@ -95,7 +94,6 @@
     	                                    <hr>
     	                                </div>
     	                            </div>
-    	                            <br>
     	                                <input type="checkbox" id="ornAccuracy" ng-model="selObj.ornAccuracy"> 
     	                            <label for="ornAccuracy">підбір орнаменту</label>
     	                                <input type="checkbox" id="sawCut" ng-model="selObj.sawCut"> 
@@ -130,8 +128,8 @@
     	                                    <input type="text" name="паспарту">
     	                                </div>
     	                                <div class="column">
-    	                                    <input type="radio" ng-model="selObj.passForm" value="oval-pass">
-    	                                    <label for="">круг/овал</label>&nbsp; &nbsp; &nbsp;
+    	                                    <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
+    	                                    <!-- <label for=""></label> -->
     	                                    <input type="radio" ng-model="selObj.passForm" value="arch-pass"> арка
     	                                    <hr>
     	                                    <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
@@ -147,8 +145,8 @@
     	                                        </div>
     	                                        <div class="column">
     	                                            <hr>
-    	                                            <label>
-    	                                                <input type="checkbox" ng-model="selObj.slip" value="slip-PL"> штапік</label>
+    	                                                <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL"> 
+    	                                            <label for="slip">штапік</label>
     	                                            <div ng-show="selObj.slip" class="ng-hide">
     	                                                <label>
     	                                                    <input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
@@ -185,7 +183,8 @@
     	                                    <!-- <input type="text" class="hide" name="скло" value="{[{selObj.glass.type}]}"> -->
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" ng-model="selObj.antiGlass"> антирама
+    	                                    <input type="checkbox" id="antiGlass" ng-model="selObj.antiGlass"> 
+    	                                    <label for="antiGlass">антирама</label>
     	                                    <input type="number" min='4' ng-model="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
     	                                </div>
     	                            </div>
@@ -210,7 +209,8 @@
     	                                    <select name="" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{backTypes[0].type}]}"></select>
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" ng-model="selObj.doubleBack"> подвійна
+    	                                    <input type="checkbox" id="doubleBack" ng-model="selObj.doubleBack"> 
+    	                                    <label for="doubleBack">подвійна</label>
     	                                </div>
     	                            </div>
     	                            <div class="row calc-details">
