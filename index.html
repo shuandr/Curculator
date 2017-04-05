@@ -76,6 +76,7 @@
     	                    <div class="row small-up-1 large-up-3">
     	                        <div class="column">
     	                            <h4>багет</h4>
+    	                            <!-- <input auto-complete ui-items="allMoulds[mould].code" ng-model="selObj.mould" placeholder="код багету"> -->
     	                            <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds" placeholder="код багету"></select>
     	                            <input type="text" class="hide" name="багет" value="{[{selObj.mould.code}]}">
     	                            <div class="carton-hole">
@@ -102,7 +103,9 @@
     	                                <hr>
     	                                <div class="small-6 column ">
     	                                    <p class="text-right">периметр: {[{mouldPerim() | number}]} м</p>
-    	                                    <p class="text-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} </p>
+    	                                    <p class="text-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} <br> {[{mouldPriceUAH()| number: 0}]} грн
+    	
+    	                                    </p>
     	                                    <p class="text-right">фурнітура: {[{furniture()| currency: " " : 0}]} грн </p>
     	                                    <p class="text-right">робота: {[{cutMould() | number}]} грн</p>
     	                                </div>
@@ -227,7 +230,7 @@
     	                                </div>
     	                            </div>
     	                            <hr>
-    	                            <input type="radio" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП
+    	                            <input type="checkbox" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП
     	                            <br> <b>натяжка на підрамник:</b>
     	                            <br>
     	                            <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;

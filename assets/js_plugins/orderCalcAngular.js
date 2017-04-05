@@ -5,19 +5,34 @@ app.config(function($interpolateProvider) {
     $interpolateProvider.endSymbol('}]}');
 });
 
+app.directive('autoComplete', function($timeout) {
+    return function(scope, iElement, iAttrs) {
+        iElement.autocomplete({
+            source: scope[iAttrs.uiItems],
+            select: function() {
+                $timeout(function() {
+                    iElement.trigger('input');
+                }, 500);
+            }
+        });
+    };
+});
+
+
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // statis data
     var euroExchange = 29;
+    var UsdEuro = 0.93;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
     var furniture = 0;
 
     $scope.allMoulds = [];
-    $scope.passTypes = [];
-    $scope.slipPrice = [];
-    $scope.glassTypes = [];
-    $scope.backTypes = [];
+    $scope.passTypes = [0, 0, 0];
+    $scope.slipPrice = [0, 0, 0];
+    $scope.glassTypes = [0, 0, 0];
+    $scope.backTypes = [0, 0, 0];
     $scope.mouldWork = [];
     $scope.mouldSawWork = [];
     $scope.subframe = [];
@@ -25,15 +40,32 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     // materials
 
     // XHR
-    $http.get("assets/json/injac_katalog.json").then(function(response) {
-        $scope.serbMoulds = response.data;
-        $scope.allMoulds = $scope.serbMoulds;
+    $http.get("assets/json/mould_catalog.json").then(function(response) {
+        $scope.allMouldsCatalog = response.data;
+        $scope.allMouldsCatalog.clever.forEach(function(item) {
+            item.price *= UsdEuro;
+        });
+        $scope.allMouldsCatalog.framerica.forEach(function(item) {
+            item.price /= euroExchange;
+        });
+        $scope.allMouldsCatalog.poland_syh.forEach(function(item) {
+            item.price /= euroExchange;
+        });
+        $scope.allMouldsCatalog.ohtyr.forEach(function(item) {
+            item.price /= euroExchange;
+        });
+
+        var createArray = function() {
+            var arr = [];
+            for (var key in $scope.allMouldsCatalog) {
+                arr.push($scope.allMouldsCatalog[key]);
+            }
+            var merged = [].concat.apply([], arr);
+            return merged;
+        }
+        $scope.allMoulds = createArray();
     });
 
-    $http.get("assets/json/garcia_katalog.json").then(function(response) {
-        $scope.espanaMoulds = response.data;
-        $scope.allMoulds = $scope.allMoulds.concat($scope.espanaMoulds);
-    });
     $http.get("assets/json/matWorkPrices.json").then(function(response) {
         $scope.matWorkPrices = response.data;
         $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
@@ -67,7 +99,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         passWidth: 0,
         passForm: false,
         glass: { type: 'без скла' },
-        glassType: 'без скла',
+
         back: {
             type: 'без стінки'
         },
@@ -107,7 +139,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var mouldWidth = $scope.selObj.mould.width;
         var cutMould;
 
-        if ($scope.selObj.sawCut) {
+        if ($scope.selObj.sawCut || $scope.selObj.mould.width > 90) {
             var cutPrices = $scope.mouldSawWork;
         } else {
             cutPrices = $scope.mouldWork;
@@ -127,6 +159,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         return cutMould;
     };
 
+
+
     $scope.mouldCost = function() {
         var mouldPerim = $scope.mouldPerim();
         var mouldPrice = $scope.selObj.mould.price;
@@ -141,6 +175,12 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         return mouldPerim * mouldPrice * euroExchange + outerCost + cutMould;
     };
 
+    $scope.mouldPriceUAH = function() {
+
+        var mouldPriceUAH = $scope.selObj.mould.price * euroExchange;
+        return mouldPriceUAH;
+    }
+
     // passepartou
     $scope.passSqr = function() {
         var objWidth = $scope.selObj.width;
@@ -149,7 +189,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var passOffset = $scope.selObj.passOffset;
         var passSqr = 0;
         var innerPassSqr = 0;
-        
+
 
         if ($scope.selObj.passWidth) {
             passSqr = (objWidth + passWidth * 2 + 1) *
@@ -158,7 +198,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         };
         return passSqr;
     };
-$scope.innerPassSqr = function() {
+    $scope.innerPassSqr = function() {
         var objWidth = $scope.selObj.width;
         var objHeight = $scope.selObj.height;
         var passOffset = $scope.selObj.passOffset;
@@ -167,7 +207,7 @@ $scope.innerPassSqr = function() {
             innerPassSqr = (objWidth + passOffset * 2 + 4) *
                 (objHeight + passOffset * 2 + 4) / 10000;
         };
-       
+
         return innerPassSqr;
     };
     $scope.totalPassSqr = function() {
@@ -357,7 +397,7 @@ $scope.innerPassSqr = function() {
         var antiGlassClipWork = $scope.antiGlassClipWork() || 0;
         var cutBack = $scope.cutBack() || 0;
         var stretchWork = $scope.stretchWork() || 0;
-        return cutMould + cutPass + cutGlass + antiGlassClipWork + cutBack + stretchWork;
+        return (cutMould + cutPass + cutGlass + antiGlassClipWork + cutBack + stretchWork) * $scope.selObj.quantity;
     };
 
 
