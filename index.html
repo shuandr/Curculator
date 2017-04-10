@@ -82,12 +82,13 @@
     	                            <div class="carton-hole">
     	                                <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
     	                            </div>
-    	                                <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould"> 
+    	                            <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould">
     	                            <label for="doubleMould"> подвійний</label>
     	                            <div class="row column">
     	                                <div ng-show="selObj.doubleMould" class="ng-hide">
-    	                                код зовнішнього багету:
-    	                                    <select name="код зовнішнього багету" ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds" placeholder="код"></select>
+    	                                    код зовнішнього багету:
+    	                                    <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds" placeholder="код"></select>
+    	                                    <input type="text" name="код зовн. багету" class="hide" value="{[{selObj.outerMould.code}]}">
     	                                    <div class="calc-details">
     	                                        <p class=" text-right">периметр: {[{outerMouldPerim() | number}]} м</p>
     	                                        <p class="text-right">ціна/метр: {[{selObj.outerMould.price| currency: "€" : 2}]} </p>
@@ -95,16 +96,16 @@
     	                                    <hr>
     	                                </div>
     	                            </div>
-    	                                <input type="checkbox" id="ornAccuracy" ng-model="selObj.ornAccuracy"> 
+    	                            <input type="checkbox" id="ornAccuracy" name="підбір орнаменту" ng-model="selObj.ornAccuracy">
     	                            <label for="ornAccuracy">підбір орнаменту</label>
-    	                                <input type="checkbox" id="sawCut" ng-model="selObj.sawCut"> 
+    	                            <input type="checkbox" id="sawCut" ng-model="selObj.sawCut">
     	                            <label for="sawCut"> на пилі</label>
     	                            <div class="row calc-details">
     	                                <hr>
     	                                <div class="small-6 column ">
     	                                    <p class="text-right">периметр: {[{mouldPerim() | number}]} м</p>
-    	                                    <p class="text-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} <br> {[{mouldPriceUAH()| number: 0}]} грн
-    	
+    	                                    <p class="text-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]}
+    	                                        <br> {[{mouldPriceUAH()| number: 0}]} грн
     	                                    </p>
     	                                    <p class="text-right">фурнітура: {[{furniture()| currency: " " : 0}]} грн </p>
     	                                    <p class="text-right">робота: {[{cutMould() | number}]} грн</p>
@@ -124,11 +125,11 @@
     	                                </div>
     	                                <div class="small-6 column">
     	                                    ширина:
-    	                                    <input type="number" min="0" value="0" ng-model="selObj.passWidth">
+    	                                    <input type="number" name="ширина паспарту" min="0" value="0" ng-model="selObj.passWidth">
     	                                </div>
     	                                <div class="small-6 column">
     	                                    код:
-    	                                    <input type="text" name="паспарту">
+    	                                    <input type="text" name="паспарту зовн">
     	                                </div>
     	                                <div class="column">
     	                                    <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
@@ -136,19 +137,19 @@
     	                                    <input type="radio" ng-model="selObj.passForm" value="arch-pass"> арка
     	                                    <hr>
     	                                    <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
-    	                                    <label for="doublePass">подвійне</label> 
+    	                                    <label for="doublePass">подвійне</label>
     	                                    <div class="row">
     	                                        <div id="doublePass" ng-show="selObj.doublePass" class="ng-hide">
     	                                            <div class="small-6 column">
-    	                                                <input type="number" min="0" ng-model="selObj.passOffset" placeholder="відступ">
+    	                                                <input type="number" min="0" ng-model="selObj.passOffset" name="відступ" placeholder="відступ">
     	                                            </div>
     	                                            <div class="small-6 column">
-    	                                                <input type="text" min="0" name="код внутрішнього паспарту" placeholder="код">
+    	                                                <input type="text" min="0" name="паспарту внутр" placeholder="код внутр">
     	                                            </div>
     	                                        </div>
     	                                        <div class="column">
     	                                            <hr>
-    	                                                <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL"> 
+    	                                            <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
     	                                            <label for="slip">штапік</label>
     	                                            <div ng-show="selObj.slip" class="ng-hide">
     	                                                <label>
@@ -182,13 +183,13 @@
     	                            <h4>скло</h4>
     	                            <div class="row">
     	                                <div class="small-6 column">
-    	                                    <select ng-model="selObj.glass" name="скло" ng-options="glass.type for glass in glassTypes"></select>
-    	                                    <!-- <input type="text" class="hide" name="скло" value="{[{selObj.glass.type}]}"> -->
+    	                                    <select ng-model="selObj.glass" ng-options="glass.type for glass in glassTypes"></select>
+    	                                    <input type="text" class="hide" name="скло" value="{[{selObj.glass.type}]}">
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" id="antiGlass" ng-model="selObj.antiGlass"> 
+    	                                    <input type="checkbox" id="antiGlass" name="антирама" ng-model="selObj.antiGlass">
     	                                    <label for="antiGlass">антирама</label>
-    	                                    <input type="number" min='4' ng-model="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
+    	                                    <input type="number" min='4' ng-model="clipQuantity" name="зажими" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
     	                                </div>
     	                            </div>
     	                            <div class="row calc-details">
@@ -209,10 +210,11 @@
     	                            <h4>задня стінка</h4>
     	                            <div class="row">
     	                                <div class="small-6 column">
-    	                                    <select name="" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{backTypes[0].type}]}"></select>
+    	                                    <select value="{[{selObj.back.type}]}" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{selObj.back.type}]}"></select>
+    	                                    <input type="text" class="hide" name="задня стінка" value="{[{selObj.back.type}]}">
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" id="doubleBack" ng-model="selObj.doubleBack"> 
+    	                                    <input type="checkbox" name="подвійна" id="doubleBack" ng-model="selObj.doubleBack">
     	                                    <label for="doubleBack">подвійна</label>
     	                                </div>
     	                            </div>
@@ -234,7 +236,7 @@
     	                            <br> <b>натяжка на підрамник:</b>
     	                            <br>
     	                            <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;
-    	                            <input type="radio" ng-model="selObj.stretch" value="subframeGallery"> галерейна
+    	                            <input type="radio" ng-model="selObj.stretch" name="галерейна натяжка" value="subframeGallery"> галерейна
     	                            <p class="text-right calc-details">натяжка: {[{stretchWork() | currency: " " : 0}]} грн</p>
     	                        </div>
     	                    </div>
