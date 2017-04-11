@@ -33,7 +33,7 @@
     	<div class="flex-vert-center" style="height: 100vh;">
     	    <div ng-app="orderCalc" ng-controller="orderCalcCtrl" class="row">
     	        <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" novalidate>
-    	            <div class="row clnd-title">
+    	            <div class="row column clnd-title">
     	                <h2>замовлення</h2>
     	            </div>
     	            <div class="row column">
@@ -76,22 +76,45 @@
     	                    <div class="row small-up-1 large-up-3">
     	                        <div class="column">
     	                            <h4>багет</h4>
+    	                            <div class="row">
+    	                                <div class="small-6 column">
+    	                                    <label>код багету:
+    	                                        <input type="text" ng-model="search">
+    	                                    </label>
+    	                                </div>
+    	                                <div class="small-6 column">
+    	                                    <label>&nbsp;
+    	                                        <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds | filter:search" placeholder="код багету"></select>
+    	                                    </label>
+    	                                    <input type="text" class="hide" name="багет" ng-value="selObj.mould.code">
+    	                                </div>
+    	                            </div>
     	                            <!-- <input auto-complete ui-items="allMoulds[mould].code" ng-model="selObj.mould" placeholder="код багету"> -->
-    	                            <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds" placeholder="код багету"></select>
-    	                            <input type="text" class="hide" name="багет" value="{[{selObj.mould.code}]}">
     	                            <div class="carton-hole">
     	                                <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
+    	                            </div>
+    	                            <div class="calc-details">
+    	                                <div class="float-left">периметр: {[{mouldPerim() | number}]} м</div>
+    	                                <div class="float-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} | {[{mouldPriceUAH()| number: 0}]} грн
+    	                                </div>
     	                            </div>
     	                            <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould">
     	                            <label for="doubleMould"> подвійний</label>
     	                            <div class="row column">
     	                                <div ng-show="selObj.doubleMould" class="ng-hide">
     	                                    код зовнішнього багету:
-    	                                    <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds" placeholder="код"></select>
-    	                                    <input type="text" name="код зовн. багету" class="hide" value="{[{selObj.outerMould.code}]}">
+    	                                    <div class="row">
+    	                                        <div class="small-6 column">
+    	                                            <input type="text" ng-model="searchOuterMould">
+    	                                        </div>
+    	                                        <div class="small-6 column">
+    	                                            <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds | filter:searchOuterMould"></select>
+    	                                            <input type="text" name="код зовн. багету" class="hide" value="{[{selObj.outerMould.code}]}">
+    	                                        </div>
+    	                                    </div>
     	                                    <div class="calc-details">
-    	                                        <p class=" text-right">периметр: {[{outerMouldPerim() | number}]} м</p>
-    	                                        <p class="text-right">ціна/метр: {[{selObj.outerMould.price| currency: "€" : 2}]} </p>
+    	                                        <div class="float-left">периметр: {[{outerMouldPerim() | number}]} м</div>
+    	                                        <div class="float-right">ціна/метр: {[{selObj.outerMould.price| currency: "€" : 2}]} </div>
     	                                    </div>
     	                                    <hr>
     	                                </div>
@@ -103,9 +126,6 @@
     	                            <div class="row calc-details">
     	                                <hr>
     	                                <div class="small-6 column ">
-    	                                    <p class="text-right">периметр: {[{mouldPerim() | number}]} м</p>
-    	                                    <p class="text-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]}
-    	                                        <br> {[{mouldPriceUAH()| number: 0}]} грн
     	                                    </p>
     	                                    <p class="text-right">фурнітура: {[{furniture()| currency: " " : 0}]} грн </p>
     	                                    <p class="text-right">робота: {[{cutMould() | number}]} грн</p>
@@ -184,7 +204,7 @@
     	                            <div class="row">
     	                                <div class="small-6 column">
     	                                    <select ng-model="selObj.glass" ng-options="glass.type for glass in glassTypes"></select>
-    	                                    <input type="text" class="hide" name="скло" value="{[{selObj.glass.type}]}">
+    	                                    <input type="text" class="hide" name="скло" ng-value="selObj.glass.type">
     	                                </div>
     	                                <div class="small-6 column">
     	                                    <input type="checkbox" id="antiGlass" name="антирама" ng-model="selObj.antiGlass">
@@ -211,7 +231,7 @@
     	                            <div class="row">
     	                                <div class="small-6 column">
     	                                    <select value="{[{selObj.back.type}]}" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{selObj.back.type}]}"></select>
-    	                                    <input type="text" class="hide" name="задня стінка" value="{[{selObj.back.type}]}">
+    	                                    <input type="text" class="hide" name="задня стінка" ng-value="selObj.back.type">
     	                                </div>
     	                                <div class="small-6 column">
     	                                    <input type="checkbox" name="подвійна" id="doubleBack" ng-model="selObj.doubleBack">
@@ -236,7 +256,8 @@
     	                            <br> <b>натяжка на підрамник:</b>
     	                            <br>
     	                            <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;
-    	                            <input type="radio" ng-model="selObj.stretch" name="галерейна натяжка" value="subframeGallery"> галерейна
+    	                            <input type="radio" ng-model="selObj.stretch" value="subframeGallery"> галерейна
+    	                            <input type="radio" class="hide" name="натяжка" ng-value="selObj.stretch"> галерейна
     	                            <p class="text-right calc-details">натяжка: {[{stretchWork() | currency: " " : 0}]} грн</p>
     	                        </div>
     	                    </div>
@@ -245,7 +266,7 @@
     	                        <h4>загальна сума</h4>
     	                        <div class="row small-up-1 medium-up-2 large-up-4">
     	                            <div class="column">
-    	                                <input type="text" class="hide" name="сума" value="{[{totalCost() | currency: '' : 0}]}">
+    	                                <input type="text" class="hide" name="сума" ng-value="totalCost() | currency: '' : 0">
     	                                <h3 class="text-right">{[{totalCost() | currency: " " : 0}]} <small>грн</small></h3>
     	                                <p class="text-right calc-details">в тім числі робота: {[{totalWork() | currency: " " : 0}]} грн</p>
     	                            </div>
@@ -268,7 +289,7 @@
     	                                </label>
     	                            </div>
     	                            <div class=" column">
-    	                                <input type="text" class="hide" name="залишок" value="{[{customerMustPay() | currency: '' : 0}]}">
+    	                                <input type="text" class="hide" name="залишок" ng-value="customerMustPay() | currency: '' : 0">
     	                                <h1 class="text-right">{[{customerMustPay() | currency: " " : 0}]} </h1>
     	                                <p class="text-right">грн</p>
     	                            </div>
@@ -278,7 +299,7 @@
     	                    <br>
     	                    <div class="text-right">
     	                        <button type="button" id="detailsToggleButton" onclick="detailsToggle()" class="secondary button uppercase">сховати деталі</button>&nbsp;&nbsp;
-    	                        <input type="button" ng-click="resetForm()" onclick="resetNonNg()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
+    	                        <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
     	                        <input type="submit" class="success button uppercase" value="в роботу !">
     	                        <!-- <button class="success button uppercase"><i class="fa fa-paper-plane "></i>&nbsp; в роботу !</button> -->
     	                    </div>
@@ -290,7 +311,7 @@
     	        <h1 class="uppercase gold text-center">Дякуємо! <br> замовлення прийнято</h1>
     	        <div class="text-center" style="margin-top: 5vh">
     	            <button id="back-to-form" class="primary button uppercase"><i class="fa fa-arrow-left "></i>&nbsp; ой, повернутись</button>
-    	            <button id="thankyou-close" class="success button uppercase" data-close><i class="fa fa-close "></i>&nbsp; такой в роботу!</button>
+    	            <button id="thankyou-close" onclick="resetNonNg()" class="success button uppercase" data-close><i class="fa fa-close "></i>&nbsp; такой в роботу!</button>
     	        </div>
     	    </div>
     	</div>
