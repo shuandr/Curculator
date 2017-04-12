@@ -108,7 +108,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         antiGlass: false,
         discount: 0,
         slip: false,
-        stretch: undefined,
+        stretch: "без натяжки",
         advancePay: 0,
     };
 
@@ -269,7 +269,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             glassSqr = $scope.selObj.sqr();
         }
         return glassSqr;
-    };
+    }
 
     $scope.cutGlass = function() {
         if ($scope.selObj.glass.type == $scope.glassTypes[0].type) {
@@ -281,7 +281,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             cutGlass = 10;
         }
         return cutGlass;
-    };
+    }
 
     $scope.antiGlassClipWork = function() {
         var antiGlassClipWork = 0;
@@ -290,7 +290,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             antiGlassClipWork = antiGlassClip * $scope.clipQuantity;
         }
         return antiGlassClipWork;
-    };
+    }
 
     $scope.glassCost = function() {
         var glassSqr = $scope.glassSqr();
@@ -298,7 +298,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var cutGlass = $scope.cutGlass();
         var antiGlassClipWork = $scope.antiGlassClipWork();
         return glassSqr * glassPrice + cutGlass + antiGlassClipWork;
-    };
+    }
 
 
 
@@ -312,7 +312,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             var backSqr = $scope.selObj.sqr();
         }
         return backSqr;
-    };
+    }
 
     $scope.cutBack = function() {
         var cutBack = 0;
@@ -325,7 +325,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             cutBack *= 2;
         }
         return cutBack;
-    };
+    }
 
     $scope.backCost = function() {
         if ($scope.selObj.doubleBack) {
@@ -335,7 +335,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         var backPrice = $scope.selObj.back.price;
         return backSqr * backPrice + $scope.cutBack();
-    };
+    }
 
 
     // stretch
@@ -360,7 +360,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             stretch += objPerim * 18 + objPerim * subframeMeterPrice;
         }
         return stretch;
-    };
+    }
 
     $scope.furniture = function() {
         var objPerim = $scope.selObj.perim();
@@ -375,7 +375,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             furniture = 25;
         }
         return furniture;
-    };
+    }
 
     // TOTAL
     $scope.totalCost = function() {
@@ -389,7 +389,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var objQuantity = $scope.selObj.quantity;
 
         return (mouldCost + passCost + slipCost + glassCost + backCost + stretch + furniture) * objQuantity;
-    };
+    }
     $scope.totalWork = function() {
         var cutMould = $scope.cutMould() || 0;
         var cutPass = $scope.cutPass() || 0;
@@ -398,7 +398,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var cutBack = $scope.cutBack() || 0;
         var stretchWork = $scope.stretchWork() || 0;
         return (cutMould + cutPass + cutGlass + antiGlassClipWork + cutBack + stretchWork) * $scope.selObj.quantity;
-    };
+    }
 
 
     $scope.customerMustPay = function() {
@@ -409,13 +409,13 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
 
         return (totalCost - totalWork) * discount + totalWork - advancePay;
-    };
+    }
 
     $scope.resetForm = function() {
         $scope.selObj = angular.copy(iniObj);
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
-    };
+    }
 
 
 });
