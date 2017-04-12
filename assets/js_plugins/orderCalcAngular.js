@@ -365,7 +365,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.furniture = function() {
         var objPerim = $scope.selObj.perim();
 
-        if (!$scope.selObj.mould.width && !$scope.selObj.antiGlass && !$scope.selObj.stretch) {
+        if ($scope.selObj.mould.code == iniObj.mould.code && !$scope.selObj.antiGlass && $scope.selObj.stretch == iniObj.stretch ) {
             furniture = 0;
         } else if (objPerim < 1.4) {
             furniture = 10;
@@ -415,6 +415,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.selObj = angular.copy(iniObj);
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
+        resetNonNg();
     }
 
 
