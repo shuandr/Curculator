@@ -18,7 +18,7 @@
 
     "slipPrice": [{
         "name": "slip-PL",
-        "price": 78
+        "price": 48
     }, {
         "name": "slip-ES",
         "price": 4.83
