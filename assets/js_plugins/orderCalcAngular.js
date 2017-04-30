@@ -218,7 +218,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.cutPass = function() {
         var cutPass = 0;
 
-        if ($scope.selObj.width !== 0) {
+        if ($scope.selObj.passWidth !== 0) {
             cutPass = 8;
         }
         if ($scope.selObj.passForm == "oval-pass") {
