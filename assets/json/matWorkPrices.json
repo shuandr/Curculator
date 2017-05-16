@@ -84,12 +84,12 @@
 
     "subframe": [{
         "range": 3.5,
-        "price": 35
+        "price": 38
     }, {
         "range": 7,
-        "price": 45
+        "price": 48
     }, {
         "range": 120,
-        "price": 55
+        "price": 60
     }]
 }
