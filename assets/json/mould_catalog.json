@@ -296,7 +296,13 @@
         { "code": "047a004", "width": 17, "price": 4.95 },
         { "code": "047a056", "width": 17, "price": 4.95 },
         { "code": "047a509", "width": 17, "price": 4.95 },
-        { "code": "047a яскраво-оранж", "width": 17, "price": 4.95 }
+        { "code": "047a яскраво-оранж", "width": 17, "price": 4.95 },
+        { "code": "C 948-0071", "width": 52, "price": 15 },
+        { "code": "C 948-0075", "width": 52, "price": 15 },
+        { "code": "C 948-0079", "width": 52, "price": 15 },
+        { "code": "С 594-074", "width": 22, "price": 5.4 },
+        { "code": "С 594-075", "width": 22, "price": 5.4 },
+        { "code": "С 594-076", "width": 22, "price": 5.4 }
 
     ],
     "framerica": [{ "code": "26003", "width": 23, "price": 90 },
@@ -598,6 +604,12 @@
         { "code": "050 A 083", "width": 8, "price": 3.44 },
         { "code": "050 A 019", "width": 8, "price": 3.44 },
         { "code": "040 A 024", "width": 10, "price": 4.08 },
+        { "code": "265", "width": 10, "price": 7.45 },
+        { "code": "267", "width": 10, "price": 7.45 },
+        { "code": "269", "width": 10, "price": 7.45 },
+        { "code": "270", "width": 10, "price": 7.45 },
+        { "code": "272", "width": 10, "price": 7.45 },
+        { "code": "273", "width": 10, "price": 7.45 },
         { "code": "040 A 029", "width": 10, "price": 4.08 }
     ],
     "clever": [{ "code": "1415-95", "width": 11, "price": 1.14 },
