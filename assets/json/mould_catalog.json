@@ -398,7 +398,7 @@
         { "code": "073", "width": 11, "price": 74 },
         { "code": "074", "width": 12, "price": 74 },
         { "code": "075", "width": 12, "price": 74 },
-        { "code": 090, "width": 27, "price": 127 },
+        { "code": "090", "width": 27, "price": 127 },
         { "code": "091", "width": 27, "price": 127 },
         { "code": "092", "width": 27, "price": 127 },
         { "code": "096", "width": 55, "price": 342 },
