@@ -55,33 +55,33 @@
         "price": 430
     }, {
         "type": "піно-картон клейкий",
-        "price": 548
+        "price": 550
     }],
 
 
     "mouldWork": [{
         "range": 14,
-        "price": 10
+        "price": 15
     }, {
         "range": 34,
-        "price": 18
+        "price": 25
     }, {
         "range": 54,
-        "price": 32
+        "price": 45
     }, {
         "range": 84,
-        "price": 50
+        "price": 70
     }],
 
     "mouldSawWork": [{
         "range": 54,
-        "price": 30
-    }, {
-        "range": 84 ,
         "price": 50
     }, {
+        "range": 84 ,
+        "price": 75
+    }, {
         "range": 114,
-        "price": 100
+        "price": 120
     }],
 
 
