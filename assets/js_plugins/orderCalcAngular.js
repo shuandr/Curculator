@@ -21,7 +21,7 @@ app.directive('autoComplete', function($timeout) {
 
 app.controller('orderCalcCtrl', function($scope, $http) {
 
-    // statis data
+    // static data
     var euroExchange = 35.8;
     var UsdEuro = 0.8;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
@@ -219,10 +219,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var cutPass = 0;
 
         if ($scope.selObj.passWidth !== 0) {
-            cutPass = 8;
+            cutPass = 10;
         }
         if ($scope.selObj.passForm == "oval-pass") {
-            cutPass = 18;
+            cutPass = 20;
         }
         if ($scope.selObj.passForm == "arch-pass") {
             cutPass = 25;
@@ -239,9 +239,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var cutPass = $scope.cutPass();
         return passSqr * passPrice + cutPass;
     };
-
+    // slip
     $scope.slipCost = function() {
-        var cutslip = 8;
+        var cutslip = 9;
         var slipCost = 0;
         var slipPerim = function() {
             var objPerim = $scope.selObj.perim();
@@ -275,10 +275,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         if ($scope.selObj.glass.type == $scope.glassTypes[0].type) {
             var cutGlass = 0;
         } else {
-            cutGlass = 8;
+            cutGlass = 10;
         }
         if ($scope.selObj.antiGlass) {
-            cutGlass = 10;
+            cutGlass = 12;
         }
         return cutGlass;
     }
@@ -317,9 +317,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.cutBack = function() {
         var cutBack = 0;
         if ($scope.selObj.back.type == $scope.backTypes[1].type) {
-            cutBack = 2;
+            cutBack = 3;
         } else if ($scope.selObj.back.type == $scope.backTypes[2].type) {
-            cutBack = 5;
+            cutBack = 6;
         }
         if ($scope.selObj.doubleBack) {
             cutBack *= 2;
@@ -354,10 +354,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             // console.log(objPerim);
         }
         if ($scope.selObj.stretch == "subframe") {
-            stretch += objPerim * 16 + objPerim * subframeMeterPrice;
+            stretch += objPerim * 18 + objPerim * subframeMeterPrice;
         }
         if ($scope.selObj.stretch == "subframeGallery") {
-            stretch += objPerim * 18 + objPerim * subframeMeterPrice;
+            stretch += objPerim * 20 + objPerim * subframeMeterPrice;
         }
         return stretch;
     }
@@ -368,9 +368,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         if ($scope.selObj.mould.code == iniObj.mould.code && !$scope.selObj.antiGlass && $scope.selObj.stretch == iniObj.stretch ) {
             furniture = 0;
         } else if (objPerim < 1.4) {
-            furniture = 10;
+            furniture = 12;
         } else if (objPerim < 2) {
-            furniture = 15;
+            furniture = 18;
         } else {
             furniture = 25;
         }

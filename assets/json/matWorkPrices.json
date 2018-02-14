@@ -4,27 +4,27 @@
         "price": 0
     }, {
         "type": "папір",
-        "price": 260
+        "price": 300
     }, {
         "type": "тканина/оксамит",
-        "price": 600
+        "price": 850
     }, {
         "type": "з чорним зрізом",
-        "price": 340
+        "price": 580
     }, {
         "type": "металік",
-        "price": 455
+        "price": 590
     }],
 
     "slipPrice": [{
         "name": "slip-PL",
-        "price": 48
+        "price": 60
     }, {
         "name": "slip-ES",
         "price": 4.83
     }, {
         "name": "slip-USA",
-        "price": 70
+        "price": 90
     }],
 
     "glassTypes": [{
@@ -46,13 +46,16 @@
         "price": 0
     }, {
         "type": "картон",
-        "price": 78
+        "price": 100
     }, {
         "type": "ДВП",
         "price": 135
     }, {
         "type": "піно-картон",
-        "price": 440
+        "price": 430
+    }, {
+        "type": "піно-картон клейкий",
+        "price": 548
     }],
 
 
