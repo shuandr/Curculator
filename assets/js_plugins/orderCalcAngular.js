@@ -22,8 +22,8 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 35.8;
-    var UsdEuro = 0.8;
+    var euroExchange = 32.5;
+    var UsdEuro = 0.81;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
     var furniture = 0;
