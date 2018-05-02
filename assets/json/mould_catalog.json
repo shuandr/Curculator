@@ -378,7 +378,7 @@
         { "code": "C 948-0079", "width": 52, "price": 15 },
         { "code": "С 594-074", "width": 22, "price": 5.4 },
         { "code": "С 594-075", "width": 22, "price": 5.4 },
-        { "code": "С 594-076", "width": 22, "price": 5.4 },      
+        { "code": "С 594-076", "width": 22, "price": 5.4 }      
 
     ],
     "ESEL": [{"code":"3020-606","width":25,"price":7.86},
