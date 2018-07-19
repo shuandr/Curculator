@@ -426,6 +426,8 @@
         { "code": "50034", "width": 52, "price": 255 },
         { "code": "54966", "width": 50, "price": 350 },
         { "code": "56093", "width": 80, "price": 420 },
+        
+        { "code": "65099", "width": 25, "price": 200 },
         { "code": "66093", "width": 70, "price": 360 },
         { "code": "66963", "width": 70, "price": 330 },
         { "code": "66966", "width": 70, "price": 330 },
@@ -872,14 +874,14 @@
         { "code": "25 Ф1-8017", "width": 19, "price": 70 }
     ],
     "orest": [
-        { "code": "БО 4517", "width": 40, "price": 2.65 },
-        { "code": "БОШ 4517", "width": 40, "price": 3.1 },
-        { "code": "БОЗ 4517", "width": 40, "price": 3.1 },
-        { "code": "БОЗШ 4517", "width": 40, "price": 3.34 },
-        { "code": "БО 3513", "width": 30, "price": 2.31 },
-        { "code": "БОЗ 3513", "width": 30, "price": 2.76 },
-        { "code": "БОШ 3513", "width": 30, "price": 2.76 },
-        { "code": "БОЗШ 3513", "width": 30, "price": 3 }
+        { "code": "БО 4517", "width": 40, "price": 3.08 },
+        { "code": "БОШ 4517", "width": 40, "price": 3.69 },
+        { "code": "БОЗ 4517", "width": 40, "price": 3.69 },
+        { "code": "БОЗШ 4517", "width": 40, "price": 4.31 },
+        { "code": "БО 3513", "width": 30, "price": 2.77 },
+        { "code": "БОЗ 3513", "width": 30, "price": 3.38 },
+        { "code": "БОШ 3513", "width": 30, "price": 3.38 },
+        { "code": "БОЗШ 3513", "width": 30, "price": 4 }
 
     ]
 }
