@@ -18,6 +18,8 @@
         { "code": "0156-7246", "width": 48, "price": 18 },
         { "code": "0156-7250", "width": 47, "price": 18 },
         { "code": "0158-5934", "width": 60, "price": 28.6 },
+        { "code": "0175-5290", "width": 30, "price": 6.4 },
+        { "code": "0175-5291", "width": 30, "price": 6.4 },
         { "code": "0195-5970", "width": 60, "price": 23.2 },
         { "code": "0206-6150", "width": 80, "price": 36.48 },
         { "code": "0225-5970", "width": 102, "price": 44.2 },
@@ -99,6 +101,8 @@
         { "code": "1730-золото", "width": 60, "price": 24.2 },
         { "code": "1736-2138", "width": 15, "price": 5.98 },
         { "code": "1736-2140", "width": 15, "price": 5.98 },
+        { "code": "1831-87123", "width": 21, "price": 9.2 },
+        { "code": "1831-87124", "width": 21, "price": 9.2 },
         { "code": "8030-8509", "width": 70, "price": 22.95 },
         { "code": "8031-2522", "width": 48, "price": 15.45 },
         { "code": "8031-8521", "width": 48, "price": 15.45 },
@@ -344,6 +348,10 @@
     ],
     "italia": [{ "code": "985 Silver", "width": 82, "price": 34.8 },
         { "code": "985 Gold", "width": 82, "price": 34.8 },
+        { "code": "7501-481", "width": 45, "price": 11.98 },
+        { "code": "7502-471", "width": 70, "price": 18.96 },
+        { "code": "6201-999", "width": 45, "price": 14.7 },
+
         { "code": "P12 Silver Bronze", "width": 82, "price": 38.85 },
         { "code": "P12 Bronze", "width": 82, "price": 38.85 },
         { "code": "P12 Black", "width": 82, "price": 38.85 },
@@ -467,6 +475,8 @@
         { "code": "61A", "width": 75, "price": 206 },
         { "code": "664IBC", "width": 68, "price": 330 },
         { "code": "664IBG", "width": 68, "price": 330 },
+        { "code": "66G", "width": 75, "price": 330 },
+
         { "code": "68B", "width": 55, "price": 320 },
         { "code": "68S", "width": 55, "price": 320 },
         { "code": "68T", "width": 55, "price": 320 },
@@ -479,6 +489,8 @@
         { "code": "77B", "width": 55, "price": 302 },
         { "code": "77S", "width": 55, "price": 302 },
         { "code": "898R", "width": 74, "price": 230 },
+        { "code": "91054", "width": 25, "price": 165 },
+
         { "code": "DV9023K", "width": 70, "price": 350 }
     ],
     "poland_syh": [{"code":"04","width":40,"price":252},
@@ -796,6 +808,8 @@
         { "code": "5826B-16", "width": 50, "price": 6.19 },
         { "code": "5826B-26", "width": 50, "price": 6.19 },
         { "code": "5826B-54", "width": 50, "price": 6.19 },
+        { "code": "9041-55", "width": 90, "price": 12.5 },
+        { "code": "9041-26", "width": 90, "price": 12.5 },
         
         {"code":"2613-46","width":18,"price":2.15},
         {"code":"6827-274","width":60,"price":8.65},
