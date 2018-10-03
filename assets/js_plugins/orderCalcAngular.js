@@ -351,7 +351,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         if ($scope.selObj.stretch == "DVP") {
             // var furniture = 10;
-            stretch += objPerim * 25 + $scope.selObj.sqr() * $scope.backTypes[1].price + $scope.furniture();
+            stretch += objPerim * 26 + $scope.selObj.sqr() * $scope.backTypes[1].price + $scope.furniture();
             // console.log(objPerim);
         }
         if ($scope.selObj.stretch == "subframe") {
