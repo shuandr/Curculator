@@ -67,21 +67,24 @@
         "price": 25
     }, {
         "range": 54,
-        "price": 45
+        "price": 50
     }, {
         "range": 84,
-        "price": 70
+        "price": 80
     }],
 
     "mouldSawWork": [{
+        "range": 34,
+        "price": 40
+    }, {
         "range": 54,
-        "price": 50
+        "price": 60
     }, {
         "range": 84 ,
-        "price": 75
+        "price": 90
     }, {
         "range": 114,
-        "price": 120
+        "price": 130
     }],
 
 

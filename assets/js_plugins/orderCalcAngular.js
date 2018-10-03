@@ -27,6 +27,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
     var furniture = 0;
+    var cutSlip = 10;
+
 
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
@@ -219,7 +221,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var cutPass = 0;
 
         if ($scope.selObj.passWidth !== 0) {
-            cutPass = 10;
+            cutPass = 12;
         }
         if ($scope.selObj.passForm == "oval-pass") {
             cutPass = 20;
@@ -241,7 +243,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     };
     // slip
     $scope.slipCost = function() {
-        var cutslip = 9;
         var slipCost = 0;
         var slipPerim = function() {
             var objPerim = $scope.selObj.perim();
@@ -249,13 +250,13 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             return (objPerim + passOffset * 8 / 100);
         }
         if ($scope.slipType == $scope.slipPrice[0].name) {
-            slipCost = cutslip + slipPerim() * $scope.slipPrice[0].price;
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[0].price;
         }
         if ($scope.slipType == $scope.slipPrice[1].name) {
-            slipCost = cutslip + slipPerim() * $scope.slipPrice[1].price * euroExchange;
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[1].price * euroExchange;
         }
         if ($scope.slipType == $scope.slipPrice[2].name) {
-            slipCost = cutslip + slipPerim() * $scope.slipPrice[2].price;
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[2].price;
         }
 
         return slipCost;
@@ -275,10 +276,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         if ($scope.selObj.glass.type == $scope.glassTypes[0].type) {
             var cutGlass = 0;
         } else {
-            cutGlass = 10;
+            cutGlass = 12;
         }
         if ($scope.selObj.antiGlass) {
-            cutGlass = 12;
+            cutGlass = 14;
         }
         return cutGlass;
     }
@@ -317,9 +318,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.cutBack = function() {
         var cutBack = 0;
         if ($scope.selObj.back.type == $scope.backTypes[1].type) {
-            cutBack = 3;
+            cutBack = 4;
         } else if ($scope.selObj.back.type == $scope.backTypes[2].type) {
-            cutBack = 6;
+            cutBack = 7;
         }
         if ($scope.selObj.doubleBack) {
             cutBack *= 2;
@@ -354,10 +355,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             // console.log(objPerim);
         }
         if ($scope.selObj.stretch == "subframe") {
-            stretch += objPerim * 18 + objPerim * subframeMeterPrice;
+            stretch += objPerim * 20 + objPerim * subframeMeterPrice;
         }
         if ($scope.selObj.stretch == "subframeGallery") {
-            stretch += objPerim * 20 + objPerim * subframeMeterPrice;
+            stretch += objPerim * 23 + objPerim * subframeMeterPrice;
         }
         return stretch;
     }
