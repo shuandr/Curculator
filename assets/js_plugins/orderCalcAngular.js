@@ -23,7 +23,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
     var euroExchange = 33;
-    var UsdEuro = 0.81;
+    var UsdEuro = 0.87;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
     var furniture = 0;
