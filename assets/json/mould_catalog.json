@@ -690,11 +690,11 @@
 {"code":"Н-срібний-1","width":34,"price":90},
 {"code":"Н-золото-1","width":34,"price":90},
 {"code":"Н-коричневий-1","width":34,"price":90},
-{"code":"Н-8","width":25,"price":2.27},
-{"code":"Н-9","width":15,"price":2.12},
-{"code":"Н-10","width":25,"price":2.27},
-{"code":"Н-ТС","width":10,"price":1.06},
-{"code":"Н-ТБ","width":10,"price":1.06}
+{"code":"Н-8","width":25,"price":75},
+{"code":"Н-9","width":15,"price":70},
+{"code":"Н-10","width":25,"price":75},
+{"code":"Н-ТС","width":10,"price":35},
+{"code":"Н-ТБ","width":10,"price":35}
     ],
     "poland_mar": [{ "code": "4А", "width": 35, "price": 7.08 },
         { "code": "036m", "width": 24, "price": 6.55 },
