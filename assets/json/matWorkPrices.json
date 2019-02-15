@@ -20,6 +20,9 @@
         "name": "slip-PL",
         "price": 60
     }, {
+        "name": "slip-Wide",
+        "price": 76 
+    }, {
         "name": "slip-ES",
         "price": 4.83
     }, {

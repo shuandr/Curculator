@@ -253,10 +253,13 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             slipCost = cutSlip + slipPerim() * $scope.slipPrice[0].price;
         }
         if ($scope.slipType == $scope.slipPrice[1].name) {
-            slipCost = cutSlip + slipPerim() * $scope.slipPrice[1].price * euroExchange;
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[1].price;
         }
         if ($scope.slipType == $scope.slipPrice[2].name) {
-            slipCost = cutSlip + slipPerim() * $scope.slipPrice[2].price;
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[2].price * euroExchange;
+        }
+        if ($scope.slipType == $scope.slipPrice[3].name) {
+            slipCost = cutSlip + slipPerim() * $scope.slipPrice[3].price;
         }
 
         return slipCost;

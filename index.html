@@ -172,12 +172,10 @@
     	                                            <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
     	                                            <label for="slip">штапік</label>
     	                                            <div ng-show="selObj.slip" class="ng-hide">
-    	                                                <label>
-    	                                                    <input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
-    	                                                <label>
-    	                                                    <input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
-    	                                                <label>
-    	                                                    <input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
+    	                                                <label><input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
+    	                                                <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
+    	                                                <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
+    	                                                <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
     	                                                <input type="text" min="0" class="float-right" name="код штапіка" placeholder="код">
     	                                                <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
     	                                            </div>
