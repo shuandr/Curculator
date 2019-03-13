@@ -906,11 +906,11 @@
         {"code":"9041-26", "width": 90, "price": 12.5 },
         {"code":"9041-55", "width": 90, "price": 12.5 },
 
-        {"code":"3920-274","width":35,"price":99},
-		{"code":"3920-275","width":35,"price":99},
-		{"code":"3920-277","width":35,"price":99},
-		{"code":"3022-260К","width":25,"price":80},
-		{"code":"3119-822К","width":25,"price":98}
+        {"code":"3920-274","width":35,"price":3.6},
+		{"code":"3920-275","width":35,"price":3.6},
+		{"code":"3920-277","width":35,"price":3.6},
+		{"code":"3022-260К","width":25,"price":2.85},
+		{"code":"3119-822К","width":25,"price":3.5}
     ],
     "obrosh": [{ "code": "33-01", "width": 25, "price": 4.84 },
         { "code": "33-03", "width": 25, "price": 4.84 },
