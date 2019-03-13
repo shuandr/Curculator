@@ -208,7 +208,11 @@
 {"code":"0104-7330","width":43,"price":40.46},
 {"code":"0104-7332","width":43,"price":40.46},
 {"code":"0104-7333","width":43,"price":40.46},
-{"code":"0028-4035","width":43,"price":11.5}
+{"code":"0028-4035","width":43,"price":11.5},
+
+{"code":"1491-5328","width":13,"price":10.25},
+{"code":"0187-5970","width":60,"price":25.65},
+{"code":"8030-8509","width":70,"price":23}
     ],
     "injac": [{ "code": "040-01", "width": 18, "price": 4.14 },
         { "code": "040-02", "width": 18, "price": 4.14 },
