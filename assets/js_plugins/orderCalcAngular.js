@@ -32,7 +32,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
-    $scope.slipPrice = [0, 0, 0];
+    $scope.slipPrice = [0, 0, 0, 0];
     $scope.glassTypes = [0, 0, 0];
     $scope.backTypes = [0, 0, 0];
     $scope.mouldWork = [];
