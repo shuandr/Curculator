@@ -828,7 +828,7 @@
 {"code":704,"width":16,"price":170},
 {"code":305,"width":50,"price":355},
 {"code":108,"width":20,"price":116},
-{"code":048,"width":42,"price":252},
+{"code":"048","width":42,"price":252},
 {"code":941,"width":42,"price":296},
 {"code":128,"width":50,"price":347},
 {"code":109,"width":17,"price":116},
