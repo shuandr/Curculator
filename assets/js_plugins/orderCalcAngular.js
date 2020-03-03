@@ -22,12 +22,12 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 30;
-    var UsdEuro = 0.91;
+    var euroExchange = 33;
+    var UsdEuro = 0.9;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
     var furniture = 0;
-    var cutSlip = 10;
+    var cutSlip = 15;
 
 
     $scope.allMoulds = [];
@@ -224,10 +224,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             cutPass = 12;
         }
         if ($scope.selObj.passForm == "oval-pass") {
-            cutPass = 20;
+            cutPass = 22;
         }
         if ($scope.selObj.passForm == "arch-pass") {
-            cutPass = 25;
+            cutPass = 28;
         }
         if ($scope.selObj.doublePass) {
             cutPass *= 2;
@@ -282,7 +282,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             cutGlass = 12;
         }
         if ($scope.selObj.antiGlass) {
-            cutGlass = 14;
+            cutGlass = 18;
         }
         return cutGlass;
     }

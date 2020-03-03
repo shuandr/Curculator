@@ -64,30 +64,33 @@
 
     "mouldWork": [{
         "range": 14,
-        "price": 15
+        "price": 20
     }, {
         "range": 34,
-        "price": 25
-    }, {
-        "range": 54,
-        "price": 50
-    }, {
-        "range": 84,
-        "price": 80
-    }],
-
-    "mouldSawWork": [{
-        "range": 34,
-        "price": 40
+        "price": 30
     }, {
         "range": 54,
         "price": 60
     }, {
-        "range": 84 ,
+        "range": 84,
         "price": 90
+    }],
+
+    "mouldSawWork": [{
+        "range": 14,
+        "price": 30
+    }, {
+        "range": 34,
+        "price": 50
+    }, {
+        "range": 54,
+        "price": 70
+    }, {
+        "range": 84 ,
+        "price": 120
     }, {
         "range": 114,
-        "price": 130
+        "price": 200
     }],
 
 
