@@ -22,7 +22,7 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 33;
+    var euroExchange = 30;
     var UsdEuro = 0.9;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
@@ -323,7 +323,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         if ($scope.selObj.back.type == $scope.backTypes[1].type) {
             cutBack = 4;
         } else if ($scope.selObj.back.type == $scope.backTypes[2].type) {
-            cutBack = 7;
+            cutBack = 10;
         }
         if ($scope.selObj.doubleBack) {
             cutBack *= 2;
