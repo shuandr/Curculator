@@ -39,34 +39,34 @@
     	            <div class="row column">
     	                <div class="medium-6 large-3 column">
     	                    <h4>замовник</h4>
-    	                    <input type="text" id="name" name="клієнт" placeholder="ім’я" required>
-    	                    <input type="text" id="phone" name="телефон" placeholder="телефон" required>
+    	                    <input type="text" id="name" name="client" placeholder="ім’я" required>
+    	                    <input type="text" id="phone" name="tel" placeholder="телефон" required>
     	                    <hr>
     	                    <h4>об’єкт</h4>
-    	                    <input type="text" name="назва" placeholder="назва">
+    	                    <input type="text" name="objName" placeholder="назва">
     	                    <div class="row ">
     	                        <div class="small-4 column">
     	                            <label>ширина
-    	                                <input type="number" min="0" name="ширина" ng-model="selObj.width" placeholder="ширина">
+    	                                <input type="number" min="0" name="width" ng-model="selObj.width" placeholder="ширина">
     	                            </label>
     	                        </div>
     	                        <div class="small-4 column">
     	                            <label>висота
-    	                                <input type="number" min="0" name="висота" ng-model="selObj.height" placeholder="висота">
+    	                                <input type="number" min="0" name="height" ng-model="selObj.height" placeholder="висота">
     	                            </label>
     	                        </div>
     	                        <div class="small-4 column">
     	                            <label>к-сть
-    	                                <input type="number" min="1" name="кількість" ng-model="selObj.quantity" placeholder="к-сть">
+    	                                <input type="number" min="1" name="quantity" ng-model="selObj.quantity" placeholder="к-сть">
     	                            </label>
     	                        </div>
     	                    </div>
     	                    <hr> дедлайн:
-    	                    <input type="text" id="deadLine" name="дедлайн">
+    	                    <input type="text" id="deadLine" name="deadline">
     	                    <hr>
-    	                    <textarea rows="4" name="примітки" placeholder="примітки"></textarea>
+    	                    <textarea rows="4" name="comment" placeholder="примітки"></textarea>
     	                    менеджер:
-    	                    <select name="менеджер">
+    	                    <select name="manager">
     	                        <option value="Мирослава">Мирослава</option>
     	                        <option value="Уляна">Уляна</option>
     	                        <option value="Софія">Софія</option>
@@ -86,7 +86,7 @@
     	                                    <label>&nbsp;
     	                                        <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds | filter:search" placeholder="код багету"></select>
     	                                    </label>
-    	                                    <input type="text" class="hide" name="багет" ng-value="selObj.mould.code">
+    	                                    <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
     	                                </div>
     	                            </div>
     	                            <!-- <input auto-complete ui-items="allMoulds[mould].code" ng-model="selObj.mould" placeholder="код багету"> -->
@@ -109,7 +109,7 @@
     	                                        </div>
     	                                        <div class="small-6 column">
     	                                            <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds | filter:searchOuterMould"></select>
-    	                                            <input type="text" name="код зовн. багету" class="hide" value="{[{selObj.outerMould.code}]}">
+    	                                            <input type="text" name="outerMouldCode" class="hide" value="{[{selObj.outerMould.code}]}">
     	                                        </div>
     	                                    </div>
     	                                    <div class="calc-details">
@@ -119,7 +119,7 @@
     	                                    <hr>
     	                                </div>
     	                            </div>
-    	                            <input type="checkbox" id="ornAccuracy" name="підбір орнаменту" ng-model="selObj.ornAccuracy">
+    	                            <input type="checkbox" id="ornAccuracy" name="ornAccuracy" ng-model="selObj.ornAccuracy">
     	                            <label for="ornAccuracy">підбір орнаменту</label>
     	                            <input type="checkbox" id="sawCut" ng-model="selObj.sawCut">
     	                            <label for="sawCut"> на пилі</label>
@@ -145,11 +145,11 @@
     	                                </div>
     	                                <div class="small-6 column">
     	                                    ширина:
-    	                                    <input type="number" name="ширина паспарту" min="0" value="0" ng-model="selObj.passWidth">
+    	                                    <input type="number" name="passWidth" min="0" value="0" ng-model="selObj.passWidth">
     	                                </div>
     	                                <div class="small-6 column">
     	                                    код:
-    	                                    <input type="text" name="паспарту зовн">
+    	                                    <input type="text" name="outerPass">
     	                                </div>
     	                                <div class="column">
     	                                    <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
@@ -161,10 +161,10 @@
     	                                    <div class="row">
     	                                        <div id="doublePass" ng-show="selObj.doublePass" class="ng-hide">
     	                                            <div class="small-6 column">
-    	                                                <input type="number" min="0" ng-model="selObj.passOffset" name="відступ" placeholder="відступ">
+    	                                                <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
     	                                            </div>
     	                                            <div class="small-6 column">
-    	                                                <input type="text" min="0" name="паспарту внутр" placeholder="код внутр">
+    	                                                <input type="text" min="0" name="passCode" placeholder="код внутр">
     	                                            </div>
     	                                        </div>
     	                                        <div class="column">
@@ -176,7 +176,7 @@
     	                                                <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
     	                                                <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
     	                                                <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
-    	                                                <input type="text" min="0" class="float-right" name="код штапіка" placeholder="код">
+    	                                                <input type="text" min="0" class="float-right" name="slipCode" placeholder="код">
     	                                                <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
     	                                            </div>
     	                                        </div>
@@ -202,12 +202,12 @@
     	                            <div class="row">
     	                                <div class="small-6 column">
     	                                    <select ng-model="selObj.glass" ng-options="glass.type for glass in glassTypes"></select>
-    	                                    <input type="text" class="hide" name="скло" ng-value="selObj.glass.type">
+    	                                    <input type="text" class="hide" name="glass" ng-value="selObj.glass.type">
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" id="antiGlass" name="антирама" ng-model="selObj.antiGlass">
+    	                                    <input type="checkbox" id="antiGlass" name="antiGlass" ng-model="selObj.antiGlass">
     	                                    <label for="antiGlass">антирама</label>
-    	                                    <input type="number" min='4' ng-model="clipQuantity" name="зажими" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
+    	                                    <input type="number" min='4' ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
     	                                </div>
     	                            </div>
     	                            <div class="row calc-details">
@@ -229,10 +229,10 @@
     	                            <div class="row">
     	                                <div class="small-6 column">
     	                                    <select value="{[{selObj.back.type}]}" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{selObj.back.type}]}"></select>
-    	                                    <input type="text" class="hide" name="задня стінка" ng-value="selObj.back.type">
+    	                                    <input type="text" class="hide" name="backType" ng-value="selObj.back.type">
     	                                </div>
     	                                <div class="small-6 column">
-    	                                    <input type="checkbox" name="подвійна" id="doubleBack" ng-model="selObj.doubleBack">
+    	                                    <input type="checkbox" name="doubleBack" id="doubleBack" ng-model="selObj.doubleBack">
     	                                    <label for="doubleBack">подвійна</label>
     	                                </div>
     	                            </div>
@@ -255,7 +255,7 @@
     	                            <br>
     	                            <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;
     	                            <input type="radio" ng-model="selObj.stretch" value="subframeGallery"> галерейна
-    	                            <input type="radio" class="hide" name="натяжка" ng-value="selObj.stretch">
+    	                            <input type="radio" class="hide" name="stretch" ng-value="selObj.stretch">
     	                            <p class="text-right calc-details">натяжка: {[{stretchWork() | currency: " " : 0}]} грн</p>
     	                        </div>
     	                    </div>
@@ -264,7 +264,7 @@
     	                        <h4>загальна сума</h4>
     	                        <div class="row small-up-1 medium-up-2 large-up-4">
     	                            <div class="column">
-    	                                <input type="text" class="hide" name="сума" ng-value="totalCost() | currency: '' : 0">
+    	                                <input type="text" class="hide" name="sum" ng-value="totalCost() | currency: '' : 0">
     	                                <h3 class="text-right">{[{totalCost() | currency: " " : 0}]} <small>грн</small></h3>
     	                                <p class="text-right calc-details">в тім числі робота: {[{totalWork() | currency: " " : 0}]} грн</p>
     	                            </div>
@@ -276,18 +276,18 @@
     	                                    <div class="small-10 column">
     	                                        <div id="discount">
     	                                            <label>знижка:
-    	                                                <input type="number" min="0" max="15" name="знижка" ng-model="selObj.discount" placeholder="знижка">
+    	                                                <input type="number" min="0" max="15" name="discount" ng-model="selObj.discount" placeholder="знижка">
     	                                            </label>&nbsp;</div>
     	                                    </div>
     	                                </div>
     	                            </div>
     	                            <div class="column ">
     	                                <label>&nbsp; &nbsp;
-    	                                    <input type="number" min="0" name="аванс" ng-model="selObj.advancePay" placeholder="аванс">
+    	                                    <input type="number" min="0" name="advance" ng-model="selObj.advancePay" placeholder="аванс">
     	                                </label>
     	                            </div>
     	                            <div class=" column">
-    	                                <input type="text" class="hide" name="залишок" ng-value="customerMustPay() | currency: '' : 0">
+    	                                <input type="text" class="hide" name="remains" ng-value="customerMustPay() | currency: '' : 0">
     	                                <h1 class="text-right">{[{customerMustPay() | currency: " " : 0}]} </h1>
     	                                <p class="text-right">грн</p>
     	                            </div>
