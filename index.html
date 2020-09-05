@@ -1,331 +1,324 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Клейнод | рамарня</title>
-    
     <link rel="stylesheet" href="assets/css/app.css">
-    
-  </head>
-  <body>
-    <div class="bgrd-strip">
-      <div class="grad-overlay">
-      </div>
-    </div>
-    <!-- <link rel="stylesheet" href="assets/css/jquery.datepick.css"> -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/0caeff61d9.js" crossorigin="anonymous"></script>
     <script src="assets/js_plugins/angular.min.js"></script>
     <script src="assets/js_plugins/angular-animate.js"></script>
+    <script src="assets/js_plugins/angular-locale_uk-ua.js"></script>
     <script src="assets/js_plugins/orderCalcAngular.js"></script>
-    <div style="height: 100vh;" class="expanded row flex-vert-center">
-    	<div class="small-centered small-10 large-5 column text-center">
-    		<img style="width: 100%; margin-bottom: 10vh" src="assets/img/main-logo.svg">
-    		<button data-open="orderFormReveal" class="success button uppercase"><i class="fa fa-photo "></i>&nbsp; нове замовлення</button>
-    		
-    	</div>
-    </div>
-    <div class="reveal full" id="orderFormReveal" data-reveal data-animation-in="slide-in-down" data-animation-out="slide-out-down">
-    	<div class="bgrd-strip">
-    	    <div class="grad-overlay"></div>
-    	</div>
-    	<div class="flex-vert-center" style="height: 100vh;">
-    	    <div ng-app="orderCalc" ng-controller="orderCalcCtrl" class="row">
-    	        <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" novalidate>
-    	            <div class="row column clnd-title">
-    	                <h2>замовлення</h2>
-    	            </div>
-    	            <div class="row column">
-    	                <div class="medium-6 large-3 column">
-    	                    <h4>замовник</h4>
-    	                    <input type="text" id="name" name="client" placeholder="ім’я" required>
-    	                    <input type="text" id="phone" name="tel" placeholder="телефон" required>
-    	                    <hr>
-    	                    <h4>об’єкт</h4>
-    	                    <input type="text" name="objName" placeholder="назва">
-    	                    <div class="row ">
-    	                        <div class="small-4 column">
-    	                            <label>ширина
-    	                                <input type="number" min="0" name="width" ng-model="selObj.width" placeholder="ширина">
-    	                            </label>
-    	                        </div>
-    	                        <div class="small-4 column">
-    	                            <label>висота
-    	                                <input type="number" min="0" name="height" ng-model="selObj.height" placeholder="висота">
-    	                            </label>
-    	                        </div>
-    	                        <div class="small-4 column">
-    	                            <label>к-сть
-    	                                <input type="number" min="1" name="quantity" ng-model="selObj.quantity" placeholder="к-сть">
-    	                            </label>
-    	                        </div>
-    	                    </div>
-    	                    <hr> дедлайн:
-    	                    <input type="text" id="deadLine" name="deadline">
-    	                    <hr>
-    	                    <textarea rows="4" name="comment" placeholder="примітки"></textarea>
-    	                    менеджер:
-    	                    <select name="manager">
-    	                        <option value="Мирослава">Мирослава</option>
-    	                        <option value="Уляна">Уляна</option>
-    	                        <option value="Софія">Софія</option>
-    	                    </select>
-    	                </div>
-    	                <div class="medium-6 large-9 column left-border">
-    	                    <div class="row small-up-1 large-up-3">
-    	                        <div class="column">
-    	                            <h4>багет</h4>
-    	                            <div class="row">
-    	                                <div class="small-6 column">
-    	                                    <label>код багету:
-    	                                        <input type="text" ng-model="search">
-    	                                    </label>
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <label>&nbsp;
-    	                                        <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds | filter:search" placeholder="код багету"></select>
-    	                                    </label>
-    	                                    <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
-    	                                </div>
-    	                            </div>
-    	                            <!-- <input auto-complete ui-items="allMoulds[mould].code" ng-model="selObj.mould" placeholder="код багету"> -->
-    	                            <div class="carton-hole">
-    	                                <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
-    	                            </div>
-    	                            <div class="calc-details">
-    	                                <div class="float-left">периметр: {[{mouldPerim() | number}]} м</div>
-    	                                <div class="float-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} | {[{mouldPriceUAH()| number: 0}]} грн
-    	                                </div>
-    	                            </div>
-    	                            <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould">
-    	                            <label for="doubleMould"> подвійний</label>
-    	                            <div class="row column">
-    	                                <div ng-show="selObj.doubleMould" class="ng-hide">
-    	                                    код зовнішнього багету:
-    	                                    <div class="row">
-    	                                        <div class="small-6 column">
-    	                                            <input type="text" ng-model="searchOuterMould">
-    	                                        </div>
-    	                                        <div class="small-6 column">
-    	                                            <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds | filter:searchOuterMould"></select>
-    	                                            <input type="text" name="outerMouldCode" class="hide" value="{[{selObj.outerMould.code}]}">
-    	                                        </div>
-    	                                    </div>
-    	                                    <div class="calc-details">
-    	                                        <div class="float-left">периметр: {[{outerMouldPerim() | number}]} м</div>
-    	                                        <div class="float-right">ціна/метр: {[{selObj.outerMould.price| currency: "€" : 2}]} </div>
-    	                                    </div>
-    	                                    <hr>
-    	                                </div>
-    	                            </div>
-    	                            <input type="checkbox" id="ornAccuracy" name="ornAccuracy" ng-model="selObj.ornAccuracy">
-    	                            <label for="ornAccuracy">підбір орнаменту</label>
-    	                            <input type="checkbox" id="sawCut" ng-model="selObj.sawCut">
-    	                            <label for="sawCut"> на пилі</label>
-    	                            <div class="row calc-details">
-    	                                <hr>
-    	                                <div class="small-6 column ">
-    	                                    </p>
-    	                                    <p class="text-right">фурнітура: {[{furniture()| currency: " " : 0}]} грн </p>
-    	                                    <p class="text-right">робота: {[{cutMould() | number}]} грн</p>
-    	                                </div>
-    	                                <div class="small-6 column ">
-    	                                    <h5 class="text-right">ціна: {[{mouldCost() | currency: " " : 0}]} <small>грн</small> </h5>
-    	                                </div>
-    	                                <div class=" column">
-    	                                </div>
-    	                            </div>
-    	                        </div>
-    	                        <div class="column left-border">
-    	                            <h4>паспарту</h4>
-    	                            <div class="row">
-    	                                <div class="column">матеріал:
-    	                                    <select ng-model="selObj.pass" ng-options="pass.type for pass in passTypes"></select>
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    ширина:
-    	                                    <input type="number" name="passWidth" min="0" value="0" ng-model="selObj.passWidth">
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    код:
-    	                                    <input type="text" name="outerPass">
-    	                                </div>
-    	                                <div class="column">
-    	                                    <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
-    	                                    <!-- <label for=""></label> -->
-    	                                    <input type="radio" ng-model="selObj.passForm" value="arch-pass"> арка
-    	                                    <hr>
-    	                                    <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
-    	                                    <label for="doublePass">подвійне</label>
-    	                                    <div class="row">
-    	                                        <div id="doublePass" ng-show="selObj.doublePass" class="ng-hide">
-    	                                            <div class="small-6 column">
-    	                                                <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
-    	                                            </div>
-    	                                            <div class="small-6 column">
-    	                                                <input type="text" min="0" name="passCode" placeholder="код внутр">
-    	                                            </div>
-    	                                        </div>
-    	                                        <div class="column">
-    	                                            <hr>
-    	                                            <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
-    	                                            <label for="slip">штапік</label>
-    	                                            <div ng-show="selObj.slip" class="ng-hide">
-    	                                                <label><input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
-    	                                                <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
-    	                                                <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
-    	                                                <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
-    	                                                <input type="text" min="0" class="float-right" name="slipCode" placeholder="код">
-    	                                                <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
-    	                                            </div>
-    	                                        </div>
-    	                                    </div>
-    	                                </div>
-    	                            </div>
-    	                            <div class="row calc-details">
-    	                                <hr>
-    	                                <div class="small-6 column">
-    	                                    <p class="text-right">площа: {[{totalPassSqr() | number}]} м<sup>2</sup> </p>
-    	                                    <p class="text-right">ціна за м<sup>2</sup>: {[{selObj.pass.price| currency: " " : 0}]} грн</p>
-    	                                    <p class="text-right">робота: {[{cutPass() | currency: " " : 0}]} грн </p>
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <h5 class="text-right">ціна: {[{passCost() | currency: " " : 0}]} <small>грн</small></h5>
-    	                                </div>
-    	                                <div class=" column">
-    	                                </div>
-    	                            </div>
-    	                        </div>
-    	                        <div class="column left-border">
-    	                            <h4>скло</h4>
-    	                            <div class="row">
-    	                                <div class="small-6 column">
-    	                                    <select ng-model="selObj.glass" ng-options="glass.type for glass in glassTypes"></select>
-    	                                    <input type="text" class="hide" name="glass" ng-value="selObj.glass.type">
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <input type="checkbox" id="antiGlass" name="antiGlass" ng-model="selObj.antiGlass">
-    	                                    <label for="antiGlass">антирама</label>
-    	                                    <input type="number" min='4' ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
-    	                                </div>
-    	                            </div>
-    	                            <div class="row calc-details">
-    	                                <hr>
-    	                                <div class="small-6 column">
-    	                                    <p class="text-right">площа: {[{glassSqr() | number}]} м<sup>2</sup></p>
-    	                                    <p class="text-right">ціна/м<sup>2</sup>: {[{selObj.glass.price| currency: " " : 0}]} грн</p>
-    	                                    <p class="text-right">зажими:{[{antiGlassClipWork()| currency: " " : 0}]} грн</p>
-    	                                    <p class="text-right">робота: {[{cutGlass() | number}]} грн</p>
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <h5 class="text-right">ціна: {[{glassCost() | currency: " " : 0}]} <small>грн</small></h5>
-    	                                </div>
-    	                                <div class="column">
-    	                                </div>
-    	                            </div>
-    	                            <hr>
-    	                            <h4>задня стінка</h4>
-    	                            <div class="row">
-    	                                <div class="small-6 column">
-    	                                    <select value="{[{selObj.back.type}]}" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{selObj.back.type}]}"></select>
-    	                                    <input type="text" class="hide" name="backType" ng-value="selObj.back.type">
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <input type="checkbox" name="doubleBack" id="doubleBack" ng-model="selObj.doubleBack">
-    	                                    <label for="doubleBack">подвійна</label>
-    	                                </div>
-    	                            </div>
-    	                            <div class="row calc-details">
-    	                                <hr>
-    	                                <div class="small-6 column ">
-    	                                    <p class="text-right">площа: {[{backSqr() | number}]} м<sup>2</sup></p>
-    	                                    <p class="text-right">ціна за м<sup>2</sup>: {[{selObj.back.price| currency: " " : 0}]} грн</p>
-    	                                    <p class="text-right">робота: {[{cutBack() | number}]} грн</p>
-    	                                </div>
-    	                                <div class="small-6 column">
-    	                                    <h5 class="text-right">ціна: {[{backCost() | currency: " " : 0}]} <small>грн</small></h5>
-    	                                </div>
-    	                                <div class="column">
-    	                                </div>
-    	                            </div>
-    	                            <hr>
-    	                            <input type="radio" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП
-    	                            <br> <b>натяжка на підрамник:</b>
-    	                            <br>
-    	                            <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;
-    	                            <input type="radio" ng-model="selObj.stretch" value="subframeGallery"> галерейна
-    	                            <input type="radio" class="hide" name="stretch" ng-value="selObj.stretch">
-    	                            <p class="text-right calc-details">натяжка: {[{stretchWork() | currency: " " : 0}]} грн</p>
-    	                        </div>
-    	                    </div>
-    	                    <hr>
-    	                    <div class="row column">
-    	                        <h4>загальна сума</h4>
-    	                        <div class="row small-up-1 medium-up-2 large-up-4">
-    	                            <div class="column">
-    	                                <input type="text" class="hide" name="sum" ng-value="totalCost() | currency: '' : 0">
-    	                                <h3 class="text-right">{[{totalCost() | currency: " " : 0}]} <small>грн</small></h3>
-    	                                <p class="text-right calc-details">в тім числі робота: {[{totalWork() | currency: " " : 0}]} грн</p>
-    	                            </div>
-    	                            <div class="column left-border">
-    	                                <div class="row">
-    	                                    <div class="small-2 column">
-    	                                        <h3 id="discountToggleButton" onclick="discountToggle()" style="cursor: pointer;">—</h3>
-    	                                    </div>
-    	                                    <div class="small-10 column">
-    	                                        <div id="discount">
-    	                                            <label>знижка:
-    	                                                <input type="number" min="0" max="15" name="discount" ng-model="selObj.discount" placeholder="знижка">
-    	                                            </label>&nbsp;</div>
-    	                                    </div>
-    	                                </div>
-    	                            </div>
-    	                            <div class="column ">
-    	                                <label>&nbsp; &nbsp;
-    	                                    <input type="number" min="0" name="advance" ng-model="selObj.advancePay" placeholder="аванс">
-    	                                </label>
-    	                            </div>
-    	                            <div class=" column">
-    	                                <input type="text" class="hide" name="remains" ng-value="customerMustPay() | currency: '' : 0">
-    	                                <h1 class="text-right">{[{customerMustPay() | currency: " " : 0}]} </h1>
-    	                                <p class="text-right">грн</p>
-    	                            </div>
-    	                        </div>
-    	                    </div>
-    	                    <hr>
-    	                    <br>
-    	                    <div class="text-right">
-    	                        <button type="button" id="detailsToggleButton" onclick="detailsToggle()" class="secondary button uppercase">сховати деталі</button>&nbsp;&nbsp;
-    	                        <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
-    	                        <input type="submit" class="success button uppercase" value="в роботу !">
-    	                        <!-- <button class="success button uppercase"><i class="fa fa-paper-plane "></i>&nbsp; в роботу !</button> -->
-    	                    </div>
-    	                </div>
-    	            </div>
-    	        </form>
-    	    </div>
-    	    <div style="display:none;" id="thankyou_message">
-    	        <h1 class="uppercase gold text-center">Дякуємо! <br> замовлення прийнято</h1>
-    	        <div class="text-center" style="margin-top: 5vh">
-    	            <button id="back-to-form" class="primary button uppercase"><i class="fa fa-arrow-left "></i>&nbsp; ой, повернутись</button>
-    	            <button id="thankyou-close" onclick="resetNonNg()" class="success button uppercase" data-close><i class="fa fa-close "></i>&nbsp; такой в роботу!</button>
-    	        </div>
-    	    </div>
-    	</div>
-    	
-    	<button class="close-button" data-close aria-label="Close modal" type="button">
-    	<span aria-hidden="true">&times;</span>
-    	</button>
+</head>
+
+<body>
     
+    <div class="clnd-bg-full"></div>
+    <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
+        <div id="calcIntro" class="clnd-bg">
+            <div class="grid-x align-center-middle" style="height: 100vh">
+                <div class=" small-9 medium-6 large-4 cell text-center">
+                    <img style="width: 100%; margin-bottom: 10vh" src="assets/img/main-logo.svg">
+                    <button id="newOrderBtn" ng-click="getOrderId()" class=" button uppercase dark-gold-bg"><i class="fa fa-photo "></i>&nbsp;<span>нове замовлення</span></button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-x align-center-middle" style="height: 100vh">
+                <div class="cell">
+                    <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" >
+                        <div class=" clnd-title">
+                            <h2 class="text-center uppercase">замовлення № {[{orderId}]}</h2>
+                            <input type="text" class="hide" name="id" ng-value="orderId">
+                        </div>
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-6 large-3 cell">
+                                <h4 class="text-center uppercase">замовник</h4>
+                                <input type="text" id="name" name="client" placeholder="ім’я" required>
+                                <input type="text" id="phone" name="tel" placeholder="телефон" required>
+                                <hr>
+                                <h4 class="text-center uppercase">об’єкт</h4>
+                                <input type="text" name="objName" placeholder="назва">
+                                <div class="grid-x grid-padding-x">
+                                    <div class="small-4 cell">
+                                        <label>ширина
+                                            <input type="number" min="0" name="width" ng-model="selObj.width" placeholder="ширина">
+                                        </label>
+                                    </div>
+                                    <div class="small-4 cell">
+                                        <label>висота
+                                            <input type="number" min="0" name="height" ng-model="selObj.height" placeholder="висота">
+                                        </label>
+                                    </div>
+                                    <div class="small-4 cell">
+                                        <label>к-сть
+                                            <input type="number" min="1" name="quantity" ng-model="selObj.quantity" placeholder="к-сть">
+                                        </label>
+                                    </div>
+                                </div>
+                                <hr> дедлайн:
+                                <input type="text" id="deadLine" name="deadline" required>
+                                <hr>
+                                <textarea rows="4" name="comment" placeholder="примітки"></textarea>
+                                менеджер:
+                                <select name="manager">
+                                    <option value="Мирослава">Мирослава</option>
+                                    <option value="Уляна">Уляна</option>
+                                    <option value="Софія">Софія</option>
+                                </select>
+                            </div>
+                            <div class="medium-6 large-9 cell left-border">
+                                <div class="grid-x grid-padding-x small-up-1 large-up-3">
+                                    <div class="cell">
+                                        <h4 class="text-center uppercase">багет</h4>
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="small-6 cell">
+                                                <label>код багету:
+                                                    <input type="text" ng-model="search">
+                                                </label>
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <label>&nbsp;
+                                                    <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds | filter:search" placeholder="код багету"></select>
+                                                </label>
+                                                <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
+                                            </div>
+                                        </div>
+                                        <div class="carton-hole">
+                                            <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
+                                        </div>
+                                        <div class="calc-details">
+                                            <div class="float-left">периметр: {[{mouldPerim() | number}]} м</div>
+                                            <div class="float-right">ціна/метр: {[{selObj.mould.price| currency: "€" : 2}]} | {[{mouldPriceUAH()| number: 0}]} грн
+                                            </div>
+                                        </div>
+                                        <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould">
+                                        <label for="doubleMould"> подвійний</label>
+                                        <div class="grid-x grid-padding-x">
+                                            <div ng-show="selObj.doubleMould" class="ng-hide">
+                                                код зовнішнього багету:
+                                                <div class="grid-x grid-padding-x">
+                                                    <div class="small-6 cell">
+                                                        <input type="text" ng-model="searchOuterMould">
+                                                    </div>
+                                                    <div class="small-6 cell">
+                                                        <select ng-model="selObj.outerMould" ng-options="outerMould.code for outerMould in allMoulds | filter:searchOuterMould"></select>
+                                                        <input type="text" name="outerMouldCode" class="hide" value="{[{selObj.outerMould.code}]}">
+                                                    </div>
+                                                </div>
+                                                <div class="calc-details">
+                                                    <div class="float-left">периметр: {[{outerMouldPerim() | number}]} м</div>
+                                                    <div class="float-right">ціна/метр: {[{selObj.outerMould.price| currency: "€" : 2}]} </div>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <input type="checkbox" id="ornAccuracy" name="ornAccuracy" ng-model="selObj.ornAccuracy">
+                                        <label for="ornAccuracy">підбір орнаменту</label>
+                                        <input type="checkbox" id="sawCut" ng-model="selObj.sawCut">
+                                        <label for="sawCut"> на пилі</label>
+                                        <div class="grid-x calc-details">
+                                            <hr>
+                                            <div class="small-6 cell ">
+                                                </p>
+                                                <p class="text-right">фурнітура: {[{furniture()| currency: " " : 0}]} грн </p>
+                                                <p class="text-right">робота: {[{cutMould() | number}]} грн</p>
+                                            </div>
+                                            <div class="small-6 cell ">
+                                                <h5 class="text-right">ціна: {[{mouldCost() | currency: " " : 0}]} <small>грн</small> </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cell left-border ">
+                                        <h4 class="text-center uppercase">паспарту</h4>
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="cell">матеріал:
+                                                <select ng-model="selObj.pass" ng-options="pass.type for pass in passTypes"></select>
+                                            </div>
+                                            <div class="small-6 cell">
+                                                ширина:
+                                                <input type="number" name="passWidth" min="0" value="0" ng-model="selObj.passWidth">
+                                            </div>
+                                            <div class="small-6 cell">
+                                                код:
+                                                <input type="text" name="outerPass">
+                                            </div>
+                                            <div class="cell">
+                                                <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
+                                                <!-- <label for=""></label> -->
+                                                <input type="radio" ng-model="selObj.passForm" value="arch-pass"> арка
+                                                <hr>
+                                                <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
+                                                <label for="doublePass">подвійне</label>
+                                                <div class="grid-x grid-padding-x">
+                                                    <div id="doublePass" ng-show="selObj.doublePass" class="ng-hide">
+                                                        <div class="small-6 cell">
+                                                            <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
+                                                        </div>
+                                                        <div class="small-6 cell">
+                                                            <input type="text" min="0" name="passCode" placeholder="код внутр">
+                                                        </div>
+                                                    </div>
+                                                    <div class="cell">
+                                                        <hr>
+                                                        <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
+                                                        <label for="slip">штапік</label>
+                                                        <div ng-show="selObj.slip" class="ng-hide">
+                                                            <label><input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
+                                                            <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
+                                                            <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
+                                                            <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
+                                                            <input type="text" min="0" class="float-right" name="slipCode" placeholder="код">
+                                                            <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-padding-x calc-details">
+                                            <hr>
+                                            <div class="small-6 cell">
+                                                <p class="text-right">площа: {[{totalPassSqr() | number}]} м<sup>2</sup> </p>
+                                                <p class="text-right">ціна за м<sup>2</sup>: {[{selObj.pass.price| currency: " " : 0}]} грн</p>
+                                                <p class="text-right">робота: {[{cutPass() | currency: " " : 0}]} грн </p>
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <h5 class="text-right">ціна: {[{passCost() | currency: " " : 0}]} <small>грн</small></h5>
+                                            </div>
+                                            <div class=" cell">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cell left-border">
+                                        <h4 class="text-center uppercase">скло</h4>
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="small-6 cell">
+                                                <select ng-model="selObj.glass" ng-options="glass.type for glass in glassTypes"></select>
+                                                <input type="text" class="hide" name="glass" ng-value="selObj.glass.type">
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <input type="checkbox" id="antiGlass" name="antiGlass" ng-model="selObj.antiGlass">
+                                                <label for="antiGlass">антирама</label>
+                                                <input type="number" min='4' ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
+                                            </div>
+                                        </div>
+                                        <div class="grid-x grid-padding-x calc-details">
+                                            <hr>
+                                            <div class="small-6 cell">
+                                                <p class="text-right">площа: {[{glassSqr() | number}]} м<sup>2</sup></p>
+                                                <p class="text-right">ціна/м<sup>2</sup>: {[{selObj.glass.price| currency: " " : 0}]} грн</p>
+                                                <p class="text-right">зажими:{[{antiGlassClipWork()| currency: " " : 0}]} грн</p>
+                                                <p class="text-right">робота: {[{cutGlass() | number}]} грн</p>
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <h5 class="text-right">ціна: {[{glassCost() | currency: " " : 0}]} <small>грн</small></h5>
+                                            </div>
+                                            <div class="cell">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="text-center uppercase">задня стінка</h4>
+                                        <div class="grid-x grid-padding-x">
+                                            <div class="small-6 cell">
+                                                <select value="{[{selObj.back.type}]}" ng-model="selObj.back" ng-options="back.type for back in backTypes" placeholder="{[{selObj.back.type}]}"></select>
+                                                <input type="text" class="hide" name="backType" ng-value="selObj.back.type">
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <input type="checkbox" name="doubleBack" id="doubleBack" ng-model="selObj.doubleBack">
+                                                <label for="doubleBack">подвійна</label>
+                                            </div>
+                                        </div>
+                                        <div class="grid-x calc-details">
+                                            <hr>
+                                            <div class="small-6 cell ">
+                                                <p class="text-right">площа: {[{backSqr() | number}]} м<sup>2</sup></p>
+                                                <p class="text-right">ціна за м<sup>2</sup>: {[{selObj.back.price| currency: " " : 0}]} грн</p>
+                                                <p class="text-right">робота: {[{cutBack() | number}]} грн</p>
+                                            </div>
+                                            <div class="small-6 cell">
+                                                <h5 class="text-right">ціна: {[{backCost() | currency: " " : 0}]} <small>грн</small></h5>
+                                            </div>
+                                            <div class="cell">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <input type="radio" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП
+                                        <br> <b>натяжка на підрамник:</b>
+                                        <br>
+                                        <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;
+                                        <input type="radio" ng-model="selObj.stretch" value="subframeGallery"> галерейна
+                                        <input type="radio" class="hide" name="stretch" ng-value="selObj.stretch">
+                                        <p class="text-right calc-details">натяжка: {[{stretchWork() | currency: " " : 0}]} грн</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="grid-x grid-padding-x">
+                                    <div class="cell">
+                                        <h4 class="text-center uppercase">загальна сума</h4>
+                                        <div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-4">
+                                            <div class="cell">
+                                                <input type="text" class="hide" name="sum" ng-value="totalCost() | currency: '' : 0">
+                                                <h3 class="text-right">{[{totalCost() | currency: " " : 0}]} <small>грн</small></h3>
+                                                <p class="text-right calc-details">в тім числі робота: {[{totalWork() | currency: "" : 0}]} грн</p>
+                                            </div>
+                                            <div class="cell left-border">
+                                                <div class="grid-x">
+                                                    <div class="small-2 cell">
+                                                        <h3 id="discountToggleButton" style="cursor: pointer;">—</h3>
+                                                    </div>
+                                                    <div class="small-10 cell">
+                                                        <div id="discount">
+                                                            <label>знижка:
+                                                                <input type="number" min="0" max="15" name="discount" ng-model="selObj.discount" placeholder="знижка">
+                                                            </label>&nbsp;</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="cell left-border">
+                                                <label>аванс:
+                                                    <input type="number" min="0" name="advance" ng-model="selObj.advancePay" placeholder="аванс">
+                                                </label>
+                                            </div>
+                                            <div class="cell left-border text-right">
+                                                <input type="text" class="hide" name="remains" ng-value="customerMustPay() | currency: '' : 0">
+                                                <h1>{[{customerMustPay() | currency:"": 0}]}</h1><br>
+                                                грн
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cell text-right">
+                                        <hr>
+                                        <br>
+                                        <button type="button" id="detailsToggleButton" class=" button uppercase details-btn">сховати деталі</button>&nbsp;&nbsp;
+                                        <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
+                                        <input type="submit" ng-click="setOrderId()" class="success large button uppercase white" value="в роботу !">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>    <div id="thankyou_message" style="display:none;">
+            <div class="grid-x align-center-middle" style="height: 100vh;">
+                <div class="cell text-center">
+                    <h1 class="uppercase dark-gold">Дякуємо! <br> замовлення прийнято</h1>
+                    <div style="margin-top: 5vh">
+                        <button id="back-to-form" class="alert button uppercase "><i class="fa fa-arrow-left "></i>&nbsp; ой, повернутись</button>
+                        <button id="thankyou-close" ng-click="resetForm()" class="success large button uppercase"><i class="fa fa-photo "></i>&nbsp;<span>нове замовлення</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="assets/js/app.js"></script>
     <script src="assets/js_plugins/datepick/jquery.plugin.min.js"></script>
     <script src="assets/js_plugins/datepick/jquery.datepick.min.js"></script>
     <script src="assets/js_plugins/datepick/jquery.datepick-uk.js"></script>
     <script data-cfasync="false" src="assets/js_plugins/form-submission-handler.js"></script>
-    
-    
-    
-  </body>
+</body>
+
 </html>

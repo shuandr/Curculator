@@ -22,7 +22,7 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 33;
+    var euroExchange = 30;
     var UsdEuro = 0.9;
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var antiGlassClip = 6; // зажими на антираму з роботою
@@ -38,6 +38,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.mouldWork = [];
     $scope.mouldSawWork = [];
     $scope.subframe = [];
+
 
     // materials
 
@@ -80,6 +81,27 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         // console.log($scope.glassTypes[0].type);
     });
 
+    var currMonth = new Date().getMonth() + 1;
+    var preId = 1;
+
+
+    $scope.setOrderId = function() {
+        localStorage.setItem('preId', preId);
+        localStorage.setItem('lastOrderMonth', currMonth);
+    }
+
+    $scope.getOrderId = function() {
+        currMonth = new Date().getMonth() + 1;
+        if (localStorage.preId && localStorage.lastOrderMonth == currMonth) {
+            preId = Number(localStorage.getItem('preId')) + 1;
+            $scope.orderId = preId + '-' + currMonth;
+        } else {
+            preId = 1;
+            $scope.orderId = preId + '-' + currMonth;
+        }
+
+    }
+
 
     var iniObj = {
         width: 0,
@@ -97,7 +119,9 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         outerMould: {},
         ornAccuracy: false,
         sawCut: false,
-        pass: 'без паспарту',
+        pass: {
+            type: 'без паспарту'
+        },
         passWidth: 0,
         passForm: false,
         glass: { type: 'без скла' },
@@ -369,7 +393,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.furniture = function() {
         var objPerim = $scope.selObj.perim();
 
-        if ($scope.selObj.mould.code == iniObj.mould.code && !$scope.selObj.antiGlass && $scope.selObj.stretch == iniObj.stretch ) {
+        if ($scope.selObj.mould.code == iniObj.mould.code && !$scope.selObj.antiGlass && $scope.selObj.stretch == iniObj.stretch) {
             furniture = 0;
         } else if (objPerim < 1.4) {
             furniture = 12;
@@ -419,7 +443,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.selObj = angular.copy(iniObj);
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
-        resetNonNg();
+        $scope.getOrderId();
+
     }
 
 
