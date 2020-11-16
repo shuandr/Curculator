@@ -538,22 +538,21 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         return mouldWorkPrice;
     };
-$scope.mouldWorkPricesQ = function(w, p) {  // для таблиці work-prices для МАЙСТРІВ
+    $scope.mouldWorkPricesQ = function(w, p) { // для таблиці work-prices для МАЙСТРІВ
         var mouldWidth = w * 10 - 4;
         var objPerim = p;
-        var Q =$scope.workQ;
-        var mouldWorkPrice = $scope.mouldWork.base;
+        var mouldWorkPrice = $scope.mouldWork.base * $scope.workQ;
         var mouldWork = $scope.mouldWork;
 
         for (var i = 0; i < mouldWork.WR.length; i++) {
             if (mouldWidth > mouldWork.WR[i]) {
-                mouldWorkPrice = Math.ceil(mouldWorkPrice * mouldWork.WQ[i]*Q);
+                mouldWorkPrice = Math.ceil(mouldWorkPrice * mouldWork.WQ[i]);
                 break;
             }
         }
         for (var i = 0; i < mouldWork.PR.length; i++) {
             if (objPerim > mouldWork.PR[i]) {
-                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]*Q) / 5) * 5;
+                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 5) * 5;
                 break;
             }
         }
