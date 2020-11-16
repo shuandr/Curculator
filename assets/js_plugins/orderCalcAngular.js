@@ -190,7 +190,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         for (var i = 0; i < mouldWork.PR.length; i++) {
             if ($scope.mouldPerim() > mouldWork.PR[i]) {
-                cutMould = Math.ceil((cutMould * mouldWork.PQ[i]) / 10) * 10;
+                cutMould = Math.ceil((cutMould * mouldWork.PQ[i]) / 5) * 5;
                 break;
             }
         }
@@ -531,7 +531,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         for (var i = 0; i < mouldWork.PR.length; i++) {
             if (objPerim > mouldWork.PR[i]) {
-                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 10) * 10;
+                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 5) * 5;
                 break;
             }
         }
