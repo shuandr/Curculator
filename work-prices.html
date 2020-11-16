@@ -18,11 +18,14 @@
     <div class="clnd-bg-full"></div>
     <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
         <div class="grid-container">
-            <div class="grid-x grid-padding-x align-center-middle" style="height: 100vh;">
+            <div class=" clnd-title">
+                <h2 class="text-center uppercase dark-gold">ціни на роботу</h2>
+            </div>
+            <div class="grid-x grid-padding-x">
                 <div class="cell text-center">
                     <table class="work-prices">
                         <tr>
-                            <th> </th>
+                            <th class="uppercase"> рами</th>
                             <th colspan="5">ширина багету</th>
                         </tr>
                         <tr class="lighter-bg">
@@ -80,6 +83,67 @@
                             <td>{[{ mouldWorkPrices(4,9)}]}</td>
                             <td>{[{ mouldWorkPrices(6,9)}]}</td>
                             <td>{[{ mouldWorkPrices(9,9)}]}</td>
+                        </tr>
+                    </table> <br>
+                </div>
+                <div class="cell medium-9 text-center">
+                    <table class="work-prices">
+                        <tr class="lighter-bg">
+                            <th class="uppercase"> порізка</th>
+                            <th>до 30 см</th>
+                            <th>до 60 см</th>
+                            <th>більше 60 см</th>
+                            <th>овал</th>
+                            <th>арка</th>
+                        </tr>
+                        <tr>
+                            <td>паспарту</td>
+                            <td>{[{ passWork.price[2]}]}</td>
+                            <td>{[{ passWork.price[1]}]}</td>
+                            <td>{[{ passWork.price[0]}]}</td>
+                            <td>{[{ passWork.form.oval}]}</td>
+                            <td>{[{ passWork.form.arch}]}</td>
+                        </tr>
+                        <tr>
+                            <td>скло</td>
+                            <td>{[{ glassWork.price[2]}]}</td>
+                            <td>{[{ glassWork.price[1]}]}</td>
+                            <td>{[{ glassWork.price[0]}]}</td>
+                        </tr>
+                        <tr>
+                            <td>антирама</td>
+                            <td>{[{ glassWork.price[2]*1.5}]}</td>
+                            <td>{[{ glassWork.price[1]*1.5}]}</td>
+                            <td>{[{ glassWork.price[0]*1.5}]}</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="work-prices">
+                        <tr>
+                            <td>штапік</td>
+                            <td>{[{ cutSlip }]}</td>
+                            <td>картон і піно-</td>
+                            <td>{[{ backTypes[1].cut }]}</td>
+                            <td>ДВП</td>
+                            <td>{[{ backTypes[2].cut }]}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cell medium-3 text-center">
+                    <table class="work-prices">
+                        <tr>
+                            <th colspan="2">натяжка за м/п </th>
+                        </tr>
+                        <td>звичайна</td>
+                        <td>{[{ subframeWork.subframe}]}</td>
+                        </tr>
+                        <tr>
+                            <td>галерейна</td>
+                            <td>{[{ subframeWork.subframeGallery}]}</td>
+                        </tr>
+                        <tr>
+                            <td>на ДВП</td>
+                            <td>{[{ subframeWork.DVP}]}</td>
                         </tr>
                     </table>
                 </div>

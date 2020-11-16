@@ -30,7 +30,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 8; // зажими на антираму з роботою
     var furniture = 0;
-    var cutSlip = 30;
+    $scope.cutSlip = 30;
 
 
 
@@ -308,6 +308,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     // slip
     $scope.slipCost = function() {
         var slipCost = 0;
+        var cutSlip = $scope.cutSlip;
         var slipPerim = function() {
             var objPerim = $scope.selObj.perim();
             var passOffset = $scope.selObj.passOffset;

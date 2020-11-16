@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    
     <div class="clnd-bg-full"></div>
     <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
         <div id="calcIntro" class="clnd-bg">
@@ -154,44 +153,40 @@
                                                 <hr>
                                                 <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
                                                 <label for="doublePass">подвійне</label>
-                                                <div class="grid-x grid-padding-x">
-                                                    <div id="doublePass" ng-show="selObj.doublePass" class="cell ng-hide">
-                                                        <div class="grid-x grid-padding-x">
-                                                            <div class="small-6 cell">
-                                                                <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
-                                                            </div>
-                                                            <div class="small-6 cell">
-                                                                <input type="text" min="0" name="passCode" placeholder="код внутр">
-                                                            </div>
+                                                <div ng-show="selObj.doublePass" class=" ng-hide">
+                                                    <div class="grid-x grid-padding-x">
+                                                        <div class="small-6 cell">
+                                                            <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
                                                         </div>
-                                                    </div>
-                                                    <div class="cell">
-                                                        <hr>
-                                                        <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
-                                                        <label for="slip">штапік</label>
-                                                        <div ng-show="selObj.slip" class="ng-hide">
-                                                            <label><input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
-                                                            <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
-                                                            <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
-                                                            <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
-                                                            <input type="text" min="0" class="float-right" name="slipCode" placeholder="код">
-                                                            <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
+                                                        <div class="small-6 cell">
+                                                            <input type="text" min="0" name="passCode" placeholder="код внутр">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="grid-x grid-padding-x calc-details">
-                                            <hr>
-                                            <div class="small-6 cell">
-                                                <p class="text-right">площа: {[{totalPassSqr() | number}]} м<sup>2</sup> </p>
-                                                <p class="text-right">ціна за м<sup>2</sup>: {[{selObj.pass.price| currency: " " : 0}]} грн</p>
-                                                <p class="text-right">робота: {[{cutPass() | currency: " " : 0}]} грн </p>
-                                            </div>
-                                            <div class="small-6 cell">
-                                                <h5 class="text-right">ціна: {[{passCost() | currency: " " : 0}]} <small>грн</small></h5>
-                                            </div>
-                                            <div class=" cell">
+                                                    <hr>
+                                                <div class="grid-x grid-padding-x calc-details">
+                                                    <div class="small-6 cell">
+                                                        <p class="text-right">площа: {[{totalPassSqr() | number}]} м<sup>2</sup> </p>
+                                                        <p class="text-right">робота: {[{cutPass() | currency: " " : 0}]} грн </p>
+                                                    </div>
+                                                    <div class="small-6 cell">
+                                                        <p class="text-right">ціна/м<sup>2</sup>: {[{selObj.pass.price| currency: " " : 0}]} грн</p>
+                                                        <h5 class="text-right">ціна: {[{passCost() | currency: " " : 0}]} <small>грн</small></h5>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="cell">
+                                                    <input type="checkbox" id="slip" ng-model="selObj.slip" value="slip-PL">
+                                                    <label for="slip">штапік</label>
+                                                    <div ng-show="selObj.slip" class="ng-hide">
+                                                        <label><input type="radio" ng-model="slipType" value="slip-PL"> пластик</label>
+                                                        <label><input type="radio" ng-model="slipType" value="slip-Wide">широкий пластик</label>
+                                                        <label><input type="radio" ng-model="slipType" value="slip-ES"> Іспанія</label>
+                                                        <label><input type="radio" ng-model="slipType" value="slip-USA"> Framerica</label>
+                                                        <input type="text" min="0" class="float-right" name="slipCode" placeholder="код">
+                                                        <p class="calc-details"> ціна штапіка з роботою: {[{slipCost() | currency: " " : 0}]} грн</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -205,7 +200,7 @@
                                             <div class="small-6 cell">
                                                 <input type="checkbox" id="antiGlass" name="antiGlass" ng-model="selObj.antiGlass">
                                                 <label for="antiGlass">антирама</label>
-                                                <input type="number" min='4' ng-value="4" ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
+                                                <input type="number" min='4' ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
                                             </div>
                                         </div>
                                         <div class="grid-x grid-padding-x calc-details">
