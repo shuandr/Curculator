@@ -366,7 +366,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         if ($scope.selObj.antiGlass) {
             cutGlass *= glassWork.anti;
-            
+
 
         }
         return cutGlass;
@@ -515,6 +515,27 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.getOrderId();
 
     }
+
+    $scope.mouldWorkPrices = function(w, p) {
+        var mouldWidth = w * 10 - 4;
+        var objPerim = p;
+        var mouldWorkPrice = $scope.mouldWork.base;
+        var mouldWork = $scope.mouldWork;
+
+        for (var i = 0; i < mouldWork.WR.length; i++) {
+            if (mouldWidth > mouldWork.WR[i]) {
+                mouldWorkPrice = Math.ceil(mouldWorkPrice * mouldWork.WQ[i]);
+                break;
+            }
+        }
+        for (var i = 0; i < mouldWork.PR.length; i++) {
+            if (objPerim > mouldWork.PR[i]) {
+                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 10) * 10;
+                break;
+            }
+        }
+        return mouldWorkPrice;
+    };
 
 
 });
