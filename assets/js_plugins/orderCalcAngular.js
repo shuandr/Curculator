@@ -519,8 +519,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     }
 
     $scope.mouldWorkPrices = function(w, p) { // для таблиці work-prices для КЛІЄНТІВ
-        var mouldWidth = w * 10 - 4;
-        var objPerim = p;
+        var mouldWidth = (w * 10);
+        var objPerim = (p - 0.1);
         var mouldWorkPrice = $scope.mouldWork.base;
         var mouldWork = $scope.mouldWork;
 
@@ -532,15 +532,15 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         for (var i = 0; i < mouldWork.PR.length; i++) {
             if (objPerim > mouldWork.PR[i]) {
-                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 5) * 5;
+                mouldWorkPrice = Math.ceil(mouldWorkPrice * mouldWork.PQ[i] / 5) * 5;
                 break;
             }
         }
         return mouldWorkPrice;
     };
     $scope.mouldWorkPricesQ = function(w, p) { // для таблиці work-prices для МАЙСТРІВ
-        var mouldWidth = w * 10 - 4;
-        var objPerim = p;
+        var mouldWidth = (w * 10);
+        var objPerim = (p - 0.1);
         var mouldWorkPrice = $scope.mouldWork.base * $scope.workQ;
         var mouldWork = $scope.mouldWork;
 
@@ -552,7 +552,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         for (var i = 0; i < mouldWork.PR.length; i++) {
             if (objPerim > mouldWork.PR[i]) {
-                mouldWorkPrice = Math.ceil((mouldWorkPrice * mouldWork.PQ[i]) / 5) * 5;
+                mouldWorkPrice = Math.ceil(mouldWorkPrice * mouldWork.PQ[i] / 5) * 5;
                 break;
             }
         }
