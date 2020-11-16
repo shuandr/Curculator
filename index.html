@@ -29,7 +29,7 @@
         <div class="grid-container">
             <div class="grid-x align-center-middle" style="height: 100vh">
                 <div class="cell">
-                    <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec" >
+                    <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec">
                         <div class=" clnd-title">
                             <h2 class="text-center uppercase">замовлення № {[{orderId}]}</h2>
                             <input type="text" class="hide" name="id" ng-value="orderId">
@@ -87,7 +87,8 @@
                                                 <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
                                             </div>
                                         </div>
-                                        <div class="carton-hole">
+                                        <div class="carton-hole" style="min-height: 200px">
+                                            <div class="no-img"></div>
                                             <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
                                         </div>
                                         <div class="calc-details">
@@ -98,7 +99,7 @@
                                         <input type="checkbox" id="doubleMould" ng-model="selObj.doubleMould">
                                         <label for="doubleMould"> подвійний</label>
                                         <div class="grid-x grid-padding-x">
-                                            <div ng-show="selObj.doubleMould" class="ng-hide">
+                                            <div ng-show="selObj.doubleMould" class="ng-hide cell">
                                                 код зовнішнього багету:
                                                 <div class="grid-x grid-padding-x">
                                                     <div class="small-6 cell">
@@ -118,8 +119,8 @@
                                         </div>
                                         <input type="checkbox" id="ornAccuracy" name="ornAccuracy" ng-model="selObj.ornAccuracy">
                                         <label for="ornAccuracy">підбір орнаменту</label>
-                                        <input type="checkbox" id="sawCut" ng-model="selObj.sawCut">
-                                        <label for="sawCut"> на пилі</label>
+                                        <input type="checkbox" id="Ltype" ng-model="selObj.Ltype">
+                                        <label for="Ltype">L-тип</label>
                                         <div class="grid-x calc-details">
                                             <hr>
                                             <div class="small-6 cell ">
@@ -154,12 +155,14 @@
                                                 <input type="checkbox" id="doublePass" ng-model="selObj.doublePass">
                                                 <label for="doublePass">подвійне</label>
                                                 <div class="grid-x grid-padding-x">
-                                                    <div id="doublePass" ng-show="selObj.doublePass" class="ng-hide">
-                                                        <div class="small-6 cell">
-                                                            <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
-                                                        </div>
-                                                        <div class="small-6 cell">
-                                                            <input type="text" min="0" name="passCode" placeholder="код внутр">
+                                                    <div id="doublePass" ng-show="selObj.doublePass" class="cell ng-hide">
+                                                        <div class="grid-x grid-padding-x">
+                                                            <div class="small-6 cell">
+                                                                <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
+                                                            </div>
+                                                            <div class="small-6 cell">
+                                                                <input type="text" min="0" name="passCode" placeholder="код внутр">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="cell">
@@ -202,7 +205,7 @@
                                             <div class="small-6 cell">
                                                 <input type="checkbox" id="antiGlass" name="antiGlass" ng-model="selObj.antiGlass">
                                                 <label for="antiGlass">антирама</label>
-                                                <input type="number" min='4' ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
+                                                <input type="number" min='4' ng-value="4" ng-model="clipQuantity" name="clipQuantity" ng-show="selObj.antiGlass" class="ng-hide" placeholder="зажими">
                                             </div>
                                         </div>
                                         <div class="grid-x grid-padding-x calc-details">
@@ -210,7 +213,7 @@
                                             <div class="small-6 cell">
                                                 <p class="text-right">площа: {[{glassSqr() | number}]} м<sup>2</sup></p>
                                                 <p class="text-right">ціна/м<sup>2</sup>: {[{selObj.glass.price| currency: " " : 0}]} грн</p>
-                                                <p class="text-right">зажими:{[{antiGlassClipWork()| currency: " " : 0}]} грн</p>
+                                                <p class="text-right">зажими: {[{antiGlassClipWork()| currency: " " : 0}]} грн</p>
                                                 <p class="text-right">робота: {[{cutGlass() | number}]} грн</p>
                                             </div>
                                             <div class="small-6 cell">
@@ -245,7 +248,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <input type="radio" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП
+                                        <input type="radio" ng-model="selObj.stretch" value="DVP"> натяжка на ДВП &nbsp;&nbsp;&nbsp;<input type="radio" ng-model="selObj.stretch" value="no"> без
                                         <br> <b>натяжка на підрамник:</b>
                                         <br>
                                         <input type="radio" ng-model="selObj.stretch" value="subframe"> звичайна &nbsp;&nbsp;

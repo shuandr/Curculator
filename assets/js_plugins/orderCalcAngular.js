@@ -24,25 +24,45 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     // static data
     var euroExchange = 33.6;
     var UsdEuro = 0.84;
+
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
-    var antiGlassClip = 6; // зажими на антираму з роботою
+    var LtypeQ = 1.4; //коєф. роботи з рамою L-типу 
+    var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
+    var antiGlassClip = 8; // зажими на антираму з роботою
     var furniture = 0;
-    var cutSlip = 15;
+    var cutSlip = 30;
+
 
 
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
     $scope.slipPrice = [0, 0, 0, 0];
     $scope.glassTypes = [0, 0, 0];
-    $scope.backTypes = [0, 0, 0];
-    $scope.mouldWork = [];
-    $scope.mouldSawWork = [];
+    $scope.backTypes = [];
+    $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
+    $scope.glassWork = { "range": [], "price": [], "anti": " " };
+    $scope.subframeWork = { "subframe": " " };
     $scope.subframe = [];
 
 
     // materials
 
     // XHR
+    $http.get("assets/json/matWorkPrices.json").then(function(response) {
+        $scope.matWorkPrices = response.data;
+        $scope.passTypes = $scope.matWorkPrices.passTypes;
+        $scope.slipPrice = $scope.matWorkPrices.slipPrice;
+        $scope.glassTypes = $scope.matWorkPrices.glassTypes;
+        $scope.backTypes = $scope.matWorkPrices.backTypes;
+        $scope.mouldWork = $scope.matWorkPrices.mouldWork;
+        $scope.passWork = $scope.matWorkPrices.passWork;
+        $scope.glassWork = $scope.matWorkPrices.glassWork;
+        $scope.subframe = $scope.matWorkPrices.subframe;
+        $scope.subframeWork = $scope.matWorkPrices.subframeWork;
+
+        // $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
+
+    });
     $http.get("assets/json/mould_catalog.json").then(function(response) {
         $scope.allMouldsCatalog = response.data;
         $scope.allMouldsCatalog.clever.forEach(function(item) {
@@ -69,17 +89,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.allMoulds = createArray();
     });
 
-    $http.get("assets/json/matWorkPrices.json").then(function(response) {
-        $scope.matWorkPrices = response.data;
-        $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
-        $scope.slipPrice = angular.copy($scope.matWorkPrices.slipPrice);
-        $scope.glassTypes = angular.copy($scope.matWorkPrices.glassTypes);
-        $scope.backTypes = angular.copy($scope.matWorkPrices.backTypes);
-        $scope.mouldWork = angular.copy($scope.matWorkPrices.mouldWork);
-        $scope.mouldSawWork = angular.copy($scope.matWorkPrices.mouldSawWork);
-        $scope.subframe = angular.copy($scope.matWorkPrices.subframe);
-        // console.log($scope.glassTypes[0].type);
-    });
 
     var currMonth = new Date().getMonth() + 1;
     var preId = 1;
@@ -113,12 +122,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         sqr: function() {
             return this.width * this.height / 10000;
         },
-        mould: {
-            code: '001'
-        },
+        mould: false,
         outerMould: {},
         ornAccuracy: false,
-        sawCut: false,
+        Ltype: false,
         pass: {
             type: 'без паспарту'
         },
@@ -161,23 +168,39 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         return innerMouldPerim + mouldWidth * 8;
     };
 
-    $scope.cutMould = function() {
-        var mouldWidth = $scope.selObj.mould.width;
-        var cutMould;
 
-        if ($scope.selObj.sawCut || $scope.selObj.mould.width > 90) {
-            var cutPrices = $scope.mouldSawWork;
+    $scope.cutMould = function() {
+        var objPerim = $scope.selObj.perim();
+        // var mouldPerim = $scope.mouldPerim();
+        var mouldWidth = $scope.selObj.mould.width;
+        if ($scope.selObj.mould) {
+            var cutMould = $scope.mouldWork.base;
         } else {
-            cutPrices = $scope.mouldWork;
+            var cutMould = 0;
         }
-        for (var i = 0; i < cutPrices.length; i++) {
-            if (mouldWidth < cutPrices[i].range) {
-                cutMould = cutPrices[i].price;
+        var mouldWork = $scope.mouldWork;
+
+
+
+        for (var i = 0; i < mouldWork.WR.length; i++) {
+            if (mouldWidth > mouldWork.WR[i]) {
+                cutMould = Math.ceil(cutMould * mouldWork.WQ[i]);
                 break;
             }
         }
+        for (var i = 0; i < mouldWork.PR.length; i++) {
+            if ($scope.mouldPerim() > mouldWork.PR[i]) {
+                cutMould = Math.ceil((cutMould * mouldWork.PQ[i]) / 10) * 10;
+                break;
+            }
+        }
+
         if ($scope.selObj.ornAccuracy) {
             cutMould *= mouldOrnAccuracy;
+        }
+        if ($scope.selObj.Ltype) {
+            cutMould = cutMould * LtypeQ +
+                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
         }
         if ($scope.selObj.doubleMould) {
             cutMould *= 2;
@@ -236,22 +259,39 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
         return innerPassSqr;
     };
-    $scope.totalPassSqr = function() {
+    $scope.totalPassSqr = function() { //
         var totalPassSqr = $scope.passSqr() + $scope.innerPassSqr();
         return totalPassSqr;
     }
 
+    $scope.passRange = function() { // шукаємо довшу сторону паспарту
+        var passWidth = $scope.selObj.passWidth * 2 + $scope.selObj.passOffset * 2;
+        if ($scope.selObj.width > $scope.selObj.height) {
+            passRange = passWidth + $scope.selObj.width;
+        } else {
+            passRange = passWidth + $scope.selObj.height;
+        }
+        return passRange;
+    }
     $scope.cutPass = function() {
         var cutPass = 0;
+        var passWork = $scope.passWork;
+        var passRange = $scope.passRange();
 
-        if ($scope.selObj.passWidth !== 0) {
-            cutPass = 12;
+        if ($scope.selObj.passWidth > 0) {
+            for (var i = 0; i < passWork.range.length; i++) {
+                if (passRange > passWork.range[i]) {
+                    cutPass = passWork.price[i];
+                    break;
+                }
+            }
         }
+
         if ($scope.selObj.passForm == "oval-pass") {
-            cutPass = 22;
+            cutPass = passWork.form.oval;
         }
         if ($scope.selObj.passForm == "arch-pass") {
-            cutPass = 28;
+            cutPass = passWork.form.arch;
         }
         if ($scope.selObj.doublePass) {
             cutPass *= 2;
@@ -299,14 +339,35 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         return glassSqr;
     }
 
+    $scope.glassRange = function() { // шукаємо довшу сторону скла
+
+        if ($scope.selObj.width > $scope.selObj.height) {
+            glassRange = $scope.selObj.width;
+        } else {
+            glassRange = $scope.selObj.height;
+        }
+        return glassRange;
+    }
+
     $scope.cutGlass = function() {
+        var glassWork = $scope.glassWork;
+
         if ($scope.selObj.glass.type == $scope.glassTypes[0].type) {
             var cutGlass = 0;
+
         } else {
-            cutGlass = 12;
+            for (var i = 0; i < glassWork.range.length; i++) {
+                if ($scope.glassRange() > glassWork.range[i]) {
+                    cutGlass = glassWork.price[i];
+                    break;
+                }
+            }
+
         }
         if ($scope.selObj.antiGlass) {
-            cutGlass = 18;
+            cutGlass *= glassWork.anti;
+            
+
         }
         return cutGlass;
     }
@@ -314,7 +375,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.antiGlassClipWork = function() {
         var antiGlassClipWork = 0;
         if ($scope.selObj.antiGlass) {
-            // $scope.clipQuantity = 4;
             antiGlassClipWork = antiGlassClip * $scope.clipQuantity;
         }
         return antiGlassClipWork;
@@ -343,12 +403,16 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     }
 
     $scope.cutBack = function() {
+        var backTypes = $scope.backTypes;
         var cutBack = 0;
-        if ($scope.selObj.back.type == $scope.backTypes[1].type) {
-            cutBack = 4;
-        } else if ($scope.selObj.back.type == $scope.backTypes[2].type) {
-            cutBack = 10;
+
+        for (var i = 0; i < backTypes.length; i++) {
+            if ($scope.selObj.back.type == backTypes[i].type) {
+                cutBack = backTypes[i].cut;
+                break;
+            }
         }
+
         if ($scope.selObj.doubleBack) {
             cutBack *= 2;
         }
@@ -370,22 +434,27 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.stretchWork = function() {
         var objPerim = $scope.selObj.perim();
         var stretch = 0;
+        var subframeWork = $scope.subframeWork;
         for (var i = 0; i < $scope.subframe.length; i++) {
             if (objPerim < $scope.subframe[i].range) {
                 var subframeMeterPrice = $scope.subframe[i].price;
                 break;
             }
         }
-        if ($scope.selObj.stretch == "DVP") {
-            // var furniture = 10;
-            stretch += objPerim * 26 + $scope.selObj.sqr() * $scope.backTypes[1].price + $scope.furniture();
-            // console.log(objPerim);
+        if ($scope.selObj.stretch == "no") {
+            stretch = 0;
         }
         if ($scope.selObj.stretch == "subframe") {
-            stretch += objPerim * 20 + objPerim * subframeMeterPrice;
+            stretch += objPerim * subframeWork.subframe +
+                objPerim * subframeMeterPrice;
         }
         if ($scope.selObj.stretch == "subframeGallery") {
-            stretch += objPerim * 23 + objPerim * subframeMeterPrice;
+            stretch += objPerim * subframeWork.subframeGallery +
+                objPerim * subframeMeterPrice;
+        }
+        if ($scope.selObj.stretch == "DVP") {
+            stretch += objPerim * subframeWork.DVP +
+                $scope.selObj.sqr() * $scope.backTypes[1].price + $scope.furniture();
         }
         return stretch;
     }

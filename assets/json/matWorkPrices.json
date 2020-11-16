@@ -1,107 +1,137 @@
 {
-    "passTypes": [{
+    "mouldWork":
+    {
+        "base": 25,
+        "WR": [84, 54, 34, 14, 0],
+        "WQ": [4.5, 3, 2, 1.4, 0],
+        "PR": [8, 6, 4, 2, 1],
+        "PQ": [12, 6.4, 3.6, 2.1, 1.4]
+    },
+    "passTypes": [
+    {
         "type": "без паспарту",
         "price": 0
-    }, {
+    },
+    {
         "type": "папір",
         "price": 300
-    }, {
+    },
+    {
         "type": "тканина/оксамит",
         "price": 850
-    }, {
+    },
+    {
         "type": "з чорним зрізом",
         "price": 580
-    }, {
+    },
+    {
         "type": "металік",
         "price": 590
     }],
+    "passWork":
+    {
+        "range": ["60", "30", "1"],
+        "price": [48, 36, 24],
+        "form":
+        {
+            "oval": 60,
+            "arch": 72
+        }
+    },
 
-    "slipPrice": [{
+    "slipPrice": [
+    {
         "name": "slip-PL",
         "price": 60
-    }, {
+    },
+    {
         "name": "slip-Wide",
-        "price": 76 
-    }, {
+        "price": 76
+    },
+    {
         "name": "slip-ES",
         "price": 4.83
-    }, {
+    },
+    {
         "name": "slip-USA",
         "price": 90
     }],
 
-    "glassTypes": [{
+    "glassTypes": [
+    {
         "type": "без скла",
         "price": 0
-    }, {
+    },
+    {
         "type": "звичайне",
         "price": 320
-    }, {
+    },
+    {
         "type": "антиблік",
         "price": 370
-    }, {
+    },
+    {
         "type": "пластик",
         "price": 492
     }],
 
-    "backTypes": [{
+    "glassWork":
+    {
+        "range": ["60", "30", "1"],
+        "price": [36, 24, 16],
+        "anti": 1.5
+    },
+
+    "backTypes": [
+    {
         "type": "без стінки",
-        "price": 0
-    }, {
+        "price": 0,
+        "cut": 0
+
+    },
+    {
         "type": "картон",
-        "price": 100
-    }, {
+        "price": 100,
+        "cut": 10
+
+    },
+    {
         "type": "ДВП",
-        "price": 135
-    }, {
+        "price": 135,
+        "cut": 16
+
+    },
+    {
         "type": "піно-картон",
-        "price": 430
-    }, {
+        "price": 430,
+        "cut": 10
+    },
+    {
         "type": "піно-картон клейкий",
-        "price": 550
+        "price": 550,
+        "cut": 10
     }],
 
 
-    "mouldWork": [{
-        "range": 14,
-        "price": 20
-    }, {
-        "range": 34,
-        "price": 30
-    }, {
-        "range": 54,
-        "price": 60
-    }, {
-        "range": 84,
-        "price": 90
-    }],
 
-    "mouldSawWork": [{
-        "range": 14,
-        "price": 30
-    }, {
-        "range": 34,
-        "price": 50
-    }, {
-        "range": 54,
-        "price": 70
-    }, {
-        "range": 84 ,
-        "price": 120
-    }, {
-        "range": 114,
-        "price": 200
-    }],
-
-
-    "subframe": [{
+    "subframe": [
+    {
         "range": 3.5,
         "price": 38
-    }, {
+    },
+    {
         "range": 7,
         "price": 48
-    }, {
+    },
+    {
         "range": 120,
         "price": 60
-    }]
+    }],
+    "subframeWork":
+    {
+        "subframe": 30,
+        "subframeGallery": 40,
+        "DVP": 40
+    }
+
 }
