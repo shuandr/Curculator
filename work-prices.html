@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клейнод | рамарня</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script src="https://kit.fontawesome.com/0caeff61d9.js" crossorigin="anonymous"></script>
+    <script src="assets/js_plugins/angular.min.js"></script>
+    <script src="assets/js_plugins/angular-animate.js"></script>
+    <script src="assets/js_plugins/angular-locale_uk-ua.js"></script>
+    <script src="assets/js_plugins/orderCalcAngular.js"></script>
+</head>
+
+<body>
+    <div class="clnd-bg-full"></div>
+    <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x align-center-middle" style="height: 100vh;">
+                <div class="cell text-center">
+                    <table class="work-prices">
+                        <tr>
+                            <th> </th>
+                            <th colspan="5">ширина багету</th>
+                        </tr>
+                        <tr class="lighter-bg">
+                            <th>периметр</th>
+                            <th>до 2 см</th>
+                            <th>до 4 см</th>
+                            <th>до 6 см</th>
+                            <th>до 9 см</th>
+                            <th>більше 9 см</th>
+                        </tr>
+                        <tr>
+                            <td>до 1 м</td>
+                            <td>{[{ mouldWorkPrices(1,1)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,1)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,1)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,1)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,1)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 2 м</td>
+                            <td>{[{ mouldWorkPrices(1,2)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,2)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,2)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,2)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,2)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 4 м</td>
+                            <td>{[{ mouldWorkPrices(1,4)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,4)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,4)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,4)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,4)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 6 м</td>
+                            <td>{[{ mouldWorkPrices(1,6)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,6)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,6)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,6)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,6)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 8 м</td>
+                            <td>{[{ mouldWorkPrices(1,8)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,8)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,8)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,8)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,8)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>більше 8 м</td>
+                            <td>{[{ mouldWorkPrices(1,9)}]}</td>
+                            <td>{[{ mouldWorkPrices(2,9)}]}</td>
+                            <td>{[{ mouldWorkPrices(4,9)}]}</td>
+                            <td>{[{ mouldWorkPrices(6,9)}]}</td>
+                            <td>{[{ mouldWorkPrices(9,9)}]}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.plugin.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick-uk.js"></script>
+    <script data-cfasync="false" src="assets/js_plugins/form-submission-handler.js"></script>
+</body>
+
+</html>
