@@ -1,0 +1,166 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клейнод | рамарня</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script src="https://kit.fontawesome.com/0caeff61d9.js" crossorigin="anonymous"></script>
+    <script src="assets/js_plugins/angular.min.js"></script>
+    <script src="assets/js_plugins/angular-animate.js"></script>
+    <script src="assets/js_plugins/angular-locale_uk-ua.js"></script>
+    <script src="assets/js_plugins/orderCalcAngular.js"></script>
+</head>
+
+<body>
+    <div class="clnd-bg-full"></div>
+    <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
+    	<br>
+    	<br>
+            <div class=" clnd-title">
+                <h2 class="text-center uppercase dark-gold">ціни для МАЙСТРІВ</h2>
+            </div>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <div class="cell text-center">
+                    <table class="work-prices">
+                        <tr>
+                            <th class="uppercase"> рами</th>
+                            <th colspan="5">ширина багету</th>
+                        </tr>
+                        <tr class="lighter-bg">
+                            <th>периметр</th>
+                            <th>до 2 см</th>
+                            <th>до 4 см</th>
+                            <th>до 6 см</th>
+                            <th>до 9 см</th>
+                            <th>більше 9 см</th>
+                        </tr>
+                        <tr>
+                            <td>до 1 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,1)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,1)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,1)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,1)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,1)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 2 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,2)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,2)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,2)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,2)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,2)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 4 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,4)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,4)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,4)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,4)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,4)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 6 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,6)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,6)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,6)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,6)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,6)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>до 8 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,8)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,8)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,8)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,8)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,8)}]}</td>
+                        </tr>
+                        <tr>
+                            <td>більше 8 м</td>
+                            <td>{[{ mouldWorkPricesQ(1,9)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(2,9)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(4,9)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(6,9)}]}</td>
+                            <td>{[{ mouldWorkPricesQ(9,9)}]}</td>
+                        </tr>
+                    </table> <br>
+                </div>
+                <div class="cell medium-9 text-center">
+                    <table class="work-prices">
+                        <tr class="lighter-bg">
+                            <th class="uppercase"> порізка</th>
+                            <th>до 30 см</th>
+                            <th>до 60 см</th>
+                            <th>більше 60 см</th>
+                            <th>овал</th>
+                            <th>арка</th>
+                        </tr>
+                        <tr>
+                            <td>паспарту</td>
+                            <td>{[{ passWork.price[2]*workQ }]}</td>
+                            <td>{[{ passWork.price[1]*workQ }]}</td>
+                            <td>{[{ passWork.price[0]*workQ }]}</td>
+                            <td>{[{ passWork.form.oval*workQ }]}</td>
+                            <td>{[{ passWork.form.arch*workQ }]}</td>
+                        </tr>
+                        <tr>
+                            <td>скло</td>
+                            <td>{[{ glassWork.price[2]*workQ }]}</td>
+                            <td>{[{ glassWork.price[1]*workQ }]}</td>
+                            <td>{[{ glassWork.price[0]*workQ }]}</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr>
+                            <td>антирама</td>
+                            <td>{[{ glassWork.price[2]*1.5*workQ }]}</td>
+                            <td>{[{ glassWork.price[1]*1.5*workQ }]}</td>
+                            <td>{[{ glassWork.price[0]*1.5*workQ }]}</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table class="work-prices">
+                        <tr>
+                            <td>штапік</td>
+                            <td>{[{ cutSlip*workQ  }]}</td>
+                            <td>картон і піно-</td>
+                            <td>{[{ backTypes[1].cut*workQ  }]}</td>
+                            <td>ДВП</td>
+                            <td>{[{ backTypes[2].cut*workQ  }]}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cell medium-3 text-center">
+                    <table class="work-prices">
+                        <tr>
+                            <th colspan="2">натяжка за м/п </th>
+                        </tr>
+                        <td>звичайна</td>
+                        <td>{[{ subframeWork.subframe*workQ }]}</td>
+                        </tr>
+                        <tr>
+                            <td>галерейна</td>
+                            <td>{[{ subframeWork.subframeGallery*workQ }]}</td>
+                        </tr>
+                        <tr>
+                            <td>на ДВП</td>
+                            <td>{[{ subframeWork.DVP*workQ }]}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.plugin.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick.min.js"></script>
+    <script src="assets/js_plugins/datepick/jquery.datepick-uk.js"></script>
+    <script data-cfasync="false" src="assets/js_plugins/form-submission-handler.js"></script>
+</body>
+
+</html>
