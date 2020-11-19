@@ -128,7 +128,9 @@
         "price": 60
     }],
 
-    "subframeWork":
+    "subframeWork": 40,
+
+    "stretchWork":
     {
         "subframe": 30,
         "subframeGallery": 40,
