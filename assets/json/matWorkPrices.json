@@ -140,6 +140,11 @@
         "range": [4, 3, 2, 1.4, 0.1],
         "price": [48, 36, 25, 18, 12]
     },
-    "stretchFurniture": 3
+    "stretchFurniture": 3,
+    "mirror": {
+        "montage": 40,
+        "corner": 16,
+        "hole": 24
+    }
 
 }

@@ -39,7 +39,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.passTypes = [0, 0, 0];
     $scope.slipPrice = [0, 0, 0, 0];
     $scope.glassTypes = [0, 0, 0];
-    $scope.backTypes = [0, 0, 0, 0, {"glue": " "}];
+    $scope.backTypes = [0, 0, 0, 0, { "glue": " " }];
     $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
     $scope.glassWork = { "range": [], "price": [], "anti": " " };
     $scope.subframeWork = { "subframe": " " };
@@ -63,6 +63,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.subframeWork = $scope.matWorkPrices.subframeWork;
         $scope.furniturePrices = $scope.matWorkPrices.furniture;
         $scope.stretchFurniture = $scope.matWorkPrices.stretchFurniture;
+        $scope.mirror = $scope.matWorkPrices.mirror;
 
         // $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
 
@@ -438,7 +439,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
 
         if ($scope.selObj.back.type == backTypes[4].type) { // поклейка на пінокартон
-            cutBack += ($scope.selObj.sqr() * backTypes[4].glue < backTypes[4].minGlue ? 
+            cutBack += ($scope.selObj.sqr() * backTypes[4].glue < backTypes[4].minGlue ?
                 backTypes[4].minGlue : $scope.selObj.sqr() * backTypes[4].glue);
         }
 
@@ -549,11 +550,17 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     }
 
+    //ДЛЯ ТАБЛИЦЬ
+
     $scope.mouldWorkPrices = function(w, p) { // для таблиці work-prices для КЛІЄНТІВ
         var mouldWidth = (w * 10);
         var objPerim = (p - 0.1);
         var mouldWorkPrice = $scope.mouldWork.base;
         var mouldWork = $scope.mouldWork;
+        if ($scope.selObj.Ltype) {
+            mouldWorkPrice = mouldWorkPrice * LtypeQ +
+                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
+        }
 
         for (var i = 0; i < mouldWork.WR.length; i++) {
             if (mouldWidth > mouldWork.WR[i]) {
@@ -574,6 +581,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var objPerim = (p - 0.1);
         var mouldWorkPrice = $scope.mouldWork.base * $scope.workQ;
         var mouldWork = $scope.mouldWork;
+        if ($scope.selObj.Ltype) {
+            mouldWorkPrice = mouldWorkPrice * LtypeQ +
+                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
+        }
 
         for (var i = 0; i < mouldWork.WR.length; i++) {
             if (mouldWidth > mouldWork.WR[i]) {
