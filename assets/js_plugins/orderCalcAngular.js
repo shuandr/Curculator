@@ -31,7 +31,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var antiGlassClip = 8; // зажими на антираму з роботою
     var furniture = 0;
     $scope.cutSlip = 30;
-    $scope.workQ = 0.5;
+    $scope.workQ = 1;
+    $scope.workshopPrices = false;
 
 
 
@@ -42,7 +43,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.backTypes = [0, 0, 0, 0, { "glue": " " }];
     $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
     $scope.glassWork = { "range": [], "price": [], "anti": " " };
-    $scope.subframeWork = { "subframe": " " };
+    $scope.stretchWorkPrices = { "subframe": " " };
     $scope.subframe = [];
     $scope.furniturePrices = { "range": [], "price": [] };
 
@@ -61,6 +62,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.glassWork = $scope.matWorkPrices.glassWork;
         $scope.subframe = $scope.matWorkPrices.subframe;
         $scope.subframeWork = $scope.matWorkPrices.subframeWork;
+        $scope.stretchWorkPrices = $scope.matWorkPrices.stretchWork;
         $scope.furniturePrices = $scope.matWorkPrices.furniture;
         $scope.stretchFurniture = $scope.matWorkPrices.stretchFurniture;
         $scope.mirror = $scope.matWorkPrices.mirror;
@@ -464,7 +466,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.stretchWork = function() {
         var objPerim = $scope.selObj.perim();
         var stretch = 0;
-        var subframeWork = $scope.subframeWork;
+        var stretchWorkPrices = $scope.stretchWorkPrices;
         for (var i = 0; i < $scope.subframe.length; i++) {
             if (objPerim < $scope.subframe[i].range) {
                 var subframeMeterPrice = $scope.subframe[i].price;
@@ -475,15 +477,15 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             stretch = 0;
         }
         if ($scope.selObj.stretch == "subframe") {
-            stretch += objPerim * subframeWork.subframe +
+            stretch += objPerim * stretchWorkPrices.subframe +
                 objPerim * subframeMeterPrice + objPerim * $scope.stretchFurniture;
         }
         if ($scope.selObj.stretch == "subframeGallery") {
-            stretch += objPerim * subframeWork.subframeGallery +
+            stretch += objPerim * stretchWorkPrices.subframeGallery +
                 objPerim * subframeMeterPrice + objPerim * $scope.stretchFurniture;
         }
         if ($scope.selObj.stretch == "DVP") {
-            stretch += objPerim * subframeWork.DVP + objPerim * $scope.stretchFurniture +
+            stretch += objPerim * stretchWorkPrices.DVP + objPerim * $scope.stretchFurniture +
                 $scope.selObj.sqr() * $scope.backTypes[2].price + $scope.backTypes[2].cut;
         }
         return stretch;
@@ -555,12 +557,15 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.mouldWorkPrices = function(w, p) { // для таблиці work-prices для КЛІЄНТІВ
         var mouldWidth = (w * 10);
         var objPerim = (p - 0.1);
-        var mouldWorkPrice = $scope.mouldWork.base;
-        var mouldWork = $scope.mouldWork;
-        if ($scope.selObj.Ltype) {
-            mouldWorkPrice = mouldWorkPrice * LtypeQ +
-                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
+        if ($scope.workshopPrices) {
+            $scope.workQ = 0.5;
+        }else{
+            $scope.workQ = 1;
+
         }
+        var mouldWorkPrice = $scope.mouldWork.base * $scope.workQ;
+        var mouldWork = $scope.mouldWork;
+
 
         for (var i = 0; i < mouldWork.WR.length; i++) {
             if (mouldWidth > mouldWork.WR[i]) {
@@ -574,9 +579,14 @@ app.controller('orderCalcCtrl', function($scope, $http) {
                 break;
             }
         }
+        if ($scope.selObj.Ltype) {
+            mouldWorkPrice = mouldWorkPrice * LtypeQ +
+                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
+        }
         return mouldWorkPrice;
     };
-    $scope.mouldWorkPricesQ = function(w, p) { // для таблиці work-prices для МАЙСТРІВ
+
+    /* $scope.mouldWorkPricesQ = function(w, p) { // для таблиці work-prices для МАЙСТРІВ
         var mouldWidth = (w * 10);
         var objPerim = (p - 0.1);
         var mouldWorkPrice = $scope.mouldWork.base * $scope.workQ;
@@ -600,6 +610,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         return mouldWorkPrice;
     };
-
+*/
 
 });

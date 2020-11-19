@@ -20,7 +20,10 @@
         <div class="grid-container">
             <br>
             <div class=" clnd-title">
-                <h2 class="text-center uppercase dark-gold">ціни на роботу</h2>
+                <h2 class="text-center uppercase dark-gold">ціни на роботу |  
+                    <input type="checkbox" id="workshop" ng-model="workshopPrices">
+                    <label class="brown " style="font-size: 1.4rem" for="workshop">для МАЙСТРІВ</label>
+                </h2>
             </div>
             <div class="grid-x grid-padding-x">
                 <div class="cell  medium-9 large-8 text-center">
@@ -99,30 +102,30 @@
                         </tr>
                         <tr>
                             <td>паспарту</td>
-                            <td>{[{ passWork.price[2]}]}</td>
-                            <td>{[{ passWork.price[1]}]}</td>
-                            <td>{[{ passWork.price[0]}]}</td>
-                            <td>{[{ passWork.form.oval}]}</td>
-                            <td>{[{ passWork.form.arch}]}</td>
+                            <td>{[{ passWork.price[2]*workQ }]}</td>
+                            <td>{[{ passWork.price[1]*workQ }]}</td>
+                            <td>{[{ passWork.price[0]*workQ }]}</td>
+                            <td>{[{ passWork.form.oval*workQ }]}</td>
+                            <td>{[{ passWork.form.arch*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>скло</td>
-                            <td>{[{ glassWork.price[2]}]}</td>
-                            <td>{[{ glassWork.price[1]}]}</td>
-                            <td>{[{ glassWork.price[0]}]}</td>
+                            <td>{[{ glassWork.price[2]*workQ }]}</td>
+                            <td>{[{ glassWork.price[1]*workQ }]}</td>
+                            <td>{[{ glassWork.price[0]*workQ }]}</td>
                             <td> </td>
                             <td> </td>
                         </tr>
                         <tr>
                             <td>антирама</td>
-                            <td>{[{ glassWork.price[2]*1.5}]}</td>
-                            <td>{[{ glassWork.price[1]*1.5}]}</td>
-                            <td>{[{ glassWork.price[0]*1.5}]}</td>
+                            <td>{[{ glassWork.price[2]*1.5*workQ }]}</td>
+                            <td>{[{ glassWork.price[1]*1.5*workQ }]}</td>
+                            <td>{[{ glassWork.price[0]*1.5*workQ }]}</td>
                             <td> </td>
                             <td> </td>
                         </tr>
                     </table><br>
-                    <table class="work-prices">
+                    <table class="work-prices" ng-hide="workshopPrices">
                         <tr class="lighter-bg">
                             <th rowspan="2" class="uppercase"> фурнітура</th>
                             <th>до 1,4 м</th>
@@ -132,15 +135,13 @@
                             <th>більше 4 м</th>
                         </tr>
                         <tr>
-                            
-                            <td>{[{ furniturePrices.price[4]}]}</td>
-                            <td>{[{ furniturePrices.price[3]}]}</td>
-                            <td>{[{ furniturePrices.price[2]}]}</td>
-                            <td>{[{ furniturePrices.price[1]}]}</td>
-                            <td>{[{ furniturePrices.price[0]}]}</td>
-                          
+                            <td>{[{ furniturePrices.price[4]*workQ }]}</td>
+                            <td>{[{ furniturePrices.price[3]*workQ }]}</td>
+                            <td>{[{ furniturePrices.price[2]*workQ }]}</td>
+                            <td>{[{ furniturePrices.price[1]*workQ }]}</td>
+                            <td>{[{ furniturePrices.price[0]*workQ }]}</td>
                         </tr>
-                </table><br>
+                    </table><br>
                 </div>
                 <div class="cell medium-3 large-4 text-center">
                     <table class="work-prices">
@@ -149,57 +150,56 @@
                         </tr>
                         <tr>
                             <td>штапік</td>
-                            <td>{[{ cutSlip}]}</td>
+                            <td>{[{ cutSlip*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>картон і піно-</td>
-                            <td>{[{ backTypes[1].cut}]}</td>
+                            <td>{[{ backTypes[1].cut*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>ДВП</td>
-                            <td>{[{ backTypes[2].cut}]}</td>
+                            <td>{[{ backTypes[2].cut*workQ }]}</td>
                         </tr>
                     </table><br>
                     <table class="work-prices">
                         <tr>
-                            <th colspan="2">натяжка за м/п </th>
-                        </tr>
-                        <td>звичайна</td>
-                        <td>{[{ subframeWork.subframe}]}</td>
-                        </tr>
+                            <th>натяжка за м/п </th>
+                            <th>{[{ stretchWorkPrices.subframe*workQ }]}</th>
                         <tr>
                             <td>галерейна</td>
-                            <td>{[{ subframeWork.subframeGallery}]}</td>
+                            <td>{[{ stretchWorkPrices.subframeGallery*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>на ДВП</td>
-                            <td>{[{ subframeWork.DVP}]}</td>
+                            <td>{[{ stretchWorkPrices.DVP*workQ }]}</td>
                         </tr>
                     </table><br>
                     <table class="work-prices">
                         <tr>
                             <th>монтаж дзеркала</th>
-                            <th>{[{mirror.montage}]}</th>
+                            <th>{[{mirror.montage*workQ }]}</th>
                         </tr>
                         <td>кутник</td>
-                        <td>{[{ mirror.corner}]}</td>
+                        <td>{[{ mirror.corner*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>отвір</td>
-                            <td>{[{ mirror.hole}]}</td>
+                            <td>{[{ mirror.hole*workQ }]}</td>
                         </tr>
                         <tr>
                             <th colspan="2">поклейка на піно-картон</th>
                         </tr>
                         <tr>
-                            <td>за м <sup>2</sup></td>
-                            <td>{[{backTypes[4].glue}]}</td>
+                            <td>за м<sup>2</sup></td>
+                            <td>{[{backTypes[4].glue*workQ }]}</td>
                         </tr>
                         <tr>
                             <td>мінімум</td>
-                            <td>{[{backTypes[4].minGlue}]}</td>
+                            <td>{[{backTypes[4].minGlue*workQ }]}</td>
                         </tr>
-                        
+                        <tr class="lighter-bg">
+                            <th>виготовлення підрамника</th>
+                            <th>{[{subframeWork*workQ }]}</th>
                     </table>
                 </div>
             </div>
