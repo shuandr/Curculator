@@ -39,11 +39,12 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.passTypes = [0, 0, 0];
     $scope.slipPrice = [0, 0, 0, 0];
     $scope.glassTypes = [0, 0, 0];
-    $scope.backTypes = [];
+    $scope.backTypes = [0, 0, 0, 0, {"glue": " "}];
     $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
     $scope.glassWork = { "range": [], "price": [], "anti": " " };
     $scope.subframeWork = { "subframe": " " };
     $scope.subframe = [];
+    $scope.furniturePrices = { "range": [], "price": [] };
 
 
     // materials
@@ -60,6 +61,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.glassWork = $scope.matWorkPrices.glassWork;
         $scope.subframe = $scope.matWorkPrices.subframe;
         $scope.subframeWork = $scope.matWorkPrices.subframeWork;
+        $scope.furniturePrices = $scope.matWorkPrices.furniture;
+        $scope.stretchFurniture = $scope.matWorkPrices.stretchFurniture;
 
         // $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
 
@@ -142,7 +145,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         antiGlass: false,
         discount: 0,
         slip: false,
-        stretch: "без натяжки",
+        stretch: "no",
         advancePay: 0,
     };
 
@@ -172,7 +175,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     $scope.cutMould = function() {
         var objPerim = $scope.selObj.perim();
-        // var mouldPerim = $scope.mouldPerim();
         var mouldWidth = $scope.selObj.mould.width;
         if ($scope.selObj.mould) {
             var cutMould = $scope.mouldWork.base;
@@ -204,12 +206,32 @@ app.controller('orderCalcCtrl', function($scope, $http) {
                 Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
         }
         if ($scope.selObj.doubleMould) {
-            cutMould *= 2;
+            cutMould += $scope.cutOuterMould();
         }
         return cutMould;
     };
 
 
+    $scope.cutOuterMould = function() {
+        var objPerim = $scope.outerMouldPerim();
+        var mouldWidth = $scope.selObj.outerMould.width / 1000;
+        var mouldWork = $scope.mouldWork;
+        var cutMould = $scope.mouldWork.base;
+
+        for (var i = 0; i < mouldWork.WR.length; i++) {
+            if (mouldWidth > mouldWork.WR[i]) {
+                cutMould = Math.ceil(cutMould * mouldWork.WQ[i]);
+                break;
+            }
+        }
+        for (var i = 0; i < mouldWork.PR.length; i++) {
+            if ($scope.mouldPerim() > mouldWork.PR[i]) {
+                cutMould = Math.ceil((cutMould * mouldWork.PQ[i]) / 5) * 5;
+                break;
+            }
+        }
+        return cutMould;
+    }
 
     $scope.mouldCost = function() {
         var mouldPerim = $scope.mouldPerim();
@@ -415,6 +437,11 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             }
         }
 
+        if ($scope.selObj.back.type == backTypes[4].type) { // поклейка на пінокартон
+            cutBack += ($scope.selObj.sqr() * backTypes[4].glue < backTypes[4].minGlue ? 
+                backTypes[4].minGlue : $scope.selObj.sqr() * backTypes[4].glue);
+        }
+
         if ($scope.selObj.doubleBack) {
             cutBack *= 2;
         }
@@ -448,31 +475,35 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
         if ($scope.selObj.stretch == "subframe") {
             stretch += objPerim * subframeWork.subframe +
-                objPerim * subframeMeterPrice;
+                objPerim * subframeMeterPrice + objPerim * $scope.stretchFurniture;
         }
         if ($scope.selObj.stretch == "subframeGallery") {
             stretch += objPerim * subframeWork.subframeGallery +
-                objPerim * subframeMeterPrice;
+                objPerim * subframeMeterPrice + objPerim * $scope.stretchFurniture;
         }
         if ($scope.selObj.stretch == "DVP") {
-            stretch += objPerim * subframeWork.DVP +
-                $scope.selObj.sqr() * $scope.backTypes[1].price + $scope.furniture();
+            stretch += objPerim * subframeWork.DVP + objPerim * $scope.stretchFurniture +
+                $scope.selObj.sqr() * $scope.backTypes[2].price + $scope.backTypes[2].cut;
         }
         return stretch;
     }
 
     $scope.furniture = function() {
-        var objPerim = $scope.selObj.perim();
 
-        if ($scope.selObj.mould.code == iniObj.mould.code && !$scope.selObj.antiGlass && $scope.selObj.stretch == iniObj.stretch) {
-            furniture = 0;
-        } else if (objPerim < 1.4) {
-            furniture = 12;
-        } else if (objPerim < 2) {
-            furniture = 18;
+        var objPerim = $scope.selObj.perim();
+        var furnPrices = $scope.furniturePrices;
+        if (!$scope.selObj.mould || $scope.selObj.mould && $scope.selObj.Ltype) {
+            var furniture = 0;
         } else {
-            furniture = 25;
+
+            for (var i = 0; i < furnPrices.range.length; i++) {
+                if (objPerim > furnPrices.range[i]) {
+                    furniture = furnPrices.price[i];
+                    break;
+                }
+            }
         }
+
         return furniture;
     }
 
