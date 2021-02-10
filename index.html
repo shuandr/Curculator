@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html  class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -7,16 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Клейнод | рамарня</title>
     <link rel="stylesheet" href="assets/css/app.css">
+    <!-- <link rel="stylesheet" href="assets/css/acute.select.css"> -->
     <script src="https://kit.fontawesome.com/0caeff61d9.js" crossorigin="anonymous"></script>
     <script src="assets/js_plugins/angular.min.js"></script>
     <script src="assets/js_plugins/angular-animate.js"></script>
     <script src="assets/js_plugins/angular-locale_uk-ua.js"></script>
     <script src="assets/js_plugins/orderCalcAngular.js"></script>
+    <!-- <script src="assets/js_plugins/acute.select.js"></script> -->
 </head>
 
 <body>
-    <div class="clnd-bg-full"></div>
     <div ng-app="orderCalc" ng-controller="orderCalcCtrl">
+        <div class="clnd-bg-full"></div>
         <div id="calcIntro" class="clnd-bg">
             <div class="grid-x align-center-middle" style="height: 100vh">
                 <div class=" small-9 medium-6 large-4 cell text-center">
@@ -26,7 +28,7 @@
             </div>
         </div>
         <div class="grid-container">
-            <div class="grid-x align-center-middle" style="height: 100vh">
+            <div class="grid-x align-center-middle" style="min-height: 100vh">
                 <div class="cell">
                     <form id="gform" name="orderForm" method="POST" class="" action="https://script.google.com/macros/s/AKfycbwjSsnfxkVZrvvQFamlhWXjzvSSwb6lIn6Mfwtze1IOqXCF-2g/exec">
                         <div class=" clnd-title">
@@ -83,9 +85,9 @@
                                                 <label>&nbsp;
                                                     <select ng-model="selObj.mould" ng-options="mould.code for mould in allMoulds | filter:search" placeholder="код багету"></select>
                                                 </label>
-                                                <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
                                             </div>
                                         </div>
+                                        <input type="text" class="hide" name="mouldCode" ng-value="selObj.mould.code">
                                         <div class="carton-hole" style="min-height: 200px">
                                             <div class="no-img"></div>
                                             <img src="assets/img/catalog/baget/thumbs/{[{selObj.mould.code}]}.jpg" />
@@ -163,7 +165,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                    <hr>
+                                                <hr>
                                                 <div class="grid-x grid-padding-x calc-details">
                                                     <div class="small-6 cell">
                                                         <p class="text-right">площа: {[{totalPassSqr() | number}]} м<sup>2</sup> </p>
@@ -287,12 +289,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="cell text-right">
+                                    <div class="cell">
                                         <hr>
                                         <br>
-                                        <button type="button" id="detailsToggleButton" class=" button uppercase details-btn">сховати деталі</button>&nbsp;&nbsp;
-                                        <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
-                                        <input type="submit" ng-click="setOrderId()" class="success large button uppercase white" value="в роботу !">
+                                        <div class="grid-x grid-padding-x align-middle">
+                                            <div class="cell large-auto text-right">
+                                                <button type="button" id="detailsToggleButton" class=" button uppercase details-btn">сховати деталі</button>&nbsp;&nbsp;
+                                                <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
+                                            </div>
+                                        <div class="cell large-shrink text-center">
+                                            <input type="submit" ng-click="setOrderId()" class="success large button uppercase white" value="в роботу !">
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +308,7 @@
                     </form>
                 </div>
             </div>
-        </div>    <div id="thankyou_message" style="display:none;">
+        </div>    <div id="thankyou_message" style="display:none; ">
             <div class="grid-x align-center-middle" style="height: 100vh;">
                 <div class="cell text-center">
                     <h1 class="uppercase dark-gold">Дякуємо! <br> замовлення прийнято</h1>
