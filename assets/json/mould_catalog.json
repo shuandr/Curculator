@@ -456,7 +456,15 @@
 {"code":"C948-0079","width":52,"price":18.07},
 {"code":"С594-074","width":22,"price":6.5},
 {"code":"С594-075","width":22,"price":6.5},
-{"code":"С594-076","width":22,"price":6.5}
+{"code":"С594-076","width":22,"price":6.5},
+{"code":"DM 1313-1","width":10,"price":3},
+{"code":"DM 1313-2","width":10,"price":3},
+{"code":"DM 1313-21","width":10,"price":3},
+{"code":"DM 1313-4","width":10,"price":3},
+{"code":"DM 1313-5","width":10,"price":3},
+{"code":"DM 1313-6","width":10,"price":3},
+{"code":"DM 1313-7","width":10,"price":3},
+{"code":"DM 1313-8","width":10,"price":3}
 
 ],
 "ESEL":
