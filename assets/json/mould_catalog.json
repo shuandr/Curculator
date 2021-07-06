@@ -562,7 +562,13 @@
 {"code":"88-603","width":70,"price":19.6},
 {"code":"88-604","width":70,"price":19.6},
 {"code":"88-606","width":70,"price":19.6},
-{"code":"963-000","width":40,"price":9.5}
+{"code":"963-000","width":40,"price":9.5},
+{"code":"1912-902","width":75,"price":35.9},
+{"code":"2032-211","width":15,"price":6.7},
+{"code":"1413-001","width":9,"price":3.3},
+{"code":"1413-002","width":9,"price":3.3},
+{"code":"1413-504","width":9,"price":3.7},
+{"code":"4035-614","width":35,"price":13.6}
 ],
 
 "framerica":[
