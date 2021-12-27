@@ -1,7 +1,7 @@
 {
     "mouldWork":
     {
-        "base": 25,
+        "base": 35,
         "WR": [84, 54, 34, 14, 1],
         "WQ": [4.5, 3, 2, 1.4, 1],
         "PR": [8, 6, 4, 2, 1, 0],
@@ -14,11 +14,11 @@
     },
     {
         "type": "папір",
-        "price": 350
+        "price": 360
     },
     {
         "type": "тканина/оксамит",
-        "price": 850
+        "price": 920
     },
     {
         "type": "з чорним зрізом",
@@ -31,11 +31,11 @@
     "passWork":
     {
         "range": ["60", "30", "1"],
-        "price": [48, 36, 24],
+        "price": [60, 48, 30],
         "form":
         {
-            "oval": 60,
-            "arch": 72
+            "oval": 72,
+            "arch": 80
         }
     },
 
@@ -78,7 +78,7 @@
     "glassWork":
     {
         "range": ["60", "30", "1"],
-        "price": [36, 24, 16],
+        "price": [60, 48, 30],
         "anti": 1.5
     },
 
@@ -92,24 +92,24 @@
     {
         "type": "картон",
         "price": 120,
-        "cut": 10
+        "cut": 20
 
     },
     {
         "type": "ДВП",
         "price": 205,
-        "cut": 16
+        "cut": 30
 
     },
     {
         "type": "піно-картон",
         "price": 430,
-        "cut": 10
+        "cut": 20
     },
     {
         "type": "піно-картон клейкий",
         "price": 550,
-        "cut": 10,
+        "cut": 20,
         "glue": 200,
         "minGlue": 40
     }],
@@ -132,21 +132,21 @@
 
     "stretchWork":
     {
-        "subframe": 30,
-        "subframeGallery": 40,
-        "DVP": 40
+        "subframe": 40,
+        "subframeGallery": 50,
+        "DVP": 50
     },
 
     "furniture":
     {
         "range": [4, 3, 2, 1.4, 0.1],
-        "price": [48, 36, 25, 18, 12]
+        "price": [96, 86, 64, 48, 32]
     },
     "stretchFurniture": 3,
     "mirror": {
-        "montage": 40,
-        "corner": 16,
-        "hole": 24
+        "montage": 80,
+        "corner": 30,
+        "hole": 50
     }
 
 }
