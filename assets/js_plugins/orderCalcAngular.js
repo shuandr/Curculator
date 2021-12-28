@@ -1,4 +1,6 @@
-var app = angular.module('orderCalc', ['ngAnimate']);
+var app = angular.module('orderCalc', ['ngAnimate'
+    // , 'acute.select'
+    ]);
 
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
@@ -30,10 +32,15 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 8; // зажими на антираму з роботою
     var furniture = 0;
-    $scope.cutSlip = 30;
-    $scope.workQ = 1;
+    $scope.cutSlip = 40;
+    $scope.workQ = 1;// коефіцієнт для клієнтів, для майстрів — 0,5
     $scope.workshopPrices = false;
-
+    /*$scope.allMoulds = [ {"code": 'Square'}, 
+    {"code":'Circle'}, 
+    {"code": 'Triangle'}, 
+    {"code": 'Pentagon'}, 
+    {"code": 'Hexagon'}];
+*/
 
 
     $scope.allMoulds = [];
