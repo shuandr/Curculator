@@ -117,15 +117,15 @@
     "subframe": [
     {
         "range": 3.5,
-        "price": 38
+        "price": 55
     },
     {
         "range": 7,
-        "price": 48
+        "price": 65
     },
     {
         "range": 120,
-        "price": 60
+        "price": 75
     }],
 
     "subframeWork": 40,
