@@ -569,7 +569,23 @@
 {"code":"1413-002","width":9,"price":3.50},
 {"code":"1413-504","width":9,"price":4.00},
 {"code":"4035-614","width":35,"price":13.80},
-{"code":"774-903","width":50,"price":17.4}],
+{"code":"774-903","width":50,"price":17.4},
+{"code":"1413-515","width":10,"price":4},
+{"code":"1413-516","width":10,"price":4},
+{"code":"1413-325","width":10,"price":3.5},
+{"code":"1413-326","width":10,"price":3.5},
+{"code":"1413-339","width":10,"price":3.5},
+{"code":"1413-314","width":10,"price":3.5},
+{"code":"4518-025 (4)","width":15,"price":6},
+{"code":"4518-002 (5)","width":15,"price":6},
+{"code":"4518-902","width":15,"price":6.7},
+{"code":"2911-901","width":15,"price":8.95},
+{"code":"2032-000","width":15,"price":5.7},
+{"code":"2032-203","width":15,"price":7.7},
+{"code":"4920-000","width":42,"price":8.5},
+{"code":"SW006-23","width":22,"price":11.05},
+{"code":"SW006-08","width":22,"price":11.05}
+],
 
 "framerica":[
 	{"code":"26003","width":23,"price":90},
@@ -853,7 +869,12 @@
 {"code":"H-13","width":24,"price":95},
 {"code":"H-2","width":24,"price":95},
 {"code":"H-5","width":15,"price":72},
-{"code":"H-6","width":24,"price":80}
+{"code":"H-6","width":24,"price":80},
+{"code":701,"width":14,"price":227},
+{"code":702,"width":14,"price":227},
+{"code":703,"width":14,"price":227},
+{"code":704,"width":14,"price":227},
+{"code":9080,"width":70,"price":1185}
 ],
 "poland_mar":[
 {"code":"4А","width":35,"price":8.7},
