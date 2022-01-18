@@ -25,7 +25,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
     var euroExchange = 34.5;
-    var UsdEuro = 0.84;
+    var UsdEuro = 0.88;
 
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var LtypeQ = 1.4; //коєф. роботи з рамою L-типу 
