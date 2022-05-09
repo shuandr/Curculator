@@ -69,15 +69,15 @@
     },
     {
         "type": "звичайне",
-        "price": 480
+        "price": 600
     },
     {
         "type": "антиблік",
-        "price": 560
+        "price": 700
     },
     {
         "type": "пластик",
-        "price": 690
+        "price": 800
     }],
 
     "glassWork":
