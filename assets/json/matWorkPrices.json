@@ -14,23 +14,23 @@
     },
     {
         "type": "папір",
-        "price": 360
+        "price": 450
     },
     {
         "type": "тканина/оксамит",
-        "price": 1160
+        "price": 1430
     },
     {
         "type": "з чорним зрізом",
-        "price": 660
+        "price": 820
     },
     {
         "type": "металік",
-        "price": 660
+        "price": 860
     },
     {
         "type": "музейне",
-        "price": 880
+        "price": 1100
     }
 ],
     "passWork":
@@ -47,11 +47,11 @@
     "slipPrice": [
     {
         "name": "slip-PL",
-        "price": 60
+        "price": 75
     },
     {
         "name": "slip-Wide",
-        "price": 80
+        "price": 100
     },
     {
         "name": "slip-ES",
@@ -96,7 +96,7 @@
     },
     {
         "type": "картон",
-        "price": 120,
+        "price": 220,
         "cut": 20
 
     },
@@ -108,19 +108,19 @@
     },
     {
         "type": "піно-картон",
-        "price": 430,
+        "price": 500,
         "cut": 20
     },
     {
         "type": "піно-картон клейкий",
-        "price": 650,
+        "price": 800,
         "cut": 20,
         "glue": 200,
         "minGlue": 40
     },
     {
         "type": "гофро-картон",
-        "price": 300,
+        "price": 370,
         "cut": 20
     }
 ],
