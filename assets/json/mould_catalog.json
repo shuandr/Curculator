@@ -557,7 +557,22 @@
 {"code":"88-606","width":70,"price":26.8},
 {"code":"963-000","width":40,"price":14},
 {"code":"SW006-08","width":22,"price":12.8},
-{"code":"SW006-23","width":22,"price":12.8}],
+{"code":"SW006-23","width":22,"price":12.8},
+
+{"code":"715/426","width":15,"price":6.3},
+{"code":"3020/426","width":25,"price":8.4},
+{"code":"2032/607","width":15,"price":11.8},
+{"code":"2032/426","width":15,"price":8.7},
+{"code":"2032/516","width":15,"price":11.8},
+{"code":"2032/614","width":15,"price":9.7},
+{"code":"3016/504","width":25,"price":7.5},
+{"code":"3016/093","width":25,"price":7.5},
+{"code":"1413/340","width":10,"price":3.9},
+{"code":"4335/921","width":35,"price":17.4},
+{"code":"4335/922","width":35,"price":17.4},
+{"code":"4035/001","width":35,"price":20.4},
+{"code":"4035/002","width":35,"price":20.4}
+],
 
 "framerica":[
 {"code":"12-G","width":95,"price":360},
