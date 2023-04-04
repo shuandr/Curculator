@@ -1204,7 +1204,15 @@
 {"code":"R-367-152-9","width":28,"price":5.2},
 {"code":"R-367-183-2","width":28,"price":5.2},
 {"code":"R-367-3064","width":28,"price":5.2},
-{"code":"R-367-3065","width":28,"price":5.2}],
+{"code":"R-367-3065","width":28,"price":5.2},
+{"code":"2422-64 S","width":18,"price":3.06},
+{"code":"2422-64 G","width":18,"price":3.06},
+{"code":"2422-05","width":18,"price":3.06},
+{"code":"2422-03","width":18,"price":3.06},
+{"code":"2422-04","width":18,"price":3.06},
+{"code":"2422-06","width":18,"price":3.06},
+{"code":"Н-15","width":25,"price":3.06},
+{"code":"2017-512","width":15,"price":2.16}],
 
 "obrosh":[
 {"code":"33-01","width":25,"price":4.84},
