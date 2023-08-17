@@ -1224,7 +1224,17 @@
 {"code":"2422-04","width":18,"price":3.06},
 {"code":"2422-06","width":18,"price":3.06},
 {"code":"Н-15","width":25,"price":3.06},
-{"code":"2017-512","width":15,"price":2.16}],
+{"code":"2017-512","width":15,"price":2.16}
+
+{"code":"095-7160","width":18,"price":2.53},
+{"code":"095-152-9","width":18,"price":2.53},
+{"code":"095-011-157","width":18,"price":2.53},
+{"code":"DM 4231M-1171","width":35,"price":7.3},
+{"code":"DM 3026-2130","width":23,"price":4},
+{"code":"AM 5332-X0100","width":45,"price":9.74},
+{"code":"DM 4333-156-4","width":35,"price":9.1},
+{"code":"DM 4333-156-2","width":35,"price":9.1}
+],
 
 "obrosh":[
 {"code":"33-01","width":25,"price":4.84},
