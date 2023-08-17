@@ -30,7 +30,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var LtypeQ = 1.4; //коєф. роботи з рамою L-типу 
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
-    var antiGlassClip = 8; // зажими на антираму з роботою
+    var antiGlassClip = 15; // зажими на антираму з роботою
     var furniture = 0;
     $scope.cutSlip = 40;
     $scope.workQ = 1;// коефіцієнт для клієнтів, для майстрів — 0,5
