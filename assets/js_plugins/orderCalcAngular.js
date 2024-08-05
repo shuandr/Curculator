@@ -587,7 +587,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             }
         }
         if ($scope.selObj.Ltype) {
-            mouldWorkPrice = mouldWorkPrice * LtypeQ 
+            mouldWorkPrice = Math.ceil(mouldWorkPrice * LtypeQ  / 5) * 5
         }
         return mouldWorkPrice;
     };
