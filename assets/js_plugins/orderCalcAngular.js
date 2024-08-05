@@ -587,8 +587,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             }
         }
         if ($scope.selObj.Ltype) {
-            mouldWorkPrice = mouldWorkPrice * LtypeQ +
-                Math.ceil(objPerim) * LtypeClip * 3; // по 3 кріплення на 1 м.п.
+            mouldWorkPrice = mouldWorkPrice * LtypeQ 
         }
         return mouldWorkPrice;
     };
