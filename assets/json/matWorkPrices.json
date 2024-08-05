@@ -31,8 +31,8 @@
     {
         "type": "музейне",
         "price": 1260
-    }
-],
+    }],
+
     "passWork":
     {
         "range": ["80", "40", "1"],
@@ -61,6 +61,13 @@
         "name": "slip-USA",
         "price": 90
     }],
+
+    "slipWork":
+    {
+        "range": ["80", "40", "1"],
+        "price": [80, 60, 40]
+        
+    },
 
     "glassTypes": [
     {
@@ -97,67 +104,67 @@
     {
         "type": "картон",
         "price": 220,
-        "cut": 20
+        "cut": 40
 
     },
     {
         "type": "ДВП",
         "price": 330,
-        "cut": 30
+        "cut": 60
 
     },
     {
         "type": "піно-картон",
         "price": 500,
-        "cut": 20
+        "cut": 40
     },
     {
         "type": "піно-картон клейкий",
         "price": 800,
-        "cut": 20,
+        "cut": 40,
         "glue": 200,
         "minGlue": 40
     },
     {
         "type": "гофро-картон",
         "price": 370,
-        "cut": 20
-    }
-],
+        "cut": 40
+    }],
 
     "subframe": [
     {
         "range": 3.5,
-        "price": 55
+        "price": 100
     },
     {
         "range": 7,
-        "price": 65
+        "price": 120
     },
     {
         "range": 120,
-        "price": 75
+        "price": 150
     }],
 
     "subframeWork": 40,
 
     "stretchWork":
     {
-        "subframe": 40,
-        "subframeGallery": 50,
-        "DVP": 50
+        "subframe": 50,
+        "subframeGallery": 60,
+        "DVP": 60
     },
 
     "furniture":
     {
         "range": [4, 3, 2, 1.4, 0.1],
-        "price": [96, 86, 64, 48, 32]
+        "price": [150, 120, 80, 64, 48]
     },
     "stretchFurniture": 3,
-    "mirror": {
-        "montage": 80,
-        "corner": 30,
-        "hole": 50
+    "mirror":
+    {
+        "montage": 100,
+        "corner": 40,
+        "hole": 60
     }
 
 }
