@@ -28,7 +28,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var UsdEuro = 0.98;
 
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
-    var LtypeQ = 1.4; //коєф. роботи з рамою L-типу 
+    var LtypeQ = 1.5; //коєф. роботи з рамою L-типу 
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 15; // зажими на антираму з роботою
     var furniture = 0;
