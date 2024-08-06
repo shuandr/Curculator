@@ -24,7 +24,7 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 44.5;
+    var euroExchange = 45;
     var UsdEuro = 0.98;
 
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
@@ -32,7 +32,6 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 15; // зажими на антираму з роботою
     var furniture = 0;
-    $scope.cutSlip = 40;
     $scope.workQ = 1;// коефіцієнт для клієнтів, для майстрів — 0,5
     $scope.workshopPrices = false;
     /*$scope.allMoulds = [ {"code": 'Square'}, 
@@ -46,7 +45,8 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
     $scope.slipPrice = [0, 0, 0, 0];
-    $scope.glassTypes = [0, 0, 0];
+    // $scope.cutSlip = [];
+ $scope.glassTypes = [0, 0, 0];
     $scope.backTypes = [0, 0, 0, 0, { "glue": " " }];
     $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
     $scope.glassWork = { "range": [], "price": [], "anti": " " };
@@ -59,43 +59,42 @@ app.controller('orderCalcCtrl', function($scope, $http) {
 
     // XHR
     $http.get("assets/json/matWorkPrices.json").then(function(response) {
-        $scope.matWorkPrices = response.data;
-        $scope.passTypes = $scope.matWorkPrices.passTypes;
-        $scope.slipPrice = $scope.matWorkPrices.slipPrice;
-        $scope.glassTypes = $scope.matWorkPrices.glassTypes;
-        $scope.backTypes = $scope.matWorkPrices.backTypes;
-        $scope.mouldWork = $scope.matWorkPrices.mouldWork;
-        $scope.passWork = $scope.matWorkPrices.passWork;
-        $scope.glassWork = $scope.matWorkPrices.glassWork;
-        $scope.subframe = $scope.matWorkPrices.subframe;
-        $scope.subframeWork = $scope.matWorkPrices.subframeWork;
-        $scope.stretchWorkPrices = $scope.matWorkPrices.stretchWork;
-        $scope.furniturePrices = $scope.matWorkPrices.furniture;
-        $scope.stretchFurniture = $scope.matWorkPrices.stretchFurniture;
-        $scope.mirror = $scope.matWorkPrices.mirror;
+        let p = response.data;
+        $scope.passTypes = p.passTypes;
+        $scope.slipPrice = p.slipPrice;
+        $scope.glassTypes = p.glassTypes;
+        $scope.backTypes = p.backTypes;
+        $scope.mouldWork = p.mouldWork;
+        $scope.passWork = p.passWork;
+        $scope.glassWork = p.glassWork;
+        $scope.subframe = p.subframe;
+        $scope.subframeWork = p.subframeWork;
+        $scope.stretchWorkPrices = p.stretchWork;
+        $scope.furniturePrices = p.furniture;
+        $scope.stretchFurniture = p.stretchFurniture;
+        $scope.mirror = p.mirror;
 
-        // $scope.passTypes = angular.copy($scope.matWorkPrices.passTypes);
 
     });
     $http.get("assets/json/mould_catalog.json").then(function(response) {
-        $scope.allMouldsCatalog = response.data;
-        $scope.allMouldsCatalog.clever.forEach(function(item) {
+        let mouldCat = response.data;
+        mouldCat.clever.forEach(function(item) {
             item.price *= UsdEuro;
         });
-        $scope.allMouldsCatalog.framerica.forEach(function(item) {
+        mouldCat.framerica.forEach(function(item) {
             item.price /= euroExchange;
         });
-        $scope.allMouldsCatalog.poland_syh.forEach(function(item) {
+        mouldCat.poland_syh.forEach(function(item) {
             item.price /= euroExchange;
         });
-        $scope.allMouldsCatalog.ohtyr.forEach(function(item) {
+        mouldCat.ohtyr.forEach(function(item) {
             item.price /= euroExchange;
         });
 
         var createArray = function() {
             var arr = [];
-            for (var key in $scope.allMouldsCatalog) {
-                arr.push($scope.allMouldsCatalog[key]);
+            for (var key in mouldCat) {
+                arr.push(mouldCat[key]);
             }
             var merged = [].concat.apply([], arr);
             return merged;
