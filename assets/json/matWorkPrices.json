@@ -110,7 +110,7 @@
     {
         "type": "ДВП",
         "price": 330,
-        "cut": 60
+        "cut": 50
 
     },
     {
@@ -145,7 +145,7 @@
         "price": 150
     }],
 
-    "subframeWork": 40,
+    "subframeWork": 60,
 
     "stretchWork":
     {
