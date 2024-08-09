@@ -45,7 +45,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
     $scope.slipPrice = [0, 0, 0, 0];
-    // $scope.cutSlip = [];
+    $scope.cutSlip = [];
  $scope.glassTypes = [0, 0, 0];
     $scope.backTypes = [0, 0, 0, 0, { "glue": " " }];
     $scope.mouldWork = { "WR": [], "WQ": [], "PR": [], "PQ": [], };
