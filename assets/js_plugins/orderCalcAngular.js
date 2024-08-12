@@ -32,16 +32,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 15; // зажими на антираму з роботою
     var furniture = 0;
-        $scope.cutSlip = 40;
+        $scope.cutSlip = 50; // порізка штапіка
     $scope.workQ = 1;// коефіцієнт для клієнтів, для майстрів — 0,5
     $scope.workshopPrices = false;
-    /*$scope.allMoulds = [ {"code": 'Square'}, 
-    {"code":'Circle'}, 
-    {"code": 'Triangle'}, 
-    {"code": 'Pentagon'}, 
-    {"code": 'Hexagon'}];
-*/
-
+    
 
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
