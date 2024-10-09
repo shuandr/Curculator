@@ -62,12 +62,6 @@
         "price": 90
     }],
 
-    "slipWork":
-    {
-        "range": ["80", "40", "1"],
-        "price": [80, 60, 40]
-        
-    },
 
     "glassTypes": [
     {
@@ -84,7 +78,7 @@
     },
     {
         "type": "пластик",
-        "price": 1750
+        "price": 2300
     }],
 
     "glassWork":
