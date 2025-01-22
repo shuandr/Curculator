@@ -1347,14 +1347,14 @@
 {"code":"сосна 18 Г1 ВС зрощена","width":13,"price":38},
 {"code":"сосна 30 Г1 ВС цільна","width":25,"price":100}
 ],
-"orest":[{"code":"БО4517","width":40,"price":4.0},
-{"code":"БОШ4517","width":40,"price":4.8},
-{"code":"БОЗ4517","width":40,"price":4.8},
-{"code":"БОЗШ4517","width":40,"price":5.6},
-{"code":"БО3513","width":30,"price":3.6},
-{"code":"БОЗ3513","width":30,"price":4.4},
-{"code":"БОШ3513","width":30,"price":4.4},
-{"code":"БОЗШ3513","width":30,"price":5.2}]
+"orest":[{"code":"БО4517","width":40,"price":7.5},
+{"code":"БОШ4517","width":40,"price":8.4},
+{"code":"БОЗ4517","width":40,"price":8.4},
+{"code":"БОЗШ4517","width":40,"price":9.4},
+{"code":"БО3513","width":30,"price":6.5},
+{"code":"БОЗ3513","width":30,"price":7},
+{"code":"БОШ3513","width":30,"price":7},
+{"code":"БОЗШ3513","width":30,"price":7.7}]
 }
 
 
