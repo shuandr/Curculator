@@ -1276,7 +1276,13 @@
 {"code":"R-367-183-2","width":28,"price":5.2},
 {"code":"R-367-3064","width":28,"price":5.2},
 {"code":"R-367-3065","width":28,"price":5.2},
-{"code":"Н-15","width":25,"price":3.06}
+{"code":"Н-15","width":25,"price":3.06},
+{"code":"DM 2318-4513","width":16,"price":93},
+{"code":"DM 5527-015","width":48,"price":305},
+{"code":"H-5","width":15,"price":108},
+{"code":"SA 5525A-365","width":48,"price":336},
+{"code":"SA 5525A-366","width":48,"price":336},
+{"code":"SA 7036B-552","width":60,"price":465}
 ],
 
 "obrosh":[
