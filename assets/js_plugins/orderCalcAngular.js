@@ -78,7 +78,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         mouldCat.framerica.forEach(function(item) {
             item.price /= euroExchange;
         });
-        mouldCat.poland_syh.forEach(function(item) {
+        mouldCat.syhiv_plast.forEach(function(item) {
+            item.price /= euroExchange;
+        });
+        mouldCat.syhiv_wood.forEach(function(item) {
             item.price /= euroExchange;
         });
         mouldCat.ohtyr.forEach(function(item) {
