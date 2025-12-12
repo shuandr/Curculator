@@ -634,7 +634,12 @@
 {"code":"1415-314","width":9,"price":4.6},
 {"code":"1415-225","width":9,"price":4.6},
 {"code":"1316-001","width":7,"price":4.07},
-{"code":"547-314","width":22,"price":7.1}
+{"code":"547-314","width":22,"price":7.1},
+{"code":"7050-304","width":55,"price":42},
+{"code":"2045-002","width":15,"price":11},
+{"code":"449-002","width":20,"price":9},
+{"code":"4358-902","width":30,"price":17.8},
+{"code":"735-002","width":25,"price":16.3}
 ],
 
 "framerica":[
