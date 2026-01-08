@@ -24,8 +24,8 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 48;
-    var UsdEuro = 0.92;
+    var euroExchange = 50;
+    var UsdEuro = 0.9;
 
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var LtypeQ = 1.5; //коєф. роботи з рамою L-типу 
