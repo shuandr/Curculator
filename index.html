@@ -1,11 +1,11 @@
 <!doctype html>
-<html  class="no-js" lang="en">
+<html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = “robots” content = “noindex”/>
+    <meta name=“robots” content=“noindex” />
     <title>Клейнод | рамарня</title>
     <link rel="stylesheet" href="assets/css/app.css">
     <!-- <link rel="stylesheet" href="assets/css/acute.select.css"> -->
@@ -68,9 +68,10 @@
                                 <textarea rows="4" name="comment" placeholder="примітки"></textarea>
                                 менеджер:
                                 <select name="manager">
-                                    <option value="Мирослава">Мирослава</option>
                                     <option value="Уляна">Уляна</option>
+                                    <option value="Марина">Марина</option>
                                     <option value="Софія">Софія</option>
+                                    <option value="Мирослава">Мирослава</option>
                                 </select>
                             </div>
                             <div class="medium-6 large-9 cell left-border">
@@ -144,7 +145,7 @@
                                             </div>
                                             <div class="small-6 cell">
                                                 ширина:
-                                                <input type="number" name="passWidth" min="0" value="0" ng-model="selObj.passWidth">
+                                                <input type="number" name="passWidth" min="0" step="0.1" value="0" ng-model="selObj.passWidth">
                                             </div>
                                             <div class="small-6 cell">
                                                 код:
@@ -160,7 +161,7 @@
                                                 <div ng-show="selObj.doublePass" class=" ng-hide">
                                                     <div class="grid-x grid-padding-x">
                                                         <div class="small-6 cell">
-                                                            <input type="number" min="0" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
+                                                            <input type="number" min="0" step="0.1" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
                                                         </div>
                                                         <div class="small-6 cell">
                                                             <input type="text" min="0" name="passCode" placeholder="код внутр">
@@ -299,9 +300,9 @@
                                                 <button type="button" id="detailsToggleButton" class=" button uppercase details-btn">сховати деталі</button>&nbsp;&nbsp;
                                                 <input type="button" ng-click="resetForm()" class="alert button uppercase" value="очистити"> &nbsp;&nbsp;
                                             </div>
-                                        <div class="cell large-shrink text-center">
-                                            <input type="submit" ng-click="setOrderId()" class="success large button uppercase white" value="в роботу !">
-                                        </div>
+                                            <div class="cell large-shrink text-center">
+                                                <input type="submit" ng-click="setOrderId()" class="success large button uppercase white" value="в роботу !">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +311,8 @@
                     </form>
                 </div>
             </div>
-        </div>    <div id="thankyou_message" style="display:none; ">
+        </div>
+        <div id="thankyou_message" style="display:none; ">
             <div class="grid-x align-center-middle" style="height: 100vh;">
                 <div class="cell text-center">
                     <h1 class="uppercase dark-gold">Дякуємо! <br> замовлення прийнято</h1>
