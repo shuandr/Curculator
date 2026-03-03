@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="small-6 cell">
                                                 код:
-                                                <input type="text" name="outerPass">
+                                                <input type="text" name="outerPass" ng-required="selObj.passWidth">
                                             </div>
                                             <div class="cell">
                                                 <input type="radio" ng-model="selObj.passForm" value="oval-pass"> круг/овал &nbsp; &nbsp; &nbsp;
@@ -164,7 +164,7 @@
                                                             <input type="number" min="0" step="0.1" ng-model="selObj.passOffset" name="passOffset" placeholder="відступ">
                                                         </div>
                                                         <div class="small-6 cell">
-                                                            <input type="text" min="0" name="passCode" placeholder="код внутр">
+                                                            <input type="text" min="0" name="passCode" placeholder="код внутр" ng-required="selObj.doublePass">
                                                         </div>
                                                     </div>
                                                 </div>
