@@ -1,6 +1,6 @@
 var app = angular.module('orderCalc', ['ngAnimate'
     // , 'acute.select'
-]);
+    ]);
 
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
@@ -24,19 +24,18 @@ app.directive('autoComplete', function($timeout) {
 app.controller('orderCalcCtrl', function($scope, $http) {
 
     // static data
-    var euroExchange = 52   ;
-    var UsdEuro = 0.92;
+    var euroExchange = 51;
+    var UsdEuro = 0.9;
 
     var mouldOrnAccuracy = 1.6; //підбір орнаменту
     var LtypeQ = 1.5; //коєф. роботи з рамою L-типу 
     var LtypeClip = 8; // 1 кріплення рами L-типу, треба 3 шт на м/п
     var antiGlassClip = 25; // зажими на антираму з роботою
     var furniture = 0;
-    $scope.cutSlip = 60; // порізка штапіка
-    $scope.subframeWork = 60; // ціна натяжки підрамника за 1 м.п
-    $scope.workQ = 1; // коефіцієнт для клієнтів, для майстрів — 0,5
+        $scope.cutSlip = 50; // порізка штапіка
+    $scope.workQ = 1;// коефіцієнт для клієнтів, для майстрів — 0,5
     $scope.workshopPrices = false;
-
+    
 
     $scope.allMoulds = [];
     $scope.passTypes = [0, 0, 0];
@@ -53,32 +52,25 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     // materials
 
     // XHR
-
-    const matWorkURL = 'https://script.google.com/macros/s/AKfycbyph5cG26RGaQxPq_tx9MAlokrX6CLDD3x3aipjyIZOTR9AprKJ6jN6ne3qVF_zLTnN/exec';
-    $http.get(matWorkURL).then(function(response) {
-        // console.log(response);
-        // assets/json/matWorkPrices.json
-
+    $http.get("assets/json/matWorkPrices.json").then(function(response) {
         let p = response.data;
-        $scope.mouldWork = p.mouldWork[0];
-
         $scope.passTypes = p.passTypes;
-        $scope.passWork = p.passWork[0];
-        $scope.glassTypes = p.glassTypes;
-        $scope.glassWork = p.glassWork[0];
-        $scope.backTypes = p.backTypes;
         $scope.slipPrice = p.slipPrice;
+        $scope.glassTypes = p.glassTypes;
+        $scope.backTypes = p.backTypes;
+        $scope.mouldWork = p.mouldWork;
+        $scope.passWork = p.passWork;
+        $scope.glassWork = p.glassWork;
         $scope.subframe = p.subframe;
-        $scope.subframeWork = p.other[0].subframeWork;
-        $scope.stretchWorkPrices = p.stretchWork[0];
-        $scope.furniturePrices = p.furniture[0];
-        $scope.stretchFurniture = p.other[0].stretchFurniture;
-        $scope.mirror = p.mirror[0];
+        $scope.subframeWork = p.subframeWork;
+        $scope.stretchWorkPrices = p.stretchWork;
+        $scope.furniturePrices = p.furniture;
+        $scope.stretchFurniture = p.stretchFurniture;
+        $scope.mirror = p.mirror;
+
 
     });
-    const mouldCatURL = 'https://script.google.com/macros/s/AKfycbx_s0WTw_f0n-tefKJA1L5rHrRe3w5rOXyqsFlK2snvZ12KHGomTVByVZJc-XLRAu-lAQ/exec';
-
-    $http.get(mouldCatURL).then(function(response) {
+    $http.get("assets/json/mould_catalog.json").then(function(response) {
         let mouldCat = response.data;
         mouldCat.clever.forEach(function(item) {
             item.price *= UsdEuro;
@@ -108,68 +100,27 @@ app.controller('orderCalcCtrl', function($scope, $http) {
     });
 
 
-
-
-    async function getLastIdFromGoogle() {
-        // Вставте сюди URL після Deploy
-        const getOrderIdURL = 'https://script.google.com/macros/s/AKfycbwtu0zVBgxbcmQJXeu4nC4woTSDC2ynmo_brPhO7rL6gkCO5KfK0WfXQlziEpUkzIWP/exec';
-
-        try {
-            const response = await fetch(getOrderIdURL);
-
-            if (!response.ok) {
-                throw new Error("Помилка мережі або скрипта");
-            }
-
-            const data = await response.json();
-
-            if (data.error) {
-                console.error("Помилка зі скрипта:", data.error);
-            } else {
-                // console.log("Останній ID:", data.lastId);
-                
-                return data.lastId;
-            }
-        } catch (error) {
-            console.error("Не вдалося отримати дані:", error);
-        }
-    }
-
-    /*
-        $scope.setOrderId = function() {
-            localStorage.setItem('preId', preId);
-            localStorage.setItem('lastOrderMonth', currMonth);
-        }
-
-        $scope.getOrderId = function() {
-            currMonth = new Date().getMonth() + 1;
-            if (localStorage.preId && localStorage.lastOrderMonth == currMonth) {
-                preId = Number(localStorage.getItem('preId')) + 1;
-                $scope.orderId = preId + '-' + currMonth;
-            } else {
-                preId = 1;
-                $scope.orderId = preId + '-' + currMonth;
-            }
-
-        }
-    */
     var currMonth = new Date().getMonth() + 1;
+    var preId = 1;
+
+
+    $scope.setOrderId = function() {
+        localStorage.setItem('preId', preId);
+        localStorage.setItem('lastOrderMonth', currMonth);
+    }
 
     $scope.getOrderId = function() {
-        getLastIdFromGoogle().then(preId => {
-            if (preId) {
-                const preMonth = preId.toString().split("-")[1];
-                const preNum = preId.toString().split("-")[0];
-                if (preMonth == currMonth) {
-                    newNum = Number(preNum) + 1;
-                    $scope.orderId = newNum + '-' + currMonth;
-                } else {
-                    newNum = 1;
-                    $scope.orderId = newNum + '-' + currMonth;
-                }
-            }
-        });
+        currMonth = new Date().getMonth() + 1;
+        if (localStorage.preId && localStorage.lastOrderMonth == currMonth) {
+            preId = Number(localStorage.getItem('preId')) + 1;
+            $scope.orderId = preId + '-' + currMonth;
+        } else {
+            preId = 1;
+            $scope.orderId = preId + '-' + currMonth;
+        }
+
     }
+
 
     var iniObj = {
         width: 0,
@@ -366,10 +317,10 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         }
 
         if ($scope.selObj.passForm == "oval-pass") {
-            cutPass = passWork.formOval;
+            cutPass = passWork.form.oval;
         }
         if ($scope.selObj.passForm == "arch-pass") {
-            cutPass = passWork.formArch;
+            cutPass = passWork.form.arch;
         }
         if ($scope.selObj.doublePass) {
             cutPass *= 2;
@@ -611,7 +562,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         var objPerim = (p - 0.1);
         if ($scope.workshopPrices) {
             $scope.workQ = 0.5;
-        } else {
+        }else{
             $scope.workQ = 1;
 
         }
@@ -632,7 +583,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
             }
         }
         if ($scope.selObj.Ltype) {
-            mouldWorkPrice = Math.ceil(mouldWorkPrice * LtypeQ / 5) * 5
+            mouldWorkPrice = Math.ceil(mouldWorkPrice * LtypeQ  / 5) * 5
         }
         return mouldWorkPrice;
     };
