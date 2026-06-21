@@ -601,6 +601,7 @@ app.controller('orderCalcCtrl', function($scope, $http) {
         $scope.orderForm.$setPristine();
         $scope.orderForm.$setUntouched();
         $scope.getOrderId();
+        getLastIdFromGoogle();
 
     }
 
